@@ -38,15 +38,14 @@
 		<dependency>
 			<groupId>com.alinesno.infra.ops</groupId>
 			<artifactId>alinesno-infra-ops-logback-agent</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>compile</scope>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alinesno.infra.ops</groupId>
 			<artifactId>alinesno-infra-ops-logback-adapter</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${revision}</version>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>

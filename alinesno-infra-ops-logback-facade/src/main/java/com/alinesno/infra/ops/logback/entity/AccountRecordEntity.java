@@ -13,20 +13,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 
 /**
- * 用户操作记录和请求记录
- * 
- * @author WeiXiaoJin
- * @since 2019年4月8日 下午10:15:43
+ * 用户操作记录
+ *
+ * @author luoxiaodong
+ * @version 1.0.0
  */
+@SuppressWarnings("serial")
+
 @TableName("manager_account_record")
-public class RequestRecordEntity extends InfraBaseEntity {
-	
-	@TableField(value = "project_id")
-	private Long projectId ; //  所属项目
-  
-	@TableField(value = "config_id")
-	private Long configId ; //  所属配置
-	
+public class AccountRecordEntity extends InfraBaseEntity {
+
 	/* @Excel(name = "操作说明") */
 	@TableField
 	private String operation;
@@ -81,22 +77,6 @@ public class RequestRecordEntity extends InfraBaseEntity {
 
 	@TableField("role_power")
 	private String rolePower;
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
-
-	public Long getConfigId() {
-		return configId;
-	}
-
-	public void setConfigId(Long configId) {
-		this.configId = configId;
-	}
 
 	public String getRecordType() {
 		return recordType;
