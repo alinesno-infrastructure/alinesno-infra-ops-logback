@@ -1,0 +1,27 @@
+server:
+  port: 30401
+
+# spring 配置
+spring:
+  application:
+    name: alinesno-infra-ops-logback-boot
+  devtools:
+    restart:
+      enabled: true
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/dev_alinesno_infra_ops_logback_100?characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
+          username: admin
+          password: adminer
+        slave:
+          driver-class-name: ru.yandex.clickhouse.ClickHouseDriver
+          url: jdbc:clickhouse://localhost:8123/dev_alinesno_infra_ops_logback_clickhouse_100
+          username: default
+          password: adminer
+
+sa-token:
+  is-print: false
