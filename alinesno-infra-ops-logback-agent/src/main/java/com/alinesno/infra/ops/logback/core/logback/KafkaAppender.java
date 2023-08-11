@@ -12,6 +12,7 @@ import com.alinesno.infra.ops.logback.core.utils.ThreadPoolUtil;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
+
 /**
  * className：KafkaAppender
  * description：KafkaAppender 如果使用kafka作为队列用这个KafkaAppender输出

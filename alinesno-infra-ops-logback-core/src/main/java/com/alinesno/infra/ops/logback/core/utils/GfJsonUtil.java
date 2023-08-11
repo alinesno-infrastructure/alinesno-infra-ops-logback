@@ -1,12 +1,8 @@
 package com.alinesno.infra.ops.logback.core.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSON;
+
+import java.util.*;
 
 /**
  * className：GfJsonUtil

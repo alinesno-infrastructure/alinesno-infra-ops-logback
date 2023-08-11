@@ -18,7 +18,7 @@
 		<!-- 引用公共门面服务 -->
 		<dependency>
 			<groupId>com.alinesno.infra.ops</groupId>
-			<artifactId>alinesno-infra-ops-logback-facade</artifactId>
+			<artifactId>alinesno-infra-ops-logback-core</artifactId>
 			<version>${revision}</version>
 		</dependency>
 

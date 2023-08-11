@@ -1,16 +1,15 @@
 package com.alinesno.infra.ops.logback.core.utils;
 
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.classic.spi.ThrowableProxy;
 import com.alinesno.infra.ops.logback.core.constants.MessageConstant;
 import com.alinesno.infra.ops.logback.core.dto.BaseLogMessage;
 import com.alinesno.infra.ops.logback.core.dto.RunLogMessage;
 import org.slf4j.helpers.MessageFormatter;
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.ThrowableProxy;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
