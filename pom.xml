@@ -38,6 +38,9 @@
         <!-- 前端服务
         <module>alinesno-infra-ops-logback-admin</module>
         -->
+
+        <!-- demo -->
+        <module>demo-logback</module>
     </modules>
 
     <!-- 集成 clickhouse 依赖配置 -->

@@ -1,0 +1,48 @@
+2023-08-12T00:39:18.858+08:00  INFO 8118 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : Starting Application using Java 17.0.1 with PID 8118 (/Users/luodong/GitRepository/alinesno-infra-ops-logback/demo-logback/target/classes started by luodong in /Users/luodong/GitRepository/alinesno-infra-ops-logback)
+2023-08-12T00:39:18.860+08:00 DEBUG 8118 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : Running with Spring Boot v3.1.2, Spring v6.0.11
+2023-08-12T00:39:18.861+08:00  INFO 8118 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : The following 5 profiles are active: "base", "security", "mybatis", "sa-token", "dev"
+2023-08-12T00:39:18.919+08:00  INFO 8118 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-08-12T00:39:18.920+08:00  INFO 8118 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-08-12T00:39:19.714+08:00  WARN 8118 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.alinesno.infra.ops.logback.demo]' package. Please check your configuration.
+2023-08-12T00:39:20.300+08:00  INFO 8118 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-08-12T00:39:20.317+08:00  INFO 8118 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-12T00:39:20.318+08:00  INFO 8118 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-08-12T00:39:20.390+08:00  INFO 8118 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-12T00:39:20.391+08:00  INFO 8118 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1469 ms
+2023-08-12T00:39:20.750+08:00  WARN 8118 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+2023-08-12T00:39:20.756+08:00  INFO 8118 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-08-12T00:39:20.786+08:00  INFO 8118 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-08-12T00:39:20.824+08:00 ERROR 8118 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (the profiles base,security,mybatis,sa-token,dev are currently active).
+
+2023-08-12T00:39:57.375+08:00  INFO 8137 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : Starting Application using Java 17.0.1 with PID 8137 (/Users/luodong/GitRepository/alinesno-infra-ops-logback/demo-logback/target/classes started by luodong in /Users/luodong/GitRepository/alinesno-infra-ops-logback)
+2023-08-12T00:39:57.376+08:00 DEBUG 8137 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : Running with Spring Boot v3.1.2, Spring v6.0.11
+2023-08-12T00:39:57.377+08:00  INFO 8137 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : The following 5 profiles are active: "base", "security", "mybatis", "sa-token", "dev"
+2023-08-12T00:39:57.430+08:00  INFO 8137 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-08-12T00:39:57.431+08:00  INFO 8137 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-08-12T00:39:58.509+08:00  INFO 8137 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-08-12T00:39:58.520+08:00  INFO 8137 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-12T00:39:58.520+08:00  INFO 8137 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-08-12T00:39:58.588+08:00  INFO 8137 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-12T00:39:58.588+08:00  INFO 8137 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1157 ms
+2023-08-12T00:39:58.975+08:00  INFO 8137 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-08-12T00:39:59.007+08:00  INFO 8137 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-08-12T00:39:59.016+08:00  INFO 8137 --- [restartedMain] c.a.infra.ops.logback.demo.Application   : Started Application in 2.33 seconds (process running for 2.817)

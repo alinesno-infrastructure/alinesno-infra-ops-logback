@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: demo-config-simples
+
+alinesno.ops:
+  logback:
+    kafka-host: 172.20.200.21:9092
+    user-key: adminer
