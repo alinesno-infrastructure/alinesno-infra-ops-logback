@@ -12,5 +12,6 @@ spring:
 
 alinesno.ops:
   logback:
-    kafka-host: 192.168.101.18:9092
-    user-key: adminer
+    env: development
+    kafkaServers: 192.168.101.18:9092
+    user-key: aip@local
