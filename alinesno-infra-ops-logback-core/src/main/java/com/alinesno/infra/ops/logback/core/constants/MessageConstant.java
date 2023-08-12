@@ -11,6 +11,7 @@ import java.util.List;
 public class MessageConstant {
 
     public final static String LOG_KEY_LOGGER = "infra_logger_list";
+    public final static String LOG_KEY_OS = "infra_logger_os";
 
     public final static String LOG_KEY_COMPRESS = "infra_log_list_compress";
 

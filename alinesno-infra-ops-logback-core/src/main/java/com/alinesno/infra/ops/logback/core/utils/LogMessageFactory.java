@@ -12,7 +12,7 @@ import com.alinesno.infra.ops.logback.core.dto.RunLogMessage;
  * @author Tank
  * @author luoxiaodong
  */
-public class TraceLogMessageFactory<T> {
+public class LogMessageFactory<T> {
 
     /**
      * 根据给定的参数创建一个运行日志消息对象。

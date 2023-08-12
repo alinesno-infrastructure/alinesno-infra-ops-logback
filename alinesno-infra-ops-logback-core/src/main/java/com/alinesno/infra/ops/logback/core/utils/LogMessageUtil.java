@@ -4,10 +4,11 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import com.alinesno.infra.ops.logback.core.constants.MessageConstant;
-import com.alinesno.infra.ops.logback.core.dto.BaseLogMessage;
-import com.alinesno.infra.ops.logback.core.dto.RunLogMessage;
+import com.alinesno.infra.ops.logback.core.context.SystemInfoFetcher;
+import com.alinesno.infra.ops.logback.core.dto.*;
 import org.slf4j.helpers.MessageFormatter;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -35,12 +36,31 @@ public class LogMessageUtil {
     public static BaseLogMessage getLogMessage(final String appName, final String env, final ILoggingEvent iLoggingEvent) {
 
         String formattedMessage = getMessage(iLoggingEvent);
-        RunLogMessage logMessage =  TraceLogMessageFactory.getLogMessage(appName, env, formattedMessage, iLoggingEvent.getTimeStamp());
+        RunLogMessage logMessage =  LogMessageFactory.getLogMessage(appName, env, formattedMessage, iLoggingEvent.getTimeStamp());
 
         logMessage.setClassName(iLoggingEvent.getLoggerName());
         logMessage.setThreadName(iLoggingEvent.getThreadName());
         logMessage.setSeq(SEQ_BUILDER.getAndIncrement());
 
+        logMessage.setMDCPropertyMap(iLoggingEvent.getMDCPropertyMap()); ;
+        logMessage.setTimeStamp(iLoggingEvent.getTimeStamp());
+        logMessage.setNanoseconds(iLoggingEvent.getNanoseconds());
+
+        // running time
+        // TODO 待优化消息内容和大小问题，还有开关的问题
+
+        long startTime = System.currentTimeMillis();
+
+        JVMDto jvm = SystemInfoFetcher.getJVMInfo() ;
+        MemDto mem = SystemInfoFetcher.getMemoryDetails() ;
+
+        logMessage.setJvm(jvm);
+        logMessage.setMem(mem);
+
+        long endTime = System.currentTimeMillis();
+
+        long elapsedTime = endTime - startTime;
+        System.out.println("===>>> 方法执行时间：" + elapsedTime + " 毫秒");
 
         StackTraceElement[] stackTraceElements = iLoggingEvent.getCallerData();
 
@@ -86,6 +106,6 @@ public class LogMessageUtil {
         if (message != null && message.contains(MessageConstant.DELIM_STR)) {
             return MessageFormatter.arrayFormat(message, args).getMessage();
         }
-        return TraceLogMessageFactory.packageMessage(message, args);
+        return LogMessageFactory.packageMessage(message, args);
     }
 }

@@ -1,8 +1,16 @@
+server:
+  port: 10401
+
 spring:
   application:
     name: demo-config-simples
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: aip@local
 
 alinesno.ops:
   logback:
-    kafka-host: 172.20.200.21:9092
+    kafka-host: 192.168.101.18:9092
     user-key: adminer

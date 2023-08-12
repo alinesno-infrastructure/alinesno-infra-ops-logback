@@ -21,12 +21,7 @@
 			<artifactId>alinesno-infra-ops-logback-core</artifactId>
 			<version>${revision}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.alinesno.infra.ops</groupId>
-			<artifactId>alinesno-infra-ops-logback-core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+
 
 	</dependencies>
 

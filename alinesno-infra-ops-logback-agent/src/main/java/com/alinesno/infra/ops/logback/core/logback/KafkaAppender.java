@@ -9,7 +9,6 @@ import com.alinesno.infra.ops.logback.core.kafka.KafkaProducerClient;
 import com.alinesno.infra.ops.logback.core.utils.LogMessageUtil;
 import com.alinesno.infra.ops.logback.core.utils.ThreadPoolUtil;
 
-import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 
@@ -130,8 +129,10 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
         }
 
         MessageAppenderFactory.initQueue(this.logQueueSize);
+
         for (int i = 0; i < this.threadPoolSize; i++) {
-            threadPoolExecutor.execute(() -> { MessageAppenderFactory.startRunLog(this.kafkaClient, this.maxCount);
+            threadPoolExecutor.execute(() -> {
+                MessageAppenderFactory.startRunLog(this.kafkaClient, this.maxCount);
             });
         }
 
