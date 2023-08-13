@@ -5,7 +5,9 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -17,36 +19,35 @@ import java.util.List;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@Component
 public class KafkaCollect extends BaseLogCollect {
+
 	private final Logger log = LoggerFactory.getLogger(KafkaCollect.class);
 
-	int count = 0 ; 
-	
-	private final KafkaConsumer<String, String> kafkaConsumer;
+	@Autowired
+	private KafkaConsumer<String , String> kafkaConsumer;
 
-	public KafkaCollect(KafkaConsumer<String , String> kafkaConsumer, ApplicationEventPublisher applicationEventPublisher) {
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
-		this.kafkaConsumer = kafkaConsumer;
+	public void kafkaStart() {
 		log.debug("kafkaConsumer = {}", kafkaConsumer);
 
 		// 监听的topic
-		this.kafkaConsumer.subscribe(Arrays.asList(
-				MessageConstant.LOG_KEY_LOGGER
-		));
-		
-		super.applicationEventPublisher = applicationEventPublisher;
+		kafkaConsumer.subscribe(List.of(
+                MessageConstant.LOG_KEY_LOGGER
+        ));
+
 		log.info("kafkaConsumer subscribe ready!");
 		log.info("sending log ready!");
-	}
 
-	public void kafkaStart() {
 		threadPoolExecutor.execute(this::collectRuningLog);
 		log.info("KafkaLogCollect is starting!");
 	}
 
 	public void collectRuningLog() {
 		while (true) {
-			List<String> logList = new ArrayList<String>();
+			List<String> logList = new ArrayList<>();
 
 			log.debug("collect running log!!");
 
@@ -54,7 +55,6 @@ public class KafkaCollect extends BaseLogCollect {
 				ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(1000));
 
 				records.forEach(record -> {
-
 					log.debug("topic = {}" , record.topic());
 					log.debug("message = {}" , record.value());
 
@@ -69,6 +69,12 @@ public class KafkaCollect extends BaseLogCollect {
 				});
 			} catch (Exception e) {
 				log.error("get logs from kafka failed! ", e);
+			}
+
+			// 业务日志
+			if (!logList.isEmpty()) {
+				super.handleLog(logList) ;
+				publisherMonitorEvent(logList);
 			}
 
 		}

@@ -20,7 +20,7 @@ public class LogEntryEntity extends InfraBaseEntity {
 
     // 时间戳
     @TableField("timestamp")
-    private Timestamp timestamp;
+    private long timestamp;
 
     // 日志级别
     @TableField("log_level")
@@ -129,11 +129,11 @@ public class LogEntryEntity extends InfraBaseEntity {
 
     // Getters and Setters
 
-    public Timestamp getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

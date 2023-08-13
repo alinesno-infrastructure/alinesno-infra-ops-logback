@@ -1,4 +1,4 @@
 package com.alinesno.infra.ops.logback.adapter.event;
 
-public class LogEvent {
+public class MonitorErrorListener {
 }

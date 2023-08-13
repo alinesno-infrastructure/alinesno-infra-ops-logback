@@ -10,9 +10,15 @@ spring:
       enabled: true
   datasource:
     driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
-    url: jdbc:clickhouse://192.168.101.18:8123/default
+    url: jdbc:clickhouse://127.0.0.1:8123/default?rewriteBatchedStatements=true
     username: default
     password:
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      idle-timeout: 10000
+      max-lifetime: 1000
   data:
     redis:
       host: 127.0.0.1

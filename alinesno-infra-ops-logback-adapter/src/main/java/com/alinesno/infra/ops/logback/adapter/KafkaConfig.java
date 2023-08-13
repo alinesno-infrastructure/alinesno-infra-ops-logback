@@ -23,11 +23,6 @@ public class KafkaConfig {
         props.put("bootstrap.servers", "192.168.101.18:9092");
         props.put("group.id", "1");
 
-        //配置自动提交offset
-        props.put("enable.auto.commit", "true");
-        //配置自动提交offset的时间间隔为1秒
-        props.put("auto.commit.interval.ms", "1000");
-
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 

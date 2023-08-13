@@ -17,10 +17,7 @@ public class CollectStartBean implements InitializingBean {
     private static final Logger log = LoggerFactory.getLogger(CollectStartBean.class) ;
 
     @Autowired
-    private KafkaConsumer<String , String> kafkaConsumer;
-
-    @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
+    private KafkaCollect kafkaLogCollect ;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -32,7 +29,6 @@ public class CollectStartBean implements InitializingBean {
     }
 
     private void serverCollect() {
-        KafkaCollect kafkaLogCollect = new KafkaCollect(kafkaConsumer , applicationEventPublisher) ;
         kafkaLogCollect.kafkaStart();
     }
 }
