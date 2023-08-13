@@ -136,4 +136,245 @@ public class NginxAccessLogEntity extends InfraBaseEntity {
     private String responseType;
 
     // Getters and Setters
+
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getClientIpAddress() {
+        return clientIpAddress;
+    }
+
+    public void setClientIpAddress(String clientIpAddress) {
+        this.clientIpAddress = clientIpAddress;
+    }
+
+    public String getRequestMethod() {
+        return requestMethod;
+    }
+
+    public void setRequestMethod(String requestMethod) {
+        this.requestMethod = requestMethod;
+    }
+
+    public String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    public String getHttpVersion() {
+        return httpVersion;
+    }
+
+    public void setHttpVersion(String httpVersion) {
+        this.httpVersion = httpVersion;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public long getResponseSize() {
+        return responseSize;
+    }
+
+    public void setResponseSize(long responseSize) {
+        this.responseSize = responseSize;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public long getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(long responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public String getRequestHeaders() {
+        return requestHeaders;
+    }
+
+    public void setRequestHeaders(String requestHeaders) {
+        this.requestHeaders = requestHeaders;
+    }
+
+    public String getResponseHeaders() {
+        return responseHeaders;
+    }
+
+    public void setResponseHeaders(String responseHeaders) {
+        this.responseHeaders = responseHeaders;
+    }
+
+    public String getRequestBody() {
+        return requestBody;
+    }
+
+    public void setRequestBody(String requestBody) {
+        this.requestBody = requestBody;
+    }
+
+    public String getResponseBody() {
+        return responseBody;
+    }
+
+    public void setResponseBody(String responseBody) {
+        this.responseBody = responseBody;
+    }
+
+    public String getAccessLogType() {
+        return accessLogType;
+    }
+
+    public void setAccessLogType(String accessLogType) {
+        this.accessLogType = accessLogType;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public String getRequestProtocol() {
+        return requestProtocol;
+    }
+
+    public void setRequestProtocol(String requestProtocol) {
+        this.requestProtocol = requestProtocol;
+    }
+
+    public Timestamp getRequestTime() {
+        return requestTime;
+    }
+
+    public void setRequestTime(Timestamp requestTime) {
+        this.requestTime = requestTime;
+    }
+
+    public Timestamp getResponseTimeStamp() {
+        return responseTimeStamp;
+    }
+
+    public void setResponseTimeStamp(Timestamp responseTimeStamp) {
+        this.responseTimeStamp = responseTimeStamp;
+    }
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public String getCacheStatus() {
+        return cacheStatus;
+    }
+
+    public void setCacheStatus(String cacheStatus) {
+        this.cacheStatus = cacheStatus;
+    }
+
+    public String getFrontendProxy() {
+        return frontendProxy;
+    }
+
+    public void setFrontendProxy(String frontendProxy) {
+        this.frontendProxy = frontendProxy;
+    }
+
+    public String getBackendServer() {
+        return backendServer;
+    }
+
+    public void setBackendServer(String backendServer) {
+        this.backendServer = backendServer;
+    }
+
+    public String getSslProtocolVersion() {
+        return sslProtocolVersion;
+    }
+
+    public void setSslProtocolVersion(String sslProtocolVersion) {
+        this.sslProtocolVersion = sslProtocolVersion;
+    }
+
+    public String getSslCipher() {
+        return sslCipher;
+    }
+
+    public void setSslCipher(String sslCipher) {
+        this.sslCipher = sslCipher;
+    }
+
+    public String getRequestTimeRange() {
+        return requestTimeRange;
+    }
+
+    public void setRequestTimeRange(String requestTimeRange) {
+        this.requestTimeRange = requestTimeRange;
+    }
+
+    public long getRequestDuration() {
+        return requestDuration;
+    }
+
+    public void setRequestDuration(long requestDuration) {
+        this.requestDuration = requestDuration;
+    }
+
+    public String getResponseType() {
+        return responseType;
+    }
+
+    public void setResponseType(String responseType) {
+        this.responseType = responseType;
+    }
 }

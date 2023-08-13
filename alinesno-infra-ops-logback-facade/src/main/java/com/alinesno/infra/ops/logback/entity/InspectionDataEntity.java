@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
-@SuppressWarnings("serial")
 @TableName("inspection_data")
 public class InspectionDataEntity extends InfraBaseEntity {
 

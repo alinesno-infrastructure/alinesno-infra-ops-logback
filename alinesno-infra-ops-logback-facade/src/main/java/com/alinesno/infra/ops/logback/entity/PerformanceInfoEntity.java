@@ -1,5 +1,6 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -9,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("performance_info")
-public class PerformanceInfoEntity {
+public class PerformanceInfoEntity extends InfraBaseEntity {
 
     // 首次内容绘制 (FCP)
     @TableField("fcp")
@@ -44,4 +45,68 @@ public class PerformanceInfoEntity {
     private double ttfb;
 
     // Getters and Setters
+
+    public double getFcp() {
+        return fcp;
+    }
+
+    public void setFcp(double fcp) {
+        this.fcp = fcp;
+    }
+
+    public int getFp() {
+        return fp;
+    }
+
+    public void setFp(int fp) {
+        this.fp = fp;
+    }
+
+    public int getRedirectTime() {
+        return redirectTime;
+    }
+
+    public void setRedirectTime(int redirectTime) {
+        this.redirectTime = redirectTime;
+    }
+
+    public int getDomainLookupTime() {
+        return domainLookupTime;
+    }
+
+    public void setDomainLookupTime(int domainLookupTime) {
+        this.domainLookupTime = domainLookupTime;
+    }
+
+    public int getConnectTime() {
+        return connectTime;
+    }
+
+    public void setConnectTime(int connectTime) {
+        this.connectTime = connectTime;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public int getDomCompleteTime() {
+        return domCompleteTime;
+    }
+
+    public void setDomCompleteTime(int domCompleteTime) {
+        this.domCompleteTime = domCompleteTime;
+    }
+
+    public double getTtfb() {
+        return ttfb;
+    }
+
+    public void setTtfb(double ttfb) {
+        this.ttfb = ttfb;
+    }
 }

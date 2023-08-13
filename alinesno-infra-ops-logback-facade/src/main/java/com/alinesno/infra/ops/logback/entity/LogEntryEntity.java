@@ -1,10 +1,12 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 
 import java.sql.Timestamp;
+import java.util.Map;
 
 /**
  * 日志实体类
@@ -13,7 +15,7 @@ import java.sql.Timestamp;
  * @author luoxiaodong
  * @version 1.0.0
  */
-@TableName("log_entry") // 指定数据库表名
+@TableName("a_log_record") // 指定数据库表名
 public class LogEntryEntity extends InfraBaseEntity {
 
     // 时间戳
@@ -72,10 +74,6 @@ public class LogEntryEntity extends InfraBaseEntity {
     @TableField("server_name")
     private String serverName;
 
-    // 应用程序名
-    @TableField("application_name")
-    private String applicationName;
-
     // 日志ID
     @TableField("log_id")
     private String logId;
@@ -120,5 +118,238 @@ public class LogEntryEntity extends InfraBaseEntity {
     @TableField("standardized_fields")
     private String standardizedFields;
 
+    @TableField(exist = false) // 不映射到数据库表
+    private Map<String, String> MDCPropertyMap; // MDC属性映射
+
+    @TableField(exist = false) // 不映射到数据库表
+    private JSONObject jvm; // JVM信息
+
+    @TableField(exist = false) // 不映射到数据库表
+    private JSONObject mem; // 内存信息
+
     // Getters and Setters
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
+    }
+
+    public String getLoggerName() {
+        return loggerName;
+    }
+
+    public void setLoggerName(String loggerName) {
+        this.loggerName = loggerName;
+    }
+
+    public String getThreadName() {
+        return threadName;
+    }
+
+    public void setThreadName(String threadName) {
+        this.threadName = threadName;
+    }
+
+    public String getLogMessage() {
+        return logMessage;
+    }
+
+    public void setLogMessage(String logMessage) {
+        this.logMessage = logMessage;
+    }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public void setRequestUrl(String requestUrl) {
+        this.requestUrl = requestUrl;
+    }
+
+    public String getRequestMethod() {
+        return requestMethod;
+    }
+
+    public void setRequestMethod(String requestMethod) {
+        this.requestMethod = requestMethod;
+    }
+
+    public String getRequestParameters() {
+        return requestParameters;
+    }
+
+    public void setRequestParameters(String requestParameters) {
+        this.requestParameters = requestParameters;
+    }
+
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(int responseCode) {
+        this.responseCode = responseCode;
+    }
+
+    public long getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(long responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
+
+    public String getLogId() {
+        return logId;
+    }
+
+    public void setLogId(String logId) {
+        this.logId = logId;
+    }
+
+    public String getLogTags() {
+        return logTags;
+    }
+
+    public void setLogTags(String logTags) {
+        this.logTags = logTags;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
+    }
+
+    public void setSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
+    }
+
+    public String getLogCategory() {
+        return logCategory;
+    }
+
+    public void setLogCategory(String logCategory) {
+        this.logCategory = logCategory;
+    }
+
+    public String getLogLocation() {
+        return logLocation;
+    }
+
+    public void setLogLocation(String logLocation) {
+        this.logLocation = logLocation;
+    }
+
+    public String getLogContext() {
+        return logContext;
+    }
+
+    public void setLogContext(String logContext) {
+        this.logContext = logContext;
+    }
+
+    public String getLogMarkers() {
+        return logMarkers;
+    }
+
+    public void setLogMarkers(String logMarkers) {
+        this.logMarkers = logMarkers;
+    }
+
+    public String getLogExtraData() {
+        return logExtraData;
+    }
+
+    public void setLogExtraData(String logExtraData) {
+        this.logExtraData = logExtraData;
+    }
+
+    public long getLogDuration() {
+        return logDuration;
+    }
+
+    public void setLogDuration(long logDuration) {
+        this.logDuration = logDuration;
+    }
+
+    public String getLogEnvironment() {
+        return logEnvironment;
+    }
+
+    public void setLogEnvironment(String logEnvironment) {
+        this.logEnvironment = logEnvironment;
+    }
+
+    public String getStandardizedFields() {
+        return standardizedFields;
+    }
+
+    public void setStandardizedFields(String standardizedFields) {
+        this.standardizedFields = standardizedFields;
+    }
+
+    public Map<String, String> getMDCPropertyMap() {
+        return MDCPropertyMap;
+    }
+
+    public void setMDCPropertyMap(Map<String, String> MDCPropertyMap) {
+        this.MDCPropertyMap = MDCPropertyMap;
+    }
+
+    public JSONObject getJvm() {
+        return jvm;
+    }
+
+    public void setJvm(JSONObject jvm) {
+        this.jvm = jvm;
+    }
+
+    public JSONObject getMem() {
+        return mem;
+    }
+
+    public void setMem(JSONObject mem) {
+        this.mem = mem;
+    }
 }

@@ -76,4 +76,124 @@ public class DatabaseLogEntity extends InfraBaseEntity {
     private String sourceApplication;
 
     // Getters and Setters
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
+    }
+
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
+    }
+
+    public String getOperationObject() {
+        return operationObject;
+    }
+
+    public void setOperationObject(String operationObject) {
+        this.operationObject = operationObject;
+    }
+
+    public String getSqlStatement() {
+        return sqlStatement;
+    }
+
+    public void setSqlStatement(String sqlStatement) {
+        this.sqlStatement = sqlStatement;
+    }
+
+    public String getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(String parameters) {
+        this.parameters = parameters;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public long getExecutionTime() {
+        return executionTime;
+    }
+
+    public void setExecutionTime(long executionTime) {
+        this.executionTime = executionTime;
+    }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public String getPrimaryKeyValue() {
+        return primaryKeyValue;
+    }
+
+    public void setPrimaryKeyValue(String primaryKeyValue) {
+        this.primaryKeyValue = primaryKeyValue;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
+    }
+
+    public void setSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
+    }
 }

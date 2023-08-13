@@ -9,19 +9,19 @@ spring:
     restart:
       enabled: true
   datasource:
-    dynamic:
-      primary: master
-      datasource:
-        master:
-          driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://localhost:3306/dev_alinesno_infra_ops_logback_100?characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
-          username: admin
-          password: adminer
-        slave:
-          driver-class-name: ru.yandex.clickhouse.ClickHouseDriver
-          url: jdbc:clickhouse://localhost:8123/dev_alinesno_infra_ops_logback_clickhouse_100
-          username: default
-          password: adminer
+    driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
+    url: jdbc:clickhouse://192.168.101.18:8123/default
+    username: default
+    password:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: aip@local
+  kafka:
+    bootstrap-servers: 192.168.101.18:9092
+    consumer:
+      group-id: infra_logback
 
 sa-token:
   is-print: false

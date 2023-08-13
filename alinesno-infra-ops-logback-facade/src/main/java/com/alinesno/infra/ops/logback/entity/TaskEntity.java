@@ -9,7 +9,7 @@ import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
  * @author luoxiaodong
  * @since 1.0.0
  */
-@TableName("send_task") // 指定数据库表名
+@TableName("log_task") // 指定数据库表名
 public class TaskEntity extends InfraBaseEntity {
 
     // 任务名称

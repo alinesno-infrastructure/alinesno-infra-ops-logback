@@ -1,5 +1,6 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -9,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("io_list")
-public class IoListEntity {
+public class IoListEntity extends InfraBaseEntity {
 
     // URL名称
     @TableField("name")
@@ -156,4 +157,293 @@ public class IoListEntity {
     private long timeStep;
 
     // Getters and Setters
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEntryType() {
+        return entryType;
+    }
+
+    public void setEntryType(String entryType) {
+        this.entryType = entryType;
+    }
+
+    public double getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(double startTime) {
+        this.startTime = startTime;
+    }
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    public String getInitiatorType() {
+        return initiatorType;
+    }
+
+    public void setInitiatorType(String initiatorType) {
+        this.initiatorType = initiatorType;
+    }
+
+    public String getNextHopProtocol() {
+        return nextHopProtocol;
+    }
+
+    public void setNextHopProtocol(String nextHopProtocol) {
+        this.nextHopProtocol = nextHopProtocol;
+    }
+
+    public String getRenderBlockingStatus() {
+        return renderBlockingStatus;
+    }
+
+    public void setRenderBlockingStatus(String renderBlockingStatus) {
+        this.renderBlockingStatus = renderBlockingStatus;
+    }
+
+    public double getWorkerStart() {
+        return workerStart;
+    }
+
+    public void setWorkerStart(double workerStart) {
+        this.workerStart = workerStart;
+    }
+
+    public double getRedirectStart() {
+        return redirectStart;
+    }
+
+    public void setRedirectStart(double redirectStart) {
+        this.redirectStart = redirectStart;
+    }
+
+    public double getRedirectEnd() {
+        return redirectEnd;
+    }
+
+    public void setRedirectEnd(double redirectEnd) {
+        this.redirectEnd = redirectEnd;
+    }
+
+    public double getFetchStart() {
+        return fetchStart;
+    }
+
+    public void setFetchStart(double fetchStart) {
+        this.fetchStart = fetchStart;
+    }
+
+    public double getDomainLookupStart() {
+        return domainLookupStart;
+    }
+
+    public void setDomainLookupStart(double domainLookupStart) {
+        this.domainLookupStart = domainLookupStart;
+    }
+
+    public double getDomainLookupEnd() {
+        return domainLookupEnd;
+    }
+
+    public void setDomainLookupEnd(double domainLookupEnd) {
+        this.domainLookupEnd = domainLookupEnd;
+    }
+
+    public double getConnectStart() {
+        return connectStart;
+    }
+
+    public void setConnectStart(double connectStart) {
+        this.connectStart = connectStart;
+    }
+
+    public double getConnectEnd() {
+        return connectEnd;
+    }
+
+    public void setConnectEnd(double connectEnd) {
+        this.connectEnd = connectEnd;
+    }
+
+    public double getSecureConnectionStart() {
+        return secureConnectionStart;
+    }
+
+    public void setSecureConnectionStart(double secureConnectionStart) {
+        this.secureConnectionStart = secureConnectionStart;
+    }
+
+    public double getRequestStart() {
+        return requestStart;
+    }
+
+    public void setRequestStart(double requestStart) {
+        this.requestStart = requestStart;
+    }
+
+    public double getResponseStart() {
+        return responseStart;
+    }
+
+    public void setResponseStart(double responseStart) {
+        this.responseStart = responseStart;
+    }
+
+    public double getResponseEnd() {
+        return responseEnd;
+    }
+
+    public void setResponseEnd(double responseEnd) {
+        this.responseEnd = responseEnd;
+    }
+
+    public int getTransferSize() {
+        return transferSize;
+    }
+
+    public void setTransferSize(int transferSize) {
+        this.transferSize = transferSize;
+    }
+
+    public int getEncodedBodySize() {
+        return encodedBodySize;
+    }
+
+    public void setEncodedBodySize(int encodedBodySize) {
+        this.encodedBodySize = encodedBodySize;
+    }
+
+    public int getDecodedBodySize() {
+        return decodedBodySize;
+    }
+
+    public void setDecodedBodySize(int decodedBodySize) {
+        this.decodedBodySize = decodedBodySize;
+    }
+
+    public String getServerTiming() {
+        return serverTiming;
+    }
+
+    public void setServerTiming(String serverTiming) {
+        this.serverTiming = serverTiming;
+    }
+
+    public double getUnloadEventStart() {
+        return unloadEventStart;
+    }
+
+    public void setUnloadEventStart(double unloadEventStart) {
+        this.unloadEventStart = unloadEventStart;
+    }
+
+    public double getUnloadEventEnd() {
+        return unloadEventEnd;
+    }
+
+    public void setUnloadEventEnd(double unloadEventEnd) {
+        this.unloadEventEnd = unloadEventEnd;
+    }
+
+    public double getDomInteractive() {
+        return domInteractive;
+    }
+
+    public void setDomInteractive(double domInteractive) {
+        this.domInteractive = domInteractive;
+    }
+
+    public double getDomContentLoadedEventStart() {
+        return domContentLoadedEventStart;
+    }
+
+    public void setDomContentLoadedEventStart(double domContentLoadedEventStart) {
+        this.domContentLoadedEventStart = domContentLoadedEventStart;
+    }
+
+    public double getDomContentLoadedEventEnd() {
+        return domContentLoadedEventEnd;
+    }
+
+    public void setDomContentLoadedEventEnd(double domContentLoadedEventEnd) {
+        this.domContentLoadedEventEnd = domContentLoadedEventEnd;
+    }
+
+    public double getDomComplete() {
+        return domComplete;
+    }
+
+    public void setDomComplete(double domComplete) {
+        this.domComplete = domComplete;
+    }
+
+    public double getLoadEventStart() {
+        return loadEventStart;
+    }
+
+    public void setLoadEventStart(double loadEventStart) {
+        this.loadEventStart = loadEventStart;
+    }
+
+    public double getLoadEventEnd() {
+        return loadEventEnd;
+    }
+
+    public void setLoadEventEnd(double loadEventEnd) {
+        this.loadEventEnd = loadEventEnd;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getRedirectCount() {
+        return redirectCount;
+    }
+
+    public void setRedirectCount(int redirectCount) {
+        this.redirectCount = redirectCount;
+    }
+
+    public double getActivationStart() {
+        return activationStart;
+    }
+
+    public void setActivationStart(double activationStart) {
+        this.activationStart = activationStart;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
+    }
+
+    public long getTimeStep() {
+        return timeStep;
+    }
+
+    public void setTimeStep(long timeStep) {
+        this.timeStep = timeStep;
+    }
 }

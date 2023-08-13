@@ -1,5 +1,6 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -9,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("business_log")
-public class BusinessLogEntity {
+public class BusinessLogEntity extends InfraBaseEntity {
 
     // 日志ID
     @TableField("log_id")
@@ -88,4 +89,157 @@ public class BusinessLogEntity {
     private String sourceApplication;
 
     // Getters and Setters
+
+
+    public String getLogId() {
+        return logId;
+    }
+
+    public void setLogId(String logId) {
+        this.logId = logId;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
+    }
+
+    public String getLogSource() {
+        return logSource;
+    }
+
+    public void setLogSource(String logSource) {
+        this.logSource = logSource;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
+    }
+
+    public String getOperationObject() {
+        return operationObject;
+    }
+
+    public void setOperationObject(String operationObject) {
+        this.operationObject = operationObject;
+    }
+
+    public String getOperationDescription() {
+        return operationDescription;
+    }
+
+    public void setOperationDescription(String operationDescription) {
+        this.operationDescription = operationDescription;
+    }
+
+    public String getRequestParameters() {
+        return requestParameters;
+    }
+
+    public void setRequestParameters(String requestParameters) {
+        this.requestParameters = requestParameters;
+    }
+
+    public String getResponseResult() {
+        return responseResult;
+    }
+
+    public void setResponseResult(String responseResult) {
+        this.responseResult = responseResult;
+    }
+
+    public String getExceptionInfo() {
+        return exceptionInfo;
+    }
+
+    public void setExceptionInfo(String exceptionInfo) {
+        this.exceptionInfo = exceptionInfo;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getDeviceInfo() {
+        return deviceInfo;
+    }
+
+    public void setDeviceInfo(String deviceInfo) {
+        this.deviceInfo = deviceInfo;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public String getAffectedObjects() {
+        return affectedObjects;
+    }
+
+    public void setAffectedObjects(String affectedObjects) {
+        this.affectedObjects = affectedObjects;
+    }
+
+    public String getLogTags() {
+        return logTags;
+    }
+
+    public void setLogTags(String logTags) {
+        this.logTags = logTags;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
+    }
+
+    public void setSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
+    }
 }

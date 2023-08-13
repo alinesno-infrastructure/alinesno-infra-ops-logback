@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.alinesno.infra.ops</groupId>
-    <artifactId>demo-config</artifactId>
+    <artifactId>demo-logback</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>

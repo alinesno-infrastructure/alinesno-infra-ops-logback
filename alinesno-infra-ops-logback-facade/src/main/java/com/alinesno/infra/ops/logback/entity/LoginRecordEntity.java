@@ -21,8 +21,6 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
 @TableName("manager_login_record")
 public class LoginRecordEntity extends InfraBaseEntity {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * 登陆名
 	 */

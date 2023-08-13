@@ -1,5 +1,6 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -9,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("terminal_info")
-public class TerminalInfoEntity {
+public class TerminalInfoEntity extends InfraBaseEntity {
 
     // 宽高比
     @TableField("resolving_power")
@@ -56,4 +57,100 @@ public class TerminalInfoEntity {
     private String city;
 
     // Getters and Setters
+
+    public String getResolvingPower() {
+        return resolvingPower;
+    }
+
+    public void setResolvingPower(String resolvingPower) {
+        this.resolvingPower = resolvingPower;
+    }
+
+    public String getReferrer() {
+        return referrer;
+    }
+
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
+
+    public String getUa() {
+        return ua;
+    }
+
+    public void setUa(String ua) {
+        this.ua = ua;
+    }
+
+    public String getBrowserName() {
+        return browserName;
+    }
+
+    public void setBrowserName(String browserName) {
+        this.browserName = browserName;
+    }
+
+    public String getBrowserVersion() {
+        return browserVersion;
+    }
+
+    public void setBrowserVersion(String browserVersion) {
+        this.browserVersion = browserVersion;
+    }
+
+    public String getBrowserMajor() {
+        return browserMajor;
+    }
+
+    public void setBrowserMajor(String browserMajor) {
+        this.browserMajor = browserMajor;
+    }
+
+    public String getEngineName() {
+        return engineName;
+    }
+
+    public void setEngineName(String engineName) {
+        this.engineName = engineName;
+    }
+
+    public String getEngineVersion() {
+        return engineVersion;
+    }
+
+    public void setEngineVersion(String engineVersion) {
+        this.engineVersion = engineVersion;
+    }
+
+    public String getOsName() {
+        return osName;
+    }
+
+    public void setOsName(String osName) {
+        this.osName = osName;
+    }
+
+    public String getOsVersion() {
+        return osVersion;
+    }
+
+    public void setOsVersion(String osVersion) {
+        this.osVersion = osVersion;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

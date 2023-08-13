@@ -17,14 +17,14 @@ import java.util.List;
  * @author luoxiaodong
  * @version 1.0.0
  */
-public class KafkaTraceCollect extends BaseLogCollect {
-	private final Logger log = LoggerFactory.getLogger(KafkaTraceCollect.class);
+public class KafkaCollect extends BaseLogCollect {
+	private final Logger log = LoggerFactory.getLogger(KafkaCollect.class);
 
 	int count = 0 ; 
 	
 	private final KafkaConsumer<String, String> kafkaConsumer;
 
-	public KafkaTraceCollect(KafkaConsumer<String , String> kafkaConsumer, ApplicationEventPublisher applicationEventPublisher) {
+	public KafkaCollect(KafkaConsumer<String , String> kafkaConsumer, ApplicationEventPublisher applicationEventPublisher) {
 
 		this.kafkaConsumer = kafkaConsumer;
 		log.debug("kafkaConsumer = {}", kafkaConsumer);
@@ -60,7 +60,8 @@ public class KafkaTraceCollect extends BaseLogCollect {
 
 					if (record.topic().equals(MessageConstant.LOG_KEY_LOGGER)) {
 
-						String logString = record.value();
+						String logString = record.value() ;
+
 						// RunLogMessage runLogMessage = JSON.parseObject(logString, RunLogMessage.class);
 
 						logList.add(logString);
