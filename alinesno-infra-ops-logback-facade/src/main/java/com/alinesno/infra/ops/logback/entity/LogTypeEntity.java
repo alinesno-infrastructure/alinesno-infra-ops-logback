@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
-@TableName("LogType")
+@TableName("log_type")
 public class LogTypeEntity extends InfraBaseEntity {
 
     // 类型ID
