@@ -15,7 +15,7 @@ import java.util.Map;
  * @author luoxiaodong
  * @version 1.0.0
  */
-@TableName("a_log_record") // 指定数据库表名
+@TableName("log_record") // 指定数据库表名
 public class LogEntryEntity extends InfraBaseEntity {
 
     // 时间戳
