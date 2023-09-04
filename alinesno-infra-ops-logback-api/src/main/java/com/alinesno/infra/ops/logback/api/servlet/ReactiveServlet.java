@@ -1,18 +1,20 @@
 package com.alinesno.infra.ops.logback.api.servlet;
 
-
+import com.alinesno.infra.ops.logback.sse.EventSource;
+import com.alinesno.infra.ops.logback.sse.EventSourceListener;
+import com.alinesno.infra.ops.logback.sse.IStreamLoggerClient;
+import com.alinesno.infra.ops.logback.sse.SSEEventSourceFactory;
 import jakarta.servlet.AsyncContext;
-import jakarta.servlet.ServletException;
+import jakarta.servlet.AsyncEvent;
+import jakarta.servlet.AsyncListener;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.FluxSink;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,108 +22,89 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
 /**
- * GPT响应配置
+ * ReactiveServlet 类是一个 HttpServlet 类，用于处理响应式请求。
+ *
  * @author luoxiaodong
  * @version 1.0.0
  */
-@WebServlet(urlPatterns = "/api/ops/logback/stream", asyncSupported = true )
+@WebServlet(urlPatterns = "/api/ops/logback/stream", asyncSupported = true)
 public class ReactiveServlet extends HttpServlet {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ReactiveServlet.class);
 
+	@Autowired
+	private IStreamLoggerClient loggerClient;
+
+	/**
+	 * 处理 GET 请求的方法。
+	 *
+	 * @param request  HttpServletRequest 对象
+	 * @param resp     HttpServletResponse 对象
+	 * @throws IOException 如果发生 I/O 错误
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException {
-		
 		resp.setContentType("text/event-stream");
 		resp.setCharacterEncoding("UTF-8");
-		
+
 		AsyncContext asyncContext = request.startAsync();
-		asyncContext.setTimeout(120*1000) ;
-		
-	    PrintWriter out = asyncContext.getResponse().getWriter();
+		asyncContext.setTimeout(10 * 1000);
 
-	    // 正常返回数据
-	    generatorOpenApi(asyncContext , out , request) ; 
-	}
+		PrintWriter out = asyncContext.getResponse().getWriter();
 
-	private void generatorOpenApi(AsyncContext asyncContext, PrintWriter out, HttpServletRequest request) throws IOException {
-		
-		InputStream inputStream = request.getInputStream();
-		String requestBody = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-
-		Flux<Object> flux = Flux.create(emitter -> {
-
-//			chatgptApiService.getClient().streamChatCompletion(chatCompletion, new EventSourceListener() {
-//
-//				String contentText = "" ;
-//
-//				@Override
-//				public void onEvent(EventSource eventSource, String id, String type, String data) {
-//
-//					log.debug("data = {}" , data);
-//
-//					String dataEsc = StringEscapeUtils.unescapeJava(data);
-//					JSONObject dataEscJSon = JSONObject.parseObject(dataEsc)  ;
-//					log.info("OpenAI返回数据：{}", data);
-//
-//					log.debug("data.equals(\"[DONE]\" = {}" , data.contains("[DONE]"));
-//
-//					if (data.equals("[DONE]")) {
-//						stopProcess(emitter , asyncContext) ;
-//						return;
-//					}
-//
-//					String text = JSONObject.parseObject(data).getJSONArray("choices").getJSONObject(0).getJSONObject("delta").getString("content") ;
-//					String finish_reason = JSONObject.parseObject(data).getJSONArray("choices").getJSONObject(0).getString("finish_reason") ;
-//
-//					if(("stop".equals(finish_reason) || "length".equals(finish_reason))) {
-//						stopProcess(emitter , asyncContext) ;
-//						return;
-//					}
-//
-//					if(text != null) {
-//						contentText += text ;
-//					}
-//
-//					ChatResponseDto dto = new ChatResponseDto() ;
-//					dto.setId(dataEscJSon.getString("id"));
-//					dto.setRole(Message.Role.ASSISTANT.getName());
-//					dto.setParentMessageId(chatRequestDto.getOptions().getParentMessageId());
-//					dto.setText(contentText) ;
-//
-//					JSONObject jsonData = JSONObject.parseObject(dto.toString()) ;
-//					jsonData.put("detail", dataEscJSon) ;
-//
-//					log.debug("dataEscJSon:{}" , dataEscJSon) ;
-//
-//					emitter.next(jsonData) ;
-//				}
-//			});
-
-		});
-		
-		
-		flux.subscribe(s -> {
-			if(s != null && StringUtils.isNotBlank(s.toString())) {
-		      out.println(s);
-		      out.flush();
-			}
-		}, Throwable::printStackTrace, asyncContext::complete);
-
+		generatorStream(asyncContext, out, request);
 	}
 
 	/**
-	 * 停止会话
+	 * 生成流的方法。
+	 *
+	 * @param asyncContext 异步上下文
+	 * @param out          输出流
+	 * @param request      HttpServletRequest 对象
+	 * @throws IOException 如果发生 I/O 错误
 	 */
-	private void stopProcess(FluxSink<Object> emitter  , AsyncContext asyncContext) {
-		log.info("OpenAI返回数据结束了");
-		emitter.complete(); 
-		asyncContext.complete();
-	}
+	private void generatorStream(AsyncContext asyncContext, PrintWriter out, HttpServletRequest request) throws IOException {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.doGet(req, resp);
-	}
+		InputStream inputStream = request.getInputStream();
+		String requestBody = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 
+		log.debug("request body = {}", requestBody);
+
+		EventSourceListener eventSourceListener = new EventSourceListener() {
+			@Override
+			public void onEvent(EventSource eventSource, String id, String type, String data) {
+				out.println("data: " + data); // 发送日志数据给客户端
+				out.println(); // 发送空行以表示事件结束
+				out.flush();
+			}
+		};
+
+		EventSource.Factory eventSourceFactory = new SSEEventSourceFactory(asyncContext);
+		EventSource eventSource = eventSourceFactory.newEventSource(eventSourceListener);
+
+		loggerClient.streamChatCompletion(eventSourceListener);
+
+		asyncContext.addListener(new AsyncListener() {
+			@Override
+			public void onComplete(AsyncEvent event) throws IOException {
+				eventSource.cancel();
+			}
+
+			@Override
+			public void onTimeout(AsyncEvent event) throws IOException {
+				eventSource.cancel();
+			}
+
+			@Override
+			public void onError(AsyncEvent event) throws IOException {
+				eventSource.cancel();
+			}
+
+			@Override
+			public void onStartAsync(AsyncEvent event) throws IOException {
+				// 不需要实现此方法
+			}
+		});
+
+	}
 }
