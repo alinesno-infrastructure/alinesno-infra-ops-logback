@@ -5,6 +5,7 @@ import com.alinesno.infra.ops.logback.entity.LogEntryEntity;
 import com.alinesno.infra.ops.logback.sse.EventSourceListener;
 import com.alinesno.infra.ops.logback.sse.IStreamLoggerClient;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 /**
  * StreamLoggerClientImpl 类是 IStreamLoggerClient 接口的实现类。
  */
+@Service
 public class StreamLoggerClientImpl implements IStreamLoggerClient {
 
     private final SqlSession sqlSession;
