@@ -36,6 +36,8 @@
         <module>alinesno-infra-ops-logback-agent</module>  <!-- 客户端日志采集 -->
         <module>alinesno-infra-ops-logback-boot</module>  <!-- 启动服务 -->
 
+        <module>alinesno-infra-ops-logback-collector</module> <!-- 提供http日志收集服务 -->
+
         <!-- 前端服务
         <module>alinesno-infra-ops-logback-admin</module>
         -->
