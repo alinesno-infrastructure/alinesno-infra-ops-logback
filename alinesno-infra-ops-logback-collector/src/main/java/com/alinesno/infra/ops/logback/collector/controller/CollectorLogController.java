@@ -1,12 +1,10 @@
 package com.alinesno.infra.ops.logback.collector.controller;
 
 import com.alinesno.infra.common.facade.response.AjaxResult;
-import com.alinesno.infra.ops.logback.core.exception.LogQueueConnectException;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,6 +28,7 @@ public class CollectorLogController {
             kafkaProducer.close();
         }
 
+        return AjaxResult.success() ;
     }
 
 }
