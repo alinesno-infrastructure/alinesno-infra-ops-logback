@@ -1,4 +1,4 @@
-package com.alinesno.infra.ops.logback;
+package com.alinesno.infra.ops.logback.collector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
