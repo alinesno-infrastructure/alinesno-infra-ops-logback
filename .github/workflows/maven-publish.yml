@@ -14,8 +14,10 @@ jobs:
       packages: write
 
     env:
-      # 版本管理
       PROJECT_NAME: 'alinesno-infra-ops-logback-boot'
+      PROJECT_COLLECTOR_NAME: 'alinesno-infra-ops-logback-collector'
+
+      # 版本管理
       PRO_VERSION: '1.0.0-SNAPSHOT'
       CURRENT_PROFIRE: 'dev'
       BUILD_NUMBER: ${{ github.run_number }}
@@ -152,6 +154,12 @@ jobs:
                         -Djib.to.auth.username=${{secrets.ALIYUN_CR_USERNAME}} \
                         -Djib.to.auth.password=${{secrets.ALIYUN_CR_PASSWORD}}
 
+          mvn -B -U -f ${{ env.PROJECT_COLLECTOR_NAME }}/pom.xml clean compile jib:build \
+                        -Ddocker.registry.name=${{ env.ALIYUN_CR_NAMESPACE }} \
+                        -Djib.to.tags=${{ env.PRO_VERSION }}.${{ env.BUILD_NUMBER }} \
+                        -Djib.to.auth.username=${{secrets.ALIYUN_CR_USERNAME}} \
+                        -Djib.to.auth.password=${{secrets.ALIYUN_CR_PASSWORD}}
+
       - name: Install MurphySec code scan cli
         run: |
           wget -q https://s.murphysec.com/release/install.sh -O - | /bin/bash
@@ -181,6 +189,8 @@ jobs:
           connect_timeout: 30s
           script: |
             export PROJECT_NAME=${{ env.PROJECT_NAME }}
+            export PROJECT_COLLECTOR_NAME=${{ env.PROJECT_COLLECTOR_NAME }}
+
             export VERSION=${{ env.PRO_VERSION }}.${{ env.BUILD_NUMBER }}
 
             export ALIYUN_CR_REGISTORY=${{ env.ALIYUN_CR_REGISTORY }}
@@ -188,7 +198,7 @@ jobs:
             export NAMESPACE=${{ secrets.K8S_NAMESPACE }}
 
             export REDIS_HOST=${{ secrets.DEV_REDIS_HOST }}
-            export INFRA_DEV_DOMAIN=${{ secrets.INFRA_DEV_DOMAIN }}
+            export INFRA_DEV_DOMAIN=${{ secrets.INFRA_BETA_BASE_DOMAIN }}
 
             export KAFKA_SERVERS=${{ secrets.DEV_KAFKA_SERVER }}
 
