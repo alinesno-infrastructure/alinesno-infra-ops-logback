@@ -207,3 +207,4 @@ jobs:
             export DB_CLICKHOUSE_PASSWORD=${{ secrets.DEV_DB_CLICKHOUSE_PASSWORD }}
 
             envsubst < /home/github-action/${{ env.PROJECT_NAME }}/kubernetes-${{ env.CURRENT_PROFIRE }}.yml | kubectl apply -f -
+            envsubst < /home/github-action/${{ env.PROJECT_NAME }}/kubernetes-collector-${{ env.CURRENT_PROFIRE }}.yml | kubectl apply -f -
