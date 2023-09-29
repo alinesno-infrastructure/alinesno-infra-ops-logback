@@ -1,9 +1,9 @@
 package com.alinesno.infra.ops.logback.api.controller;
 
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
-import com.alinesno.infra.common.core.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.alinesno.infra.ops.logback.entity.IoListEntity;
 import com.alinesno.infra.ops.logback.service.IIoListService;
 import io.swagger.annotations.Api;
@@ -50,7 +50,7 @@ public class IoListController extends BaseController<IoListEntity, IIoListServic
     @PostMapping("/datatables")
     public TableDataInfo datatables(HttpServletRequest request, Model model, DatatablesPageBean page) {
         log.debug("page = {}", ToStringBuilder.reflectionToString(page));
-        return this.toDataInfo(model, this.getFeign(), page);
+        return this.toPage(model, this.getFeign(), page);
     }
 
     @Override

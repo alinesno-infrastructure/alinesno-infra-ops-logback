@@ -16,7 +16,7 @@ public class CollectorLogController {
 
     public static final Logger log = LoggerFactory.getLogger(CollectorLogController.class) ;
 
-    @PostMapping("logEntity")
+    @PostMapping("/logEntity")
     public AjaxResult logEntity(String topic, String message){
 
         KafkaProducer<String , String> kafkaProducer = null ;
