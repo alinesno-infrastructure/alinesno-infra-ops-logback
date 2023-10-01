@@ -238,7 +238,7 @@ const productList = [
                 "id": "801e85de62ca5b9f8f76b5e31987730e"
             }
         ],
-        "name": "自动运维套件",
+        "name": "审计日志服务",
         "banner": "fas fa-chalkboard-teacher",
         "id": "793938687002935296"
     },
