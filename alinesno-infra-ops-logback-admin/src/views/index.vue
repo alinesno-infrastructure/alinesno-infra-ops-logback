@@ -5,7 +5,7 @@
       <el-col :span="24">
         <div class="aip-appinfo-header">
           <div class="header-icon-banner">
-            <i class="fas fa-laptop-code"></i>
+           <i class="fa-solid fa-tarp-droplet"></i>
           </div>
           <div class="icon">
             <div class="title">
