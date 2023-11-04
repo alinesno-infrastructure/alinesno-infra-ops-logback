@@ -1,5 +1,8 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -19,173 +22,89 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 @TableName("manager_account_record")
+@Data
 public class AccountRecordEntity extends InfraBaseEntity {
 
 	/* @Excel(name = "操作说明") */
 	@TableField
+	@ColumnType(length=255)
+	@ColumnComment("操作")
 	private String operation;
 
 	@Excel(name = "执行时间")
 	@TableField("method_time")
+	@ColumnType(length=255)
+	@ColumnComment("方法时间")
 	private long methodTime;
 
 	@Excel(name = "类方法")
 	@TableField("method")
+	@ColumnType(length=255)
+	@ColumnComment("方法")
 	private String method;
 
 	@Excel(name = "请求参数")
 	@Lob
 	@TableField("params")
 	@Basic(fetch = FetchType.LAZY)
+	@ColumnType(length=255)
+	@ColumnComment("参数")
 	private String params;
 
 	@Excel(name = "方法描述")
 	@TableField("method_desc")
+	@ColumnType(length=255)
+	@ColumnComment("方法描述")
 	private String methodDesc;
 
 	@Excel(name = "请求记录")
 	@TableField("record_type")
+	@ColumnType(length=20)
+	@ColumnComment("记录类型")
 	private String recordType; // 记录类型
 
 	@Excel(name = "服务器IP")
 	@TableField("ip")
+	@ColumnType(length=15)
+	@ColumnComment("String")
 	private String ip; // 服务器ip
 
 	@Excel(name = "请求链接")
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("String")
 	private String url; // 请求链接
 
 	@Excel(name = "浏览器信息")
 	@TableField("agent")
+	@ColumnType(length=255)
+	@ColumnComment("String")
 	private String agent; // 浏览器信息
 
 	@TableField("create_time")
+	@ColumnType(length=19)
+	@ColumnComment("String")
 	private Date createTime;
 
 	@TableField("account_id")
+	@ColumnType(length=10)
+	@ColumnComment("账户ID")
 	private String accountId;
 
 	@Excel(name = "登陆名")
 	@TableField("login_name")
+	@ColumnType(length=20)
+	@ColumnComment("登录名")
 	private String loginName;
 
 	@Excel(name = "用户名")
 	@TableField("account_name")
+	@ColumnType(length=50)
+	@ColumnComment("账户名称")
 	private String accountName;
 
 	@TableField("role_power")
+	@ColumnType(length=10)
+	@ColumnComment("rolePower")
 	private String rolePower;
-
-	public String getRecordType() {
-		return recordType;
-	}
-
-	public void setRecordType(String recordType) {
-		this.recordType = recordType;
-	}
-
-	public String getOperation() {
-		return operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
-
-	public long getMethodTime() {
-		return methodTime;
-	}
-
-	public void setMethodTime(long methodTime) {
-		this.methodTime = methodTime;
-	}
-
-	public String getMethod() {
-		return method;
-	}
-
-	public void setMethod(String method) {
-		this.method = method;
-	}
-
-	public String getParams() {
-		return params;
-	}
-
-	public void setParams(String params) {
-		this.params = params;
-	}
-
-	public String getMethodDesc() {
-		return methodDesc;
-	}
-
-	public void setMethodDesc(String methodDesc) {
-		this.methodDesc = methodDesc;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getAgent() {
-		return agent;
-	}
-
-	public void setAgent(String agent) {
-		this.agent = agent;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getAccountName() {
-		return accountName;
-	}
-
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
-
-	public String getRolePower() {
-		return rolePower;
-	}
-
-	public void setRolePower(String rolePower) {
-		this.rolePower = rolePower;
-	}
-
 }

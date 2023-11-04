@@ -1,5 +1,8 @@
 package com.alinesno.infra.ops.logback.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
@@ -13,187 +16,96 @@ import java.sql.Timestamp;
  * @version 1.0.0
  */
 @TableName("database_log") // 指定数据库表名
+@Data
 public class DatabaseLogEntity extends InfraBaseEntity {
 
     // 时间戳
     @TableField("timestamp")
+	@ColumnType(length=20)
+	@ColumnComment("时间戳")
     private Timestamp timestamp;
 
     // 日志级别
     @TableField("log_level")
+	@ColumnType(length=10)
+	@ColumnComment("日志级别")
     private String logLevel;
 
     // 操作类型
     @TableField("operation_type")
+	@ColumnType(length=10)
+	@ColumnComment("操作类型")
     private String operationType;
 
     // 操作对象
     @TableField("operation_object")
+	@ColumnType(length=255)
+	@ColumnComment("操作对象")
     private String operationObject;
 
     // SQL语句
     @TableField("sql_statement")
+	@ColumnType(length=255)
+	@ColumnComment("SQL语句")
     private String sqlStatement;
 
     // 参数
     @TableField("parameters")
+	@ColumnType(length=255)
+	@ColumnComment("参数")
     private String parameters;
 
     // 返回结果
     @TableField("result")
+	@ColumnType(length=255)
+	@ColumnComment("返回结果")
     private String result;
 
     // 执行时间
     @TableField("execution_time")
+	@ColumnType(length=8)
+	@ColumnComment("执行时间")
     private long executionTime;
 
     // 异常信息
     @TableField("exception")
+	@ColumnType(length=255)
+	@ColumnComment("异常信息")
     private String exception;
 
     // 用户名
     @TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("用户名")
     private String username;
 
     // IP地址
     @TableField("ip_address")
+	@ColumnType(length=15)
+	@ColumnComment("IP地址")
     private String ipAddress;
 
     // 数据库名
     @TableField("database_name")
+	@ColumnType(length=255)
+	@ColumnComment("数据库名")
     private String databaseName;
 
     // 表名
     @TableField("table_name")
+	@ColumnType(length=255)
+	@ColumnComment("表名")
     private String tableName;
 
     // 主键值
     @TableField("primary_key_value")
+	@ColumnType(length=255)
+	@ColumnComment("主键值")
     private String primaryKeyValue;
 
     // 日志来源应用程序
     @TableField("source_application")
+	@ColumnType(length=50)
+	@ColumnComment("日志来源应用程序")
     private String sourceApplication;
-
-    // Getters and Setters
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getLogLevel() {
-        return logLevel;
-    }
-
-    public void setLogLevel(String logLevel) {
-        this.logLevel = logLevel;
-    }
-
-    public String getOperationType() {
-        return operationType;
-    }
-
-    public void setOperationType(String operationType) {
-        this.operationType = operationType;
-    }
-
-    public String getOperationObject() {
-        return operationObject;
-    }
-
-    public void setOperationObject(String operationObject) {
-        this.operationObject = operationObject;
-    }
-
-    public String getSqlStatement() {
-        return sqlStatement;
-    }
-
-    public void setSqlStatement(String sqlStatement) {
-        this.sqlStatement = sqlStatement;
-    }
-
-    public String getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(String parameters) {
-        this.parameters = parameters;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public long getExecutionTime() {
-        return executionTime;
-    }
-
-    public void setExecutionTime(long executionTime) {
-        this.executionTime = executionTime;
-    }
-
-    public String getException() {
-        return exception;
-    }
-
-    public void setException(String exception) {
-        this.exception = exception;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public String getDatabaseName() {
-        return databaseName;
-    }
-
-    public void setDatabaseName(String databaseName) {
-        this.databaseName = databaseName;
-    }
-
-    public String getTableName() {
-        return tableName;
-    }
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
-    public String getPrimaryKeyValue() {
-        return primaryKeyValue;
-    }
-
-    public void setPrimaryKeyValue(String primaryKeyValue) {
-        this.primaryKeyValue = primaryKeyValue;
-    }
-
-    public String getSourceApplication() {
-        return sourceApplication;
-    }
-
-    public void setSourceApplication(String sourceApplication) {
-        this.sourceApplication = sourceApplication;
-    }
 }
