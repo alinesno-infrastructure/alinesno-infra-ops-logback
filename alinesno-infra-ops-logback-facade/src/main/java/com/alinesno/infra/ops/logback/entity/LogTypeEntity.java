@@ -17,19 +17,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class LogTypeEntity extends InfraBaseEntity {
 
     // 类型ID
-    @TableField("TypeID")
+    @TableField("type_id")
 	@ColumnType(length=255)
 	@ColumnComment("类型ID")
     private String typeId;
 
     // 类型名称
-    @TableField("TypeName")
+    @TableField("type_name")
 	@ColumnType(length=50)
 	@ColumnComment("类型名称")
     private String typeName;
 
     // 描述
-    @TableField("Description")
+    @TableField("description")
 	@ColumnType(length=255)
 	@ColumnComment("描述")
     private String description;
