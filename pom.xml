@@ -20,7 +20,7 @@
         <alinesno.infra.version>${revision}</alinesno.infra.version>
 
         <!-- clickhouse配置 -->
-        <clickhouse.jdbc.version>0.3.2</clickhouse.jdbc.version>
+        <clickhouse.jdbc.version>0.4.6</clickhouse.jdbc.version>
         <dynamic.datasource.version>3.5.2</dynamic.datasource.version>
     </properties>
 
