@@ -60,12 +60,12 @@ export const constantRoutes = [
         meta: { title: '首页', icon: 'dashboard', affix: true }
       },
 
-      // {
-      //   path: '/dashboard/smartService',
-      //   component: () => import('@/views/smartService'),
-      //   name: '/dashboard/smartService',
-      //   meta: { title: '智能客服', icon: 'dashboard', affix: true }
-      // },
+      {
+        path: '/dashboard/smartService',
+        component: () => import('@/views/smartService'),
+        name: '/dashboard/smartService',
+        meta: { title: '智能客服', icon: 'dashboard', affix: true }
+      },
       // {
       //   path: '/dashboard/serviceList',
       //   component: () => import('@/views/serviceList'),
@@ -85,57 +85,50 @@ export const constantRoutes = [
         meta: { title: '学习手册', icon: 'dashboard', affix: true }
       },
 
-      // ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      // >>>>>>>>>>>>>>>>>>>> logback_router_start >>>>>>>>>>>>>>>>>>
       {
-        path: '/createGateway',
-        name: 'createGateway',
-        hidden: true,
-        component: () => import('@/views/gateway/createGateway'),
-        meta: { title: '创建网关服务', icon: 'dashboard', affix: true }
+        path: '/ops/logback/application/index',
+        component: () => import('@/views/ops/logback/application/index'),
+        name: '/ops/logback/application/index',
+        meta: { title: '应用管理', icon: 'dashboard', affix: true }
       },
       {
-        path: '/gatewayTopology',
-        name: 'gatewayTopology',
-        hidden: true,
-        component: () => import('@/views/gateway/gatewayTopology'),
-        meta: { title: '网关路由拓扑结构', icon: 'dashboard', affix: true }
+        path: '/ops/logback/businessLog/index',
+        component: () => import('@/views/ops/logback/businessLog/index'),
+        name: '/ops/logback/businessLog/index',
+        meta: { title: '日志分析', icon: 'dashboard', affix: true }
       },
       {
-        path: '/createClient',
-        name: 'createClient',
-        hidden: true,
-        component: () => import('@/views/gateway/createClient'),
-        meta: { title: '创建客户端', icon: 'dashboard', affix: true }
+        path: '/ops/logback/containerLog/index',
+        component: () => import('@/views/ops/logback/containerLog/index'),
+        name: '/ops/logback/containerLog/index',
+        meta: { title: '容器日志分析', icon: 'dashboard', affix: true }
       },
       {
-        path: '/addGatewayClient',
-        name: 'addGatewayClient',
-        hidden: true,
-        component: () => import('@/views/gateway/addGatewayClient'),
-        meta: { title: '添加网关客户端', icon: 'dashboard', affix: true }
+        path: '/ops/logback/frontLog/index',
+        component: () => import('@/views/ops/logback/frontLog/index'),
+        name: '/ops/logback/frontLog/index',
+        meta: { title: '前端监控', icon: 'dashboard', affix: true }
       },
       {
-        path: '/addClientGateway',
-        name: 'addClientGateway',
-        hidden: true,
-        component: () => import('@/views/gateway/addClientGateway'),
-        meta: { title: '添加客户端网关', icon: 'dashboard', affix: true }
+        path: '/ops/logback/nginx/index',
+        component: () => import('@/views/ops/logback/nginx/index'),
+        name: '/ops/logback/nginx/index',
+        meta: { title: 'Nginx日志分析', icon: 'dashboard', affix: true }
       },
       {
-        path: '/addGroovyScript',
-        name: 'addGroovyScript',
-        hidden: true,
-        component: () => import('@/views/gateway/addGroovyScript'),
-        meta: { title: '添加规则组件', icon: 'dashboard', affix: true }
+        path: '/ops/logback/inspection/index',
+        component: () => import('@/views/ops/logback/inspection/index'),
+        name: '/ops/logback/inspection/index',
+        meta: { title: '巡检日志分析', icon: 'dashboard', affix: true }
       },
       {
-        path: '/createBalanced',
-        name: 'createBalanced',
-        hidden: true,
-        component: () => import('@/views/gateway/createBalanced'),
-        meta: { title: '创建负载均衡', icon: 'dashboard', affix: true }
+        path: '/ops/logback/account/index',
+        component: () => import('@/views/ops/logback/account/index'),
+        name: '/ops/logback/account/index',
+        meta: { title: '账户日志分析', icon: 'dashboard', affix: true }
       },
-
+      // >>>>>>>>>>>>>>>>>>>> logback_router_end >>>>>>>>>>>>>>>>>>
 
     ]
   },

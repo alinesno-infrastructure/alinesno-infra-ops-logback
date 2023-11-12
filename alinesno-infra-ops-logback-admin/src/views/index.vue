@@ -9,20 +9,15 @@
           </div>
           <div class="icon">
             <div class="title">
-              分布式审计日志服务 
+                  {{ currentEnvClusterObj.appName }}
               <div class="cluster-info">
-                <span
-                  ><i class="el-icon-monitor"></i>
-                  {{ currentEnvClusterObj.clusterName }}</span
-                >
-                <span>
-                  <i class="el-icon-link"></i> 
-                  应用地址: {{ currentEnvClusterObj.apiServerUrl }}
+                <span><i class="el-icon-monitor"></i>
+                  {{ currentEnvClusterObj.clusterName }}
                 </span>
               </div>
             </div>
             <div class="title-desc">
-              集群状态展示集群资源的概览和详情，您可以查看集群资源的监控数据和用量排行情况。
+                  {{ currentEnvClusterObj.desc }}
             </div>
           </div>
         </div>
@@ -48,8 +43,10 @@ import OperationWorkspaceApps from './operation-workspace/apps.vue'
 import OperationWorkspaceService from './operation-workspace/service.vue'
 
 const currentEnvClusterObj = ref({
-  clusterName: '统一权限管理服务'  , 
-  apiServerUrl: 'http://portal.infra.linesno.com'
+  appName : '分布式审计日志服务 '  , 
+  clusterName: '实现分散式记录和管理审计日志'  , 
+  apiServerUrl: 'http://portal.infra.linesno.com',
+  desc:'分布式审计日志服务是一个面向分布式系统的解决方案，旨在实现审计日志的跟踪、记录和管理'
 }) 
 
 </script>
