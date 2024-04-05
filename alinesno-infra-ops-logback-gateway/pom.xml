@@ -10,7 +10,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>alinesno-infra-ops-logback-api</artifactId>
+	<artifactId>alinesno-infra-ops-logback-gateway</artifactId>
 	<packaging>jar</packaging>
 
 	<dependencies>

@@ -34,7 +34,7 @@
 
 		<dependency>
 			<groupId>com.alinesno.infra.ops</groupId>
-			<artifactId>alinesno-infra-ops-logback-api</artifactId>
+			<artifactId>alinesno-infra-ops-logback-gateway</artifactId>
 			<version>${revision}</version>
 		</dependency>
 
