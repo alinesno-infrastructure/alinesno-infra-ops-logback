@@ -9,10 +9,10 @@ spring:
     restart:
       enabled: true
   datasource:
-    driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
-    url: jdbc:clickhouse://127.0.0.1:8123/default?rewriteBatchedStatements=true
-    username: default
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dev_alinesno_infra_ops_logback_v100?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: adminer
     hikari:
       connection-timeout: 20000
       minimum-idle: 10
@@ -31,11 +31,11 @@ spring:
 
 actable:
   table:
-    auto: create
+    auto: update # create
   model:
     pack: com.alinesno.infra.ops.logback.entity
   database:
-    type: postgresql
+    type: mysql
   index:
     prefix: alinesno_ops_logback_idx_
   unique:

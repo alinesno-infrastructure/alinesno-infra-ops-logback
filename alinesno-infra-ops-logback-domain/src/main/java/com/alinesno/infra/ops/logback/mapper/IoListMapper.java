@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.mapper;
 
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
-import com.alinesno.infra.ops.logback.entity.IoListEntity;
+import com.alinesno.infra.ops.logback.entity.page.IoListEntity;
 
 /**
  * IO信息Mapper接口

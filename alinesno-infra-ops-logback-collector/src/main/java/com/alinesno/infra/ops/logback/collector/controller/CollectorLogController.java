@@ -21,7 +21,7 @@ public class CollectorLogController {
 
         KafkaProducer<String , String> kafkaProducer = null ;
         try {
-            kafkaProducer.send(new ProducerRecord<>(topic, message));
+            kafkaProducer.send(new ProducerRecord<String, String>(topic, message));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

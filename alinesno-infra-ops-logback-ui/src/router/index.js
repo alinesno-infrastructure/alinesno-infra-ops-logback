@@ -87,9 +87,9 @@ export const constantRoutes = [
 
       // >>>>>>>>>>>>>>>>>>>> logback_router_start >>>>>>>>>>>>>>>>>>
       {
-        path: '/ops/logback/application/index',
-        component: () => import('@/views/ops/logback/application/index'),
-        name: '/ops/logback/application/index',
+        path: '/ops/logback/project/index',
+        component: () => import('@/views/ops/logback/project/index'),
+        name: '/ops/logback/project/index',
         meta: { title: '应用管理', icon: 'dashboard', affix: true }
       },
       {

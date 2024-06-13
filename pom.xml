@@ -59,6 +59,7 @@
             </dependency>
             <!-- 整合最新版本代码生成器(支持postgresql)_end -->
 
+
             <!--clickhouse-->
             <dependency>
                 <groupId>com.clickhouse</groupId>

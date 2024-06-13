@@ -1,9 +1,9 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.TerminalInfoEntity;
+import com.alinesno.infra.ops.logback.entity.page.TerminalInfoEntity;
 import com.alinesno.infra.ops.logback.mapper.TerminalInfoMapper;
-import com.alinesno.infra.ops.logback.service.ITerminalInfoService;
+import com.alinesno.infra.ops.logback.service.page.ITerminalInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

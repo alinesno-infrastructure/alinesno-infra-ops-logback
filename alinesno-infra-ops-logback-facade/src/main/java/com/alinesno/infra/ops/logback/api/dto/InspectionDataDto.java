@@ -67,7 +67,7 @@ public class InspectionDataDto {
 
 	@Override
 	public String toString() {
-		return "InspectionDataEntity [name=" + name + ", nameCode=" + nameCode + ", jsonData=" + jsonData + ", busType="
+		return "InspectionLogEntity [name=" + name + ", nameCode=" + nameCode + ", jsonData=" + jsonData + ", busType="
 				+ busType + ", runStatus=" + runStatus + ", totalTime=" + totalTime + "]";
 	}
 

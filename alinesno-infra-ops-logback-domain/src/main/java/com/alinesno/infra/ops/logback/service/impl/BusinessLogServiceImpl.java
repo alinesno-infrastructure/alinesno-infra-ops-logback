@@ -1,9 +1,9 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.BusinessLogEntity;
+import com.alinesno.infra.ops.logback.entity.app.BusinessLogEntity;
 import com.alinesno.infra.ops.logback.mapper.BusinessLogMapper;
-import com.alinesno.infra.ops.logback.service.IBusinessLogService;
+import com.alinesno.infra.ops.logback.service.app.IBusinessLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

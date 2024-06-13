@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.mapper;
 
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
-import com.alinesno.infra.ops.logback.entity.BusinessLogEntity;
+import com.alinesno.infra.ops.logback.entity.app.BusinessLogEntity;
 
 /**
  * 通用业务日志记录Mapper接口

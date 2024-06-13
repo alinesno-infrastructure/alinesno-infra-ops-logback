@@ -1,9 +1,9 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.ApplicationEntity;
-import com.alinesno.infra.ops.logback.mapper.ApplicationMapper;
-import com.alinesno.infra.ops.logback.service.IApplicationService;
+import com.alinesno.infra.ops.logback.entity.ProjectEntity;
+import com.alinesno.infra.ops.logback.mapper.ProjectMapper;
+import com.alinesno.infra.ops.logback.service.IProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ApplicationServiceImpl extends IBaseServiceImpl<ApplicationEntity, ApplicationMapper> implements IApplicationService {
+public class ApplicationServiceImpl extends IBaseServiceImpl<ProjectEntity, ProjectMapper> implements IProjectService {
 
 }

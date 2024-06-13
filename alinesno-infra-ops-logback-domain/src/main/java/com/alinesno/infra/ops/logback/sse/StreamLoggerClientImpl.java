@@ -1,9 +1,7 @@
 package com.alinesno.infra.ops.logback.sse;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alinesno.infra.ops.logback.entity.LogEntryEntity;
-import com.alinesno.infra.ops.logback.sse.EventSourceListener;
-import com.alinesno.infra.ops.logback.sse.IStreamLoggerClient;
+import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
@@ -55,36 +53,36 @@ public class StreamLoggerClientImpl implements IStreamLoggerClient {
             while (resultSet.next()) {
 
                 // 获取日志数据
-                LogEntryEntity logEntry = new LogEntryEntity();
+                LogStorageEntity LogStorageEntity = new LogStorageEntity();
 
-                logEntry.setTimestamp(resultSet.getLong("timestamp"));
-                logEntry.setLogLevel(resultSet.getString("log_level"));
-                logEntry.setLoggerName(resultSet.getString("logger_name"));
-                logEntry.setThreadName(resultSet.getString("thread_name"));
-                logEntry.setLogMessage(resultSet.getString("log_message"));
-                logEntry.setException(resultSet.getString("exception"));
-                logEntry.setUsername(resultSet.getString("username"));
-                logEntry.setIpAddress(resultSet.getString("ip_address"));
-                logEntry.setRequestUrl(resultSet.getString("request_url"));
-                logEntry.setRequestMethod(resultSet.getString("request_method"));
-                logEntry.setRequestParameters(resultSet.getString("request_parameters"));
-                logEntry.setResponseCode(resultSet.getInt("response_code"));
-                logEntry.setResponseTime(resultSet.getLong("response_time"));
-                logEntry.setServerName(resultSet.getString("server_name"));
-                logEntry.setLogId(resultSet.getString("log_id"));
-                logEntry.setLogTags(resultSet.getString("log_tags"));
-                logEntry.setSourceApplication(resultSet.getString("source_application"));
-                logEntry.setLogCategory(resultSet.getString("log_category"));
-                logEntry.setLogLocation(resultSet.getString("log_location"));
-                logEntry.setLogContext(resultSet.getString("log_context"));
-                logEntry.setLogMarkers(resultSet.getString("log_markers"));
-                logEntry.setLogExtraData(resultSet.getString("log_extra_data"));
-                logEntry.setLogDuration(resultSet.getLong("log_duration"));
-                logEntry.setLogEnvironment(resultSet.getString("log_environment"));
-                logEntry.setStandardizedFields(resultSet.getString("standardized_fields"));
+                LogStorageEntity.setTimestamp(resultSet.getLong("timestamp"));
+                LogStorageEntity.setLogLevel(resultSet.getString("log_level"));
+                LogStorageEntity.setLoggerName(resultSet.getString("logger_name"));
+                LogStorageEntity.setThreadName(resultSet.getString("thread_name"));
+                LogStorageEntity.setLogMessage(resultSet.getString("log_message"));
+                LogStorageEntity.setException(resultSet.getString("exception"));
+                LogStorageEntity.setUsername(resultSet.getString("username"));
+                LogStorageEntity.setIpAddress(resultSet.getString("ip_address"));
+                LogStorageEntity.setRequestUrl(resultSet.getString("request_url"));
+                LogStorageEntity.setRequestMethod(resultSet.getString("request_method"));
+                LogStorageEntity.setRequestParameters(resultSet.getString("request_parameters"));
+                LogStorageEntity.setResponseCode(resultSet.getInt("response_code"));
+                LogStorageEntity.setResponseTime(resultSet.getLong("response_time"));
+                LogStorageEntity.setServerName(resultSet.getString("server_name"));
+                LogStorageEntity.setLogId(resultSet.getString("log_id"));
+                LogStorageEntity.setLogTags(resultSet.getString("log_tags"));
+                LogStorageEntity.setSourceApplication(resultSet.getString("source_application"));
+                LogStorageEntity.setLogCategory(resultSet.getString("log_category"));
+                LogStorageEntity.setLogLocation(resultSet.getString("log_location"));
+                LogStorageEntity.setLogContext(resultSet.getString("log_context"));
+                LogStorageEntity.setLogMarkers(resultSet.getString("log_markers"));
+                LogStorageEntity.setLogExtraData(resultSet.getString("log_extra_data"));
+                LogStorageEntity.setLogDuration(resultSet.getLong("log_duration"));
+                LogStorageEntity.setLogEnvironment(resultSet.getString("log_environment"));
+                LogStorageEntity.setStandardizedFields(resultSet.getString("standardized_fields"));
 
                 // 发送日志数据给事件源监听器
-                eventSourceListener.onEvent(null, null, null, JSONObject.toJSONString(logEntry));
+                eventSourceListener.onEvent(null, null, null, JSONObject.toJSONString(LogStorageEntity));
             }
 
             // 关闭语句和结果集

@@ -1,11 +1,10 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.LogTypeEntity;
+import com.alinesno.infra.ops.logback.entity.LogGroupEntity;
 import com.alinesno.infra.ops.logback.mapper.LogTypeMapper;
-import com.alinesno.infra.ops.logback.service.ILogTypeService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.alinesno.infra.ops.logback.service.ILogGroupService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
  * @version 1.0.0
  * @author luoxiaodong
  */
+@Slf4j
 @Service
-public class LogTypeServiceImpl extends IBaseServiceImpl<LogTypeEntity, LogTypeMapper> implements ILogTypeService {
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(LogTypeServiceImpl.class);
+public class LogTypeServiceImpl extends IBaseServiceImpl<LogGroupEntity, LogTypeMapper> implements ILogGroupService {
+
 }

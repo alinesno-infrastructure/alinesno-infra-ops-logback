@@ -3,11 +3,10 @@ package com.alinesno.infra.ops.logback.api.provider;
 import com.alibaba.fastjson.JSONObject;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.ops.logback.api.dto.InspectionDataDto;
-import com.alinesno.infra.ops.logback.entity.InspectionDataEntity;
-import com.alinesno.infra.ops.logback.service.IInspectionDataService;
+import com.alinesno.infra.ops.logback.entity.app.InspectionLogEntity;
+import com.alinesno.infra.ops.logback.service.app.IInspectionLogService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +21,13 @@ import java.io.IOException;
  * @author LuoAnDong
  * @since 2022年10月29日 上午6:23:43
  */
+@Slf4j
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
 public class InspectionProvider {
 
-	private static final Logger log = LoggerFactory.getLogger(InspectionProvider.class);
-
 	@Autowired
-	private IInspectionDataService inspectService;
+	private IInspectionLogService inspectService;
 
 	/**
 	 * 接收多参数请求
@@ -66,7 +64,7 @@ public class InspectionProvider {
 		
 		long accountId = 1L ;
 
-		InspectionDataEntity e = new InspectionDataEntity();
+		InspectionLogEntity e = new InspectionLogEntity();
 	
 		String pipelineTime = dto.getTotalTime() ; 
 		String timeStr = pipelineTime.contains("and") ? pipelineTime.substring(0 , pipelineTime.indexOf("and")):"None" ; 

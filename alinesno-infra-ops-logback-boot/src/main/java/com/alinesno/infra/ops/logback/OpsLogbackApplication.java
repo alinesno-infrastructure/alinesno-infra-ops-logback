@@ -1,12 +1,7 @@
 package com.alinesno.infra.ops.logback;
 
-import com.alinesno.infra.common.web.adapter.sso.enable.EnableInfraSsoApi;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 集成一个Java开发示例工具
@@ -25,7 +20,7 @@ public class OpsLogbackApplication {
 	 * 它指定了应用程序的主类OpsLogbackApplication和传入的命令行参数。
 	 */
 	public static void main(String[] args) {
-	    SpringApplication.run(OpsLogbackApplication.class, args);
+		SpringApplication.run(OpsLogbackApplication.class, args);
 	}
 
 }

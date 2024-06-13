@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "AccountRecord")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/accountRecord")
+@RequestMapping("/api/infra/ops/logback/accountRecord")
 public class AccountRecordController extends BaseController<AccountRecordEntity, IAccountRecordService> {
 
     // 日志记录

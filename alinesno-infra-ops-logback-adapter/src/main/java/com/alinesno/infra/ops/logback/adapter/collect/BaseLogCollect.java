@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.alinesno.infra.ops.logback.adapter.event.MonitorEvent;
 import com.alinesno.infra.ops.logback.core.dto.RunLogMessage;
 import com.alinesno.infra.ops.logback.core.utils.ThreadPoolUtil;
-import com.alinesno.infra.ops.logback.entity.LogEntryEntity;
-import com.alinesno.infra.ops.logback.service.ILogEntryService;
+import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
+import com.alinesno.infra.ops.logback.service.ILogStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class BaseLogCollect {
 	protected ApplicationEventPublisher applicationEventPublisher;
 
 	@Autowired
-	private ILogEntryService logEntryService ;
+	private ILogStorageService LogStorageEntityService ;
 
 	/**
 	 * 异常日志信息监控
@@ -58,12 +58,12 @@ public class BaseLogCollect {
 
 		long startTime = System.currentTimeMillis();
 
-		List<LogEntryEntity> batchE = new ArrayList<>() ;
+		List<LogStorageEntity> batchE = new ArrayList<>() ;
 
 		for (String logString : logList) {
 			RunLogMessage l = JSON.parseObject(logString, RunLogMessage.class);
 
-			LogEntryEntity e = new LogEntryEntity() ;
+			LogStorageEntity e = new LogStorageEntity() ;
 
 			e.setLogLevel(l.getLogLevel());
 			e.setTimestamp(l.getTimeStamp());
@@ -94,7 +94,7 @@ public class BaseLogCollect {
 			batchE.add(e) ;
 		}
 
-		logEntryService.batchInsertLogEntries(batchE) ;
+		LogStorageEntityService.batchInsertLogEntries(batchE) ;
 
 		long endTime = System.currentTimeMillis();
 

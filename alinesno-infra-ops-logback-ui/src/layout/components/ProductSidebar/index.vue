@@ -23,7 +23,7 @@ const router = useRouter();
 
 // 菜单列表
 const menuItems = ref([
-  {id:'9' , icon:'fa-solid fa-feather' , link:'/ops/logback/application/index' , desc:'应用管理'},
+  {id:'9' , icon:'fa-solid fa-feather' , link:'/ops/logback/project/index' , desc:'项目管理'},
   {id:'2' , icon:'fa-solid fa-truck-plane' , link:'/ops/logback/businessLog/index' , desc:'日志分析'},
   {id:'3' , icon:'fa-solid fa-box' , link:'/ops/logback/containerLog/index' , desc:'容器日志分析'},
   {id:'4' , icon:'fa-solid fa-server' , link:'/ops/logback/frontLog/index' , desc:'前端监控'},

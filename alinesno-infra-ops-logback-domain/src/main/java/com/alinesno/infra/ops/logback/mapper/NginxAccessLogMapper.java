@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.mapper;
 
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
-import com.alinesno.infra.ops.logback.entity.NginxAccessLogEntity;
+import com.alinesno.infra.ops.logback.entity.channel.NginxAccessLogEntity;
 
 /**
  * Nginx访问日志Mapper接口

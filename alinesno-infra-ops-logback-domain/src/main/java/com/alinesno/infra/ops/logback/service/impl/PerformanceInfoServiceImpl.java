@@ -1,9 +1,9 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.PerformanceInfoEntity;
+import com.alinesno.infra.ops.logback.entity.page.PerformanceInfoEntity;
 import com.alinesno.infra.ops.logback.mapper.PerformanceInfoMapper;
-import com.alinesno.infra.ops.logback.service.IPerformanceInfoService;
+import com.alinesno.infra.ops.logback.service.page.IPerformanceInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

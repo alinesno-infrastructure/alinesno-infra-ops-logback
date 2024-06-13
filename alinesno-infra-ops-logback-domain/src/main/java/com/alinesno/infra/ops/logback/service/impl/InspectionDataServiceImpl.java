@@ -1,11 +1,9 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
-import com.alinesno.infra.ops.logback.entity.InspectionDataEntity;
-import com.alinesno.infra.ops.logback.mapper.InspectionDataMapper;
-import com.alinesno.infra.ops.logback.service.IInspectionDataService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.alinesno.infra.ops.logback.entity.app.InspectionLogEntity;
+import com.alinesno.infra.ops.logback.mapper.InspectionLogMapper;
+import com.alinesno.infra.ops.logback.service.app.IInspectionLogService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +13,5 @@ import org.springframework.stereotype.Service;
  * @author luoxiaodong
  */
 @Service
-public class InspectionDataServiceImpl extends IBaseServiceImpl<InspectionDataEntity, InspectionDataMapper> implements IInspectionDataService {
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(InspectionDataServiceImpl.class);
+public class InspectionDataServiceImpl extends IBaseServiceImpl<InspectionLogEntity, InspectionLogMapper> implements IInspectionLogService {
 }
