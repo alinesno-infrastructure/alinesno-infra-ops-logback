@@ -44,6 +44,13 @@
 			<version>${revision}</version>
 		</dependency>
 
+		<!-- 添加postgresql_start -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+		<!-- 添加postgresql_end -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

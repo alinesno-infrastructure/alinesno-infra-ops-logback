@@ -29,6 +29,17 @@ spring:
     consumer:
       group-id: infra_logback
 
+actable:
+  table:
+    auto: create
+  model:
+    pack: com.alinesno.infra.ops.logback.entity
+  database:
+    type: postgresql
+  index:
+    prefix: alinesno_ops_logback_idx_
+  unique:
+    prefix: alinesno_ops_logback_uni_
 
 # sa-token配置
 sa-token:
