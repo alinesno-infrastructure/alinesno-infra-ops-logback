@@ -5,7 +5,7 @@
       <el-col :span="24">
         <div class="aip-appinfo-header">
           <div class="header-icon-banner">
-           <i class="fa-solid fa-tarp-droplet"></i>
+            <i class="fa-solid fa-file-signature"></i>
           </div>
           <div class="icon">
             <div class="title">
@@ -38,7 +38,7 @@
 
 <script setup name="Index">
 
-import OperationWorkspaceCountStaitcs from './operation-workspace/countStatics.vue'
+// import OperationWorkspaceCountStaitcs from './operation-workspace/countStatics.vue'
 import OperationWorkspaceApps from './operation-workspace/apps.vue'
 import OperationWorkspaceService from './operation-workspace/service.vue'
 

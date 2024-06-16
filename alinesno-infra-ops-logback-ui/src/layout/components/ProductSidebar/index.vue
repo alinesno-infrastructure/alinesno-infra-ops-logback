@@ -30,6 +30,7 @@ const menuItems = ref([
   {id:'5' , icon:'fa-solid fa-plane-departure' , link:'/ops/logback/nginx/index' , desc:'Nginx日志分析'},
   {id:'7' , icon:'fa-solid fa-house-tsunami' , link:'/ops/logback/inspection/index' , desc:'巡检日志'},
   {id:'8' , icon:'fa-solid fa-swatchbook' , link:'/ops/logback/account/index' , desc:'账户日志'},
+  {id:'10' , icon:'fa-solid fa-computer' , link:'/ops/logback/analyse/index' , desc:'监控管理'},
 ]);
 
 // 打开服务市场

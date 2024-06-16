@@ -19,7 +19,7 @@
                          padding: 10px;
                          border-radius: 3px;">
                   <div class="app-icon">
-                    <img :src="item.icon" :alt="item.name" />
+                    <i :class="item.icon" style="font-size: 20px;color: #3b5998;" :alt="item.name" />
                   </div>
                   <div class="app-info">
                     <div class="app-item-title">{{ item.name }}</div>
@@ -75,15 +75,15 @@ const opertionAssets = ref([
 ])
 
 const apps = ref([
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/d88319dfa5d204f019b4284149886c59-7d586ea82f792b61a8c87de60565133d.svg' , name:'分布式链路跟踪' , desc:'基于OpenTelemetry标准构建的Trace服务'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/9da5a168cf8194c8ee5ed192a443d563-674375b53bc8ae94f48cfdb5c81e8363.svg' , name:'智能异常分析' , desc:'智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/d88319dfa5d204f019b4284149886c59-7d586ea82f792b61a8c87de60565133d.svg' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/d88319dfa5d204f019b4284149886c59-7d586ea82f792b61a8c87de60565133d.svg' , name:'自动化操作服务' , desc:'基于OpenTelemetry标准构建的Trace服务'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/a5ffe5487f62ef75d8e5cf78c18525a5-d4867f9d4adcd749f0c5aff987232847.svg' , name:'全栈监控' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/6e9e16955bd76c1d3a9996e0d6d3ad15-04cfc8c62f597690680d948b366980cf.svg' , name:'智能异常分析' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/a5ffe5487f62ef75d8e5cf78c18525a5-d4867f9d4adcd749f0c5aff987232847.svg' , name:'审计日志服务' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/6e9e16955bd76c1d3a9996e0d6d3ad15-04cfc8c62f597690680d948b366980cf.svg' , name:'持续集成服务' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
-  {icon:'https://d1by4p17n947rt.cloudfront.net/icon/d88319dfa5d204f019b4284149886c59-7d586ea82f792b61a8c87de60565133d.svg' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
+  {icon:'fa-brands fa-slack'  , name:'分布式链路跟踪' , desc:'基于OpenTelemetry标准构建的Trace服务'},
+  {icon:'fa-solid fa-list-check' , name:'智能异常分析' , desc:'智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台'},
+  {icon:'fa-solid fa-at' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
+  {icon:'fa-solid fa-list-check' , name:'自动化操作服务' , desc:'基于OpenTelemetry标准构建的Trace服务'},
+  {icon:'fa-solid fa-file-word' , name:'全栈监控' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
+  {icon:'fa-solid fa-eye-slash' , name:'智能异常分析' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
+  {icon:'fa-solid fa-user-shield' , name:'审计日志服务' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
+  {icon:'fa-solid fa-comment-slash' , name:'持续集成服务' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
+  {icon:'fa-brands fa-slack' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
 ]);
 
 </script>

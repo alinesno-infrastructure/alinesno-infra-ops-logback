@@ -93,6 +93,12 @@ export const constantRoutes = [
         meta: { title: '应用管理', icon: 'dashboard', affix: true }
       },
       {
+        path: '/ops/logback/analyse/index',
+        component: () => import('@/views/ops/logback/analyse/index'),
+        name: '/ops/logback/analyse/index',
+        meta: { title: '调用分析', icon: 'dashboard', affix: true }
+      }, 
+      {
         path: '/ops/logback/businessLog/index',
         component: () => import('@/views/ops/logback/businessLog/index'),
         name: '/ops/logback/businessLog/index',
