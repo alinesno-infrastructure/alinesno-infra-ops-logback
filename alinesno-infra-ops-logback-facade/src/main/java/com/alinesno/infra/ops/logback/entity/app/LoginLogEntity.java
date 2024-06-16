@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -21,6 +22,7 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 
+@EqualsAndHashCode(callSuper = true)
 @TableName("manager_login_log")
 @Data
 public class LoginLogEntity extends BaseLogEntity {

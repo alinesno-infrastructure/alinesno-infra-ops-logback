@@ -37,7 +37,7 @@
                 icon="Edit"
                 :disabled="single"
                 @click="handleUpdate"
-                v-hasPermi="['system:Application:edit']"
+                v-hasPermi="['system:BusinessLog:edit']"
             >修改
             </el-button>
           </el-col>
@@ -48,7 +48,7 @@
                 icon="Delete"
                 :disabled="multiple"
                 @click="handleDelete"
-                v-hasPermi="['system:Application:remove']"
+                v-hasPermi="['system:BusinessLog:remove']"
             >删除
             </el-button>
           </el-col>
@@ -56,7 +56,7 @@
           <right-toolbar v-model:showSearch="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
         </el-row>
 
-        <el-table v-loading="loading" :data="ApplicationList" @selection-change="handleSelectionChange">
+        <el-table v-loading="loading" :data="BusinessLogList" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="50" align="center"/>
           <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
           </el-table-column>
@@ -81,11 +81,11 @@
             <template #default="scope">
               <el-tooltip content="修改" placement="top" v-if="scope.row.applicationId !== 1">
                 <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
-                           v-hasPermi="['system:Application:edit']"></el-button>
+                           v-hasPermi="['system:BusinessLog:edit']"></el-button>
               </el-tooltip>
               <el-tooltip content="删除" placement="top" v-if="scope.row.applicationId !== 1">
                 <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)"
-                           v-hasPermi="['system:Application:remove']"></el-button>
+                           v-hasPermi="['system:BusinessLog:remove']"></el-button>
               </el-tooltip>
 
             </template>
@@ -103,7 +103,7 @@
 
     <!-- 添加或修改应用配置对话框 -->
     <el-dialog :title="title" v-model="open" width="900px" append-to-body>
-      <el-form :model="form" :rules="rules" ref="ApplicationRef" label-width="80px">
+      <el-form :model="form" :rules="rules" ref="BusinessLogRef" label-width="80px">
         <el-row>
           <el-col :span="24">
             <el-form-item  label="应用名称" prop="applicationName">
@@ -198,22 +198,22 @@
   </div>
 </template>
 
-<script setup name="Application">
+<script setup name="BusinessLog">
 import {getToken} from "@/utils/auth";
 import {
-  listApplication,
-  delApplication,
-  getApplication,
-  updateApplication,
-  addApplication,
-} from "@/api/ops/logback/application";
+  listBusinessLog,
+  delBusinessLog,
+  getBusinessLog,
+  updateBusinessLog,
+  addBusinessLog,
+} from "@/api/ops/logback/businessLog";
 import {reactive} from "vue";
 
 const router = useRouter();
 const {proxy} = getCurrentInstance();
-// const { sys_normal_disable, sys_Application_sex } = proxy.useDict("sys_normal_disable", "sys_Application_sex");
+// const { sys_normal_disable, sys_BusinessLog_sex } = proxy.useDict("sys_normal_disable", "sys_BusinessLog_sex");
 
-const ApplicationList = ref([]);
+const BusinessLogList = ref([]);
 const open = ref(false);
 const loading = ref(true);
 const showSearch = ref(true);
@@ -241,7 +241,7 @@ const upload = reactive({
   // 设置上传的请求头部
   headers: {Authorization: "Bearer " + getToken()},
   // 上传的地址
-  url: import.meta.env.VITE_APP_BASE_API + "/system/Application/importData"
+  url: import.meta.env.VITE_APP_BASE_API + "/system/BusinessLog/importData"
 });
 // 列显隐信息
 const columns = ref([
@@ -262,7 +262,7 @@ const data = reactive({
   queryParams: {
     pageNum: 1,
     pageSize: 10,
-    ApplicationName: undefined,
+    BusinessLogName: undefined,
     applicationName: undefined,
     showName: undefined,
     status: undefined,
@@ -290,9 +290,9 @@ const {queryParams, form, rules} = toRefs(data);
 /** 查询应用列表 */
 function getList() {
   loading.value = true;
-  listApplication(proxy.addDateRange(queryParams.value, dateRange.value)).then(res => {
+  listBusinessLog(proxy.addDateRange(queryParams.value, dateRange.value)).then(res => {
     loading.value = false;
-    ApplicationList.value = res.rows;
+    BusinessLogList.value = res.rows;
     total.value = res.total;
   });
 };
@@ -320,7 +320,7 @@ function handleDelete(row) {
   const applicationIds = row.id || ids.value;
 
   proxy.$modal.confirm('是否确认删除应用编号为"' + applicationIds + '"的数据项？').then(function () {
-    return delApplication(applicationIds);
+    return delBusinessLog(applicationIds);
   }).then(() => {
     getList();
     proxy.$modal.msgSuccess("删除成功");
@@ -346,7 +346,7 @@ function reset() {
     storagePath: undefined,
     target: undefined,
   };
-  proxy.resetForm("ApplicationRef");
+  proxy.resetForm("BusinessLogRef");
 };
 
 /** 取消按钮 */
@@ -366,7 +366,7 @@ function handleAdd() {
 function handleUpdate(row) {
   reset();
   const applicationId = row.id || ids.value;
-  getApplication(applicationId).then(response => {
+  getBusinessLog(applicationId).then(response => {
     form.value = response.data;
     form.value.applicationId = applicationId;
     open.value = true;
@@ -377,16 +377,16 @@ function handleUpdate(row) {
 
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs["ApplicationRef"].validate(valid => {
+  proxy.$refs["BusinessLogRef"].validate(valid => {
     if (valid) {
       if (form.value.applicationId != undefined) {
-        updateApplication(form.value).then(response => {
+        updateBusinessLog(form.value).then(response => {
           proxy.$modal.msgSuccess("修改成功");
           open.value = false;
           getList();
         });
       } else {
-        addApplication(form.value).then(response => {
+        addBusinessLog(form.value).then(response => {
           proxy.$modal.msgSuccess("新增成功");
           open.value = false;
           getList();

@@ -3,7 +3,7 @@ import { parseStrEmpty } from "@/utils/ruoyi";
 
 
 // 接口配置项
-var prefix = '/api/infra/ops/logback/project/' ;
+var prefix = '/api/infra/ops/logback/accountRecord/' ;
 var managerUrl = {
   datatables : prefix +"datatables" ,
   createUrl: prefix + 'add' ,
@@ -19,7 +19,7 @@ var managerUrl = {
 }
 
 // 查询应用列表
-export function listProject(query) {
+export function listAccountRecord(query) {
   return request({
     url: managerUrl.datatables ,
     method: 'post',
@@ -28,7 +28,7 @@ export function listProject(query) {
 }
 
 // 查询应用详细
-export function getProject(id) {
+export function getAccountRecord(id) {
   return request({
     url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
     method: 'get'
@@ -36,7 +36,7 @@ export function getProject(id) {
 }
 
 // 新增应用
-export function addProject(data) {
+export function addAccountRecord(data) {
   return request({
     url: managerUrl.saveUrl ,
     method: 'post',
@@ -45,7 +45,7 @@ export function addProject(data) {
 }
 
 // 修改应用
-export function updateProject(data) {
+export function updateAccountRecord(data) {
   return request({
     url: managerUrl.updateUrl ,
     method: 'put',
@@ -54,7 +54,7 @@ export function updateProject(data) {
 }
 
 // 删除应用
-export function delProject(id) {
+export function delAccountRecord(id) {
   return request({
     url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
     method: 'delete'
@@ -62,7 +62,7 @@ export function delProject(id) {
 }
 
 // 应用密码重置
-export function resetProjectPwd(id, password) {
+export function resetAccountRecordPwd(id, password) {
   const data = {
     id,
     password
@@ -75,7 +75,7 @@ export function resetProjectPwd(id, password) {
 }
 
 // 应用状态修改
-export function changeProjectStatus(id, status) {
+export function changeAccountRecordStatus(id, status) {
   const data = {
     id,
     status

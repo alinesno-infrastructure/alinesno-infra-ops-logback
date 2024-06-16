@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-view">
     <h1 class="sidebar-title">
-      {{ currentApplicationName }}
+      {{ currentProjectName }}
     </h1>
   </div>
 </template>
@@ -11,7 +11,7 @@
 export default {
   data () {
     return {
-      currentApplicationName: '分布式日志服务'
+      currentProjectName: '分布式日志服务'
     }
   },
   mounted () {
@@ -20,7 +20,7 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         var v = this.$store.state.permission.currentApp
-        this.currentApplicationName = v.applicationName
+        this.currentProjectName = v.applicationName
       }, 500)
     })
     */
