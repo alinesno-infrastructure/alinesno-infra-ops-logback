@@ -1,4 +1,4 @@
-package com.alinesno.infra.ops.logback.adapter;
+package com.alinesno.infra.ops.logback.adapter.config;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
@@ -32,5 +32,6 @@ public class KafkaConfig {
 
         return consumer;
     }
+
 }
 

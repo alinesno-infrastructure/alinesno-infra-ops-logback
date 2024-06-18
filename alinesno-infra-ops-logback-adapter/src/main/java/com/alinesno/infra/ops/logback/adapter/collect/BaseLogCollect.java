@@ -7,6 +7,7 @@ import com.alinesno.infra.ops.logback.core.dto.RunLogMessage;
 import com.alinesno.infra.ops.logback.core.utils.ThreadPoolUtil;
 import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
 import com.alinesno.infra.ops.logback.service.ILogStorageService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -21,11 +23,12 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@Slf4j
 public class BaseLogCollect {
 
-	private final Logger log = LoggerFactory.getLogger(BaseLogCollect.class);
-
 	public ThreadPoolExecutor threadPoolExecutor = ThreadPoolUtil.getPool();
+
+	protected ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
 
 	@Autowired
 	protected ApplicationEventPublisher applicationEventPublisher;

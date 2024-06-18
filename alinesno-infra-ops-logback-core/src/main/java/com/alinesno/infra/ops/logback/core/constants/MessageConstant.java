@@ -15,6 +15,8 @@ public class MessageConstant {
 
     public final static String LOG_KEY_COMPRESS = "infra_log_list_compress";
 
+    public final static String REDIS_REST_KEY = "alinesno-infra-ops-logback::rest::default" ;
+
     /**
      * 链路日志存入ES的索引后缀
      */

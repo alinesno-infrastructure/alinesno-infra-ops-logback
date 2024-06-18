@@ -5,6 +5,7 @@ import com.alinesno.infra.ops.logback.core.constants.MessageConstant;
 import com.alinesno.infra.ops.logback.core.dto.RunLogCompressMessage;
 import com.alinesno.infra.ops.logback.core.exception.LogQueueConnectException;
 import com.alinesno.infra.ops.logback.core.utils.GfJsonUtil;
+import com.alinesno.infra.ops.logback.core.utils.HttpClient;
 import com.alinesno.infra.ops.logback.core.utils.LZ4Util;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -13,6 +14,7 @@ import com.google.common.collect.Lists;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +23,6 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * className：MessageAppenderFactory
  * description：该类提供了将日志消息添加到队列中的功能
- * time：2020-05-13.14:18
  *
  * @author Tank
  * @author luoxiaodong
@@ -37,8 +38,8 @@ public class MessageAppenderFactory {
     public static BlockingQueue<String> rundataQueue;
     public static int queueSize = 10000;
 
+    private static Boolean logOutPut = true;
     private static final AtomicLong lastRunPushTime = new AtomicLong(0);
-    private static final AtomicLong lastTracePushTime = new AtomicLong(0);
 
     public static void initQueue(int logQueueSize) {
         queueSize = logQueueSize;
@@ -127,5 +128,80 @@ public class MessageAppenderFactory {
             Thread.sleep(100);
         }
     }
+
+    public static void startRunLog(String loggerHost, int maxCount, String key, boolean compress) {
+        while (true) {
+            try {
+                doStartLog(loggerHost, maxCount, rundataQueue, key, "plume.log.ack", lastRunPushTime);
+            } catch (Exception e) {
+                String exMsg=e.getMessage();
+                System.out.println("ops-logback error:--------doStartLog--------"+exMsg+"-------------------");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {
+                }
+            }
+        }
+    }
+
+
+    private static void doStartLog(String loggerHost, int maxCount, BlockingQueue<String> queue, String key, String lock, AtomicLong pushTime) throws InterruptedException {
+
+        List<String> logs = new ArrayList<>();
+
+        int size = queue.size();
+        long currentTimeMillis = System.currentTimeMillis();
+        long time = currentTimeMillis - pushTime.get();
+
+        if (size >= maxCount || time > 500) {
+            queue.drainTo(logs, maxCount);
+
+            push(loggerHost, key, logs, lock);
+
+            pushTime.set(currentTimeMillis);
+        } else if (size == 0) {
+            String log = queue.take();
+            logs.add(log);
+
+            push(loggerHost, key, logs, lock);
+
+            pushTime.set(currentTimeMillis);
+        } else {
+            Thread.sleep(100);
+        }
+    }
+
+    private static void push(String loggerHost, String key, List<String> baseLogMessage, String logOutPutKey) {
+        if (baseLogMessage.isEmpty()) {
+            return;
+        }
+
+        List<Map<String,Object>> logs=new ArrayList<>();
+        for(String str:baseLogMessage){
+            Map<String, Object> map = GfJsonUtil.parseObject(str, Map.class);
+            logs.add(map);
+        }
+
+        logOutPut = cache.getIfPresent(logOutPutKey);
+        if (logOutPut == null || logOutPut) {
+            try {
+
+                String path = "v1/api/collector/logRest";
+                String url = loggerHost.endsWith("/") ? loggerHost + path : loggerHost + "/" + path ;
+
+                String param = GfJsonUtil.toJSONString(logs);
+                System.out.println("url = " + url + " , 消息内容:" + param);
+
+                HttpClient.doPostBody(url, param);
+
+                cache.put(logOutPutKey, true);
+
+            } catch (Exception e) {
+                cache.put(logOutPutKey, false);
+                System.out.println("logger error:----------------"+e.getMessage()+"-------------------");
+            }
+        }
+    }
+
 
 }

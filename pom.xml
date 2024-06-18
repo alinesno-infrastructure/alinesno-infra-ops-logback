@@ -33,11 +33,9 @@
         <module>alinesno-infra-ops-logback-adapter</module> <!-- 适配层 -->
         <module>alinesno-infra-ops-logback-gateway</module>  <!-- 接口服务 -->
         <module>alinesno-infra-ops-logback-client</module>  <!-- 对外引用 -->
-        <module>alinesno-infra-ops-logback-kafka</module>  <!-- Kafka消息接收-->
-        <module>alinesno-infra-ops-logback-agent</module>  <!-- 客户端日志采集 -->
         <module>alinesno-infra-ops-logback-boot</module>  <!-- 启动服务 -->
 
-        <module>alinesno-infra-ops-logback-collector</module> <!-- 提供http日志收集服务 -->
+        <module>alinesno-infra-ops-logback-agent</module>  <!-- 客户端日志采集 -->
 
         <!-- 前端服务
         <module>alinesno-infra-ops-logback-ui</module>

@@ -1,28 +1,25 @@
 package com.alinesno.infra.ops.logback.adapter.collect;
 
 import com.alinesno.infra.ops.logback.core.constants.MessageConstant;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
- * Kafka日志采集，保存到clickhouse当中
+ * Kafka日志采集，保存到postgresql当中
  * @author luoxiaodong
  * @version 1.0.0
  */
+@Slf4j
 @Component
 public class KafkaCollect extends BaseLogCollect {
-
-	private final Logger log = LoggerFactory.getLogger(KafkaCollect.class);
 
 	@Autowired
 	private KafkaConsumer<String , String> kafkaConsumer;
@@ -49,7 +46,7 @@ public class KafkaCollect extends BaseLogCollect {
 		while (true) {
 			List<String> logList = new ArrayList<>();
 
-			log.debug("collect running log!!");
+			log.debug("kafka collect running log!!");
 
 			try {
 				ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(1000));

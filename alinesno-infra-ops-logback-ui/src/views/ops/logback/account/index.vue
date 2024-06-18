@@ -206,7 +206,7 @@ import {
   getAccountRecord,
   updateAccountRecord,
   addAccountRecord,
-} from "@/api/ops/logback/accountRecord";
+} from "@/api/ops/logback/account";
 import {reactive} from "vue";
 
 const router = useRouter();

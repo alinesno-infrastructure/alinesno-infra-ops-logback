@@ -34,6 +34,12 @@
 			<version>4.11.0</version>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>com.alinesno.infra.ops</groupId>
+			<artifactId>alinesno-infra-ops-logback-core</artifactId>
+			<version>${revision}</version>
+		</dependency>
+
+    </dependencies>
 
 </project>

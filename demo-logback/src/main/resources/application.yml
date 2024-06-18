@@ -1,5 +1,5 @@
 server:
-  port: 30401
+  port: 30403
 
 spring:
   application:
@@ -8,10 +8,11 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-      password: aip@local
+#      password: aip@local
 
 alinesno.ops:
   logback:
     env: development
     kafkaServers: 192.168.101.18:9092
+    restHost: http://127.0.0.1:30401
     user-key: aip@local

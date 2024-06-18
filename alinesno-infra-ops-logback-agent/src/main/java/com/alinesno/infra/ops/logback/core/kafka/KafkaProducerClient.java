@@ -2,6 +2,7 @@ package com.alinesno.infra.ops.logback.core.kafka;
 
 import com.alinesno.infra.ops.logback.core.client.AbstractClient;
 import com.alinesno.infra.ops.logback.core.exception.LogQueueConnectException;
+import lombok.Getter;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -18,12 +19,9 @@ import java.util.List;
  */
 public class KafkaProducerClient extends AbstractClient {
 
+    @Getter
     static KafkaProducerClient instance;
     private KafkaProducerPool kafkaProducerPool;
-
-    public static KafkaProducerClient getInstance() {
-        return instance;
-    }
 
     protected KafkaProducerClient(String hosts, String compressionType) {
         this.kafkaProducerPool = new KafkaProducerPool(hosts, compressionType);

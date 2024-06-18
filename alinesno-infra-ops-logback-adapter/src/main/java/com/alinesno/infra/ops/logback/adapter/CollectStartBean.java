@@ -1,23 +1,27 @@
 package com.alinesno.infra.ops.logback.adapter;
 
 import com.alinesno.infra.ops.logback.adapter.collect.KafkaCollect;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.alinesno.infra.ops.logback.adapter.collect.RedisCollect;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @Order(100)
 public class CollectStartBean implements InitializingBean {
 
-    private static final Logger log = LoggerFactory.getLogger(CollectStartBean.class) ;
+    @Value("${alinesno.logback.model:redis}")
+    private String model ;
 
     @Autowired
     private KafkaCollect kafkaLogCollect ;
+
+    @Autowired
+    private RedisCollect redisCollect ;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -29,6 +33,10 @@ public class CollectStartBean implements InitializingBean {
     }
 
     private void serverCollect() {
-        kafkaLogCollect.kafkaStart();
+        if(model.equals("kafka")){
+            kafkaLogCollect.kafkaStart();
+        }else if(model.equals("redis")){
+            redisCollect.redisStart();
+        }
     }
 }

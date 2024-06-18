@@ -10,7 +10,7 @@ spring:
       enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dev_alinesno_infra_ops_logback_v100?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3309/dev_alinesno_infra_ops_logback_v100?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: adminer
     hikari:
@@ -23,11 +23,15 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-      password: aip@local
+#      password: aip@local
   kafka:
     bootstrap-servers: 192.168.101.18:9092
     consumer:
       group-id: infra_logback
+
+# 日志队列配置
+alinesno.logback:
+  model: redis  # redis列队|kafka列队
 
 actable:
   table:

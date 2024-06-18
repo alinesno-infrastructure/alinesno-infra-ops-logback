@@ -1,11 +1,9 @@
 package com.alinesno.infra.ops.logback.core.logback;
 
-
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import com.alinesno.infra.ops.logback.core.MessageAppenderFactory;
 import com.alinesno.infra.ops.logback.core.dto.BaseLogMessage;
-import com.alinesno.infra.ops.logback.core.kafka.KafkaProducerClient;
 import com.alinesno.infra.ops.logback.core.utils.LogMessageUtil;
 import com.alinesno.infra.ops.logback.core.utils.ThreadPoolUtil;
 import lombok.Data;
@@ -13,29 +11,27 @@ import lombok.EqualsAndHashCode;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-
 /**
- * className：KafkaAppender
- * description：KafkaAppender 如果使用kafka作为队列用这个KafkaAppender输出
+ * 通过Http发送请求日志到指定的日志服务器
  *
- * @author Frank.chen
+ * @author chenlongfei
  * @author luoxiaodong
  * @version 1.0.0
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class KafkaAppender extends AppenderBase<ILoggingEvent> {
+public class RestAppender extends AppenderBase<ILoggingEvent> {
 
-    private static final ThreadPoolExecutor threadPoolExecutor  = ThreadPoolUtil.getPool();
-
-    private KafkaProducerClient kafkaClient;
+    private static final ThreadPoolExecutor threadPoolExecutor = ThreadPoolUtil.getPool();
     private String appName;
     private String env = "default";
-    private String kafkaHosts;
     private String userKey ; // 应用密钥
+    private String runModel;
+    private String expand;
+    private String restHost;
     private int maxCount = 100;
     private int logQueueSize = 10000;
-    private int threadPoolSize = 2;
+    private int threadPoolSize = 1;
     private boolean compressor = false;
 
     @Override
@@ -46,13 +42,14 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
     }
 
     protected void send(ILoggingEvent event) {
+
         final BaseLogMessage logMessage = LogMessageUtil.getLogMessage(appName, env, event);
-        
+
         if(userKey == null) {
-        	System.err.print("未配置【user-key】密钥，无法写入日志审计服务!");
-        	return ; 
+            System.err.print("未配置【user-key】密钥，无法写入日志审计服务!");
+            return ;
         }
-      
+
         // 配置应用日志密钥
         logMessage.setUserKey(userKey);
 
@@ -63,18 +60,14 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
     @Override
     public void start() {
         super.start();
-
-        if (this.kafkaClient == null) {
-            this.kafkaClient = KafkaProducerClient.getInstance(this.kafkaHosts, this.compressor ? "lz4" : "none");
-        }
-
         MessageAppenderFactory.initQueue(this.logQueueSize);
 
-        for (int i = 0; i < this.threadPoolSize; i++) {
-            threadPoolExecutor.execute(() -> {
-                MessageAppenderFactory.startRunLog(this.kafkaClient, this.maxCount);
-            });
+        for (int a = 0; a < this.threadPoolSize; a++) {
+            threadPoolExecutor.execute(() -> MessageAppenderFactory.startRunLog(
+                    this.restHost,
+                    this.maxCount,
+                    this.compressor ? "lz4" : "none",
+                    this.compressor));
         }
-
     }
 }

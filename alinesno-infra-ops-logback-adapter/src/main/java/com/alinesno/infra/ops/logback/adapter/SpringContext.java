@@ -1,12 +1,13 @@
 package com.alinesno.infra.ops.logback.adapter;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import lombok.Getter;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 工具类
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringContext implements ApplicationContextAware {
 
+	// 获取applicationContext
+	@Getter
 	private static ApplicationContext applicationContext = null;
 
 	@Override
@@ -24,11 +27,6 @@ public class SpringContext implements ApplicationContextAware {
 		if (applicationContext == null) {
 			applicationContext = app;
 		}
-	}
-
-	// 获取applicationContext
-	public static ApplicationContext getApplicationContext() {
-		return applicationContext;
 	}
 
 	// 通过name获取 Bean.

@@ -18,8 +18,8 @@ import java.io.IOException;
 /**
  * 获取文件上传的配置
  * 
- * @author LuoAnDong
- * @since 2022年10月29日 上午6:23:43
+ * @author luoxiaodong
+ * @version 1.0.0
  */
 @Slf4j
 @RestController

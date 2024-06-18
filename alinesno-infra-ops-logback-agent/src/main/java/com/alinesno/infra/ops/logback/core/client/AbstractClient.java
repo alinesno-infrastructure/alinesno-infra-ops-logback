@@ -1,6 +1,7 @@
 package com.alinesno.infra.ops.logback.core.client;
 
 import com.alinesno.infra.ops.logback.core.exception.LogQueueConnectException;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +17,8 @@ import java.util.Set;
  */
 public abstract class AbstractClient {
 
+    @Getter
     private static AbstractClient client;
-
-    public static AbstractClient getClient() {
-        return client;
-    }
 
     public static void setClient(AbstractClient abstractClient) {
         client = abstractClient;
