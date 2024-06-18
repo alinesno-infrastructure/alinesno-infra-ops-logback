@@ -6,6 +6,7 @@ import lombok.Data;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 import java.util.Map;
 
@@ -16,13 +17,14 @@ import java.util.Map;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("log_storage") // 指定数据库表名
 @Data
 public class LogStorageEntity extends BaseLogEntity {
 
     // 时间
     @TableField("timestamp")
-	@ColumnType(length=20)
+	@ColumnType(length=30)
 	@ColumnComment("时间戳")
     private long timestamp;
 
@@ -34,25 +36,25 @@ public class LogStorageEntity extends BaseLogEntity {
 
     // 日志来源
     @TableField("logger_name")
-	@ColumnType(length=255)
+	@ColumnType(length=128)
 	@ColumnComment("日志来源")
     private String loggerName;
 
     // 线程名
     @TableField("thread_name")
-	@ColumnType(length=50)
+	@ColumnType(length=128)
 	@ColumnComment("线程名")
     private String threadName;
 
     // 日志消息
     @TableField("log_message")
-	@ColumnType(length=255)
+	@ColumnType(length=1024)
 	@ColumnComment("日志消息")
     private String logMessage;
 
     // 异常信息
     @TableField("exception")
-	@ColumnType(length=255)
+	@ColumnType(length=1024)
 	@ColumnComment("异常信息")
     private String exception;
 
@@ -76,7 +78,7 @@ public class LogStorageEntity extends BaseLogEntity {
 
     // 请求方法
     @TableField("request_method")
-	@ColumnType(length=4)
+	@ColumnType(length=128)
 	@ColumnComment("请求方法")
     private String requestMethod;
 
@@ -118,7 +120,7 @@ public class LogStorageEntity extends BaseLogEntity {
 
     // 日志来源应用程序
     @TableField("source_application")
-	@ColumnType(length=50)
+	@ColumnType(length=255)
 	@ColumnComment("日志来源应用程序")
     private String sourceApplication;
 
@@ -171,17 +173,11 @@ public class LogStorageEntity extends BaseLogEntity {
     private String standardizedFields;
 
     @TableField(exist = false) // 不映射到数据库表
-	@ColumnType(length=255)
-	@ColumnComment("=")
     private Map<String, String> MDCPropertyMap; // MDC属性映射
 
     @TableField(exist = false) // 不映射到数据库表
-	@ColumnType(length=20)
-	@ColumnComment("=")
     private JSONObject jvm; // JVM信息
 
     @TableField(exist = false) // 不映射到数据库表
-	@ColumnType(length=255)
-	@ColumnComment("=")
     private JSONObject mem; // 内存信息
 }

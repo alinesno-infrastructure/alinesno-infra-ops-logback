@@ -8,9 +8,8 @@ import com.alinesno.infra.ops.logback.entity.app.BusinessLogEntity;
 import com.alinesno.infra.ops.logback.service.app.IBusinessLogService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
@@ -26,14 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0.0
  * @since 1.0.0
  */
+@Slf4j
 @Api(tags = "BusinessLog")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
 @RequestMapping("/api/infra/ops/logback/businessLog")
 public class BusinessLogController extends BaseController<BusinessLogEntity, IBusinessLogService> {
-
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(BusinessLogController.class);
 
     @Autowired
     private IBusinessLogService service;

@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,14 +25,14 @@ import java.util.Map;
  */
 @Slf4j
 @RequestMapping("/v1/api/collector")
-@Controller
+@RestController
 public class CollectorLogController {
 
     @Value("${alinesno.logback.model:redis}")
     private String model ;
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @PostMapping("/logMq")
     public AjaxResult logMq(String topic, String message){
@@ -65,7 +65,7 @@ public class CollectorLogController {
 
         log.debug("logRest message = {}" , message);
 
-        Map<String, Object> messageMap = new HashMap<>();
+        Map<String, String> messageMap = new HashMap<>();
         messageMap.put(MessageConstant.REDIS_REST_KEY , message);
 
         RecordId recordId = redisTemplate.opsForStream().add(MessageConstant.REDIS_REST_KEY , messageMap);

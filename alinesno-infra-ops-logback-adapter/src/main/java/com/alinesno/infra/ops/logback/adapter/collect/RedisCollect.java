@@ -96,10 +96,12 @@ public class RedisCollect extends BaseLogCollect {
             if(messages != null && !messages.isEmpty()){
                 for (MapRecord<String, Object, Object> message : messages) {
 
-                    log.debug("message = {}" , message);
+                    log.debug("message = {}" , message.getValue().get(streamKey));
 
                     // 处理消息逻辑
-                    logs.add(message.getValue().toString()) ;
+                    List<String> strArr = JSON.parseArray(message.getValue().get(streamKey)+"" , String.class) ;
+                    logs.addAll(strArr) ;
+
                     // 确认消息
                     redisTemplate.opsForStream().acknowledge(streamKey, groupName, message.getId());
                 }

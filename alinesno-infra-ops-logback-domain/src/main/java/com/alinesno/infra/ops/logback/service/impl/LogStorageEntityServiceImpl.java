@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,7 +46,10 @@ public class LogStorageEntityServiceImpl extends IBaseServiceImpl<LogStorageEnti
             connection.setAutoCommit(false);
 
             // 创建 PreparedStatement
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO a_log_record (id, timestamp, log_level, thread_name, log_message, exception, ip_address, request_method, response_code, response_time, log_extra_data, log_duration, log_environment, has_delete, application_name, tenant_id, add_time, has_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " +
+                    "log_storage " +
+                    "   (id, timestamp, log_level, thread_name, log_message, exception, ip_address, request_method, response_code, response_time, log_extra_data, log_duration, log_environment, has_delete, application_name, tenant_id, add_time, has_status) " +
+                    "   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // 批量插入数据
             for (LogStorageEntity data : batchE) {
@@ -68,7 +72,7 @@ public class LogStorageEntityServiceImpl extends IBaseServiceImpl<LogStorageEnti
                 preparedStatement.setInt(14, data.getHasDelete());
                 preparedStatement.setString(15, data.getApplicationName());
                 preparedStatement.setString(16, data.getTenantId());
-                preparedStatement.setLong(17, data.getTimestamp());
+                preparedStatement.setDate(17, new Date(System.currentTimeMillis()));
                 preparedStatement.setInt(18, data.getHasStatus());
 
                 preparedStatement.addBatch();
