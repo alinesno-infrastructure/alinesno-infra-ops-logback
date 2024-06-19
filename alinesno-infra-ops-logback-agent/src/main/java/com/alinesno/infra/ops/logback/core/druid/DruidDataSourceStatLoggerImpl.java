@@ -250,7 +250,7 @@ public class DruidDataSourceStatLoggerImpl extends DruidDataSourceStatLoggerAdap
             return ;
         }
 
-        String path = "v1/api/collector/logRest";
+        String path = "v1/api/collector/databaseLog";
         String url = restHost.endsWith("/") ? restHost+ path : restHost+ "/" + path ;
 
         String param = GfJsonUtil.toJSONString(text);

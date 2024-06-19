@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 采集日志服务
+ * 采集前端日志服务
  *
  * @author luoxiaodong
  * @version 1.0.0
@@ -26,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @RequestMapping("/v1/api/collector")
 @RestController
-public class CollectorLogController {
+public class CollectorPageController {
 
     @Value("${alinesno.logback.model:redis}")
     private String model ;
@@ -34,64 +34,13 @@ public class CollectorLogController {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    @PostMapping("/logMq")
-    public AjaxResult logMq(String topic, String message){
 
-        if(model.equals("kafka")){
-            KafkaProducer<String , String> kafkaProducer = null ;
-            try {
-                kafkaProducer.send(new ProducerRecord<>(topic, message));
-            } catch (Exception e) {
-                log.error("发送日志服务异常:{}" , e.getMessage());
-            } finally {
-                kafkaProducer.close();
-            }
-        }else if(model.equals("redis")){
-            Map<String, String> messageMap = new HashMap<>();
-            messageMap.put(topic, message);
-
-            RecordId recordId = redisTemplate.opsForStream().add(topic, messageMap);
-            if (recordId != null) {
-                log.info("Message sent to Stream topic:{} with RecordId:{}"  , topic, recordId);
-            }
-        }
-
-        return AjaxResult.success(model) ;
-    }
-
-
-    @PostMapping("/runningLog")
-    public AjaxResult logRest(@RequestBody String message){
-        sendRedisQueue(message , MessageConstant.REDIS_REST_RUNNINGLOG_KEY);
-        return AjaxResult.success(model) ;
-    }
-
-
-    /**
-     * 接收业务日志并将其存储到Redis流中。
-     *
-     * @param message 业务日志信息，以字符串形式传入。
-     * @return 返回操作结果，成功则包含模型信息。
-     *
-     */
-    @PostMapping("/businessLog")
-    public AjaxResult businessLog(@RequestBody String message){
-        sendRedisQueue(message , MessageConstant.REDIS_REST_BUSINESS_KEY);
-        return AjaxResult.success(model) ;
-    }
-
-
-    /**
-     * 将数据库操作日志信息发送到Redis队列
-     *
-     * @param message 数据库操作日志信息
-     * @return AjaxResult 返回操作结果，成功则包含模型数据
-     */
-     @PostMapping("/databaseLog")
+     @PostMapping("/pageLog")
     public AjaxResult databaseLog(@RequestBody String message){
-        // 将日志信息发送到Redis队列，队列键名为REDIS_REST_DATABASE_KEY定义的值
+
+         // TODO 待处理接收前端日志消息
+
         sendRedisQueue(message , MessageConstant.REDIS_REST_DATABASE_KEY);
-        // 返回操作成功的Ajax结果，包含模型数据
         return AjaxResult.success(model) ;
     }
 

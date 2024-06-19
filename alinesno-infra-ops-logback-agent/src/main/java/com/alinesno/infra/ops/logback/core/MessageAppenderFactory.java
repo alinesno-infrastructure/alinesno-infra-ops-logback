@@ -186,7 +186,7 @@ public class MessageAppenderFactory {
         if (logOutPut == null || logOutPut) {
             try {
 
-                String path = "v1/api/collector/logRest";
+                String path = "v1/api/collector/runningLog";
                 String url = loggerHost.endsWith("/") ? loggerHost + path : loggerHost + "/" + path ;
 
                 String param = GfJsonUtil.toJSONString(logs);

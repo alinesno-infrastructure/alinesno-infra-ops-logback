@@ -15,7 +15,13 @@ public class MessageConstant {
 
     public final static String LOG_KEY_COMPRESS = "infra_log_list_compress";
 
-    public final static String REDIS_REST_KEY = "alinesno-infra-ops-logback:rest:message" ;
+    /** redis列队 **/
+    public final static String REDIS_REST_RUNNINGLOG_KEY = "alinesno-infra-ops-logback:queue:running_log" ;
+    public final static String REDIS_REST_BUSINESS_KEY = "alinesno-infra-ops-logback:queue:business_log" ;
+    public final static String REDIS_REST_NGINX_ACCESS_KEY = "alinesno-infra-ops-logback:queue:nginx_access" ;
+    public final static String REDIS_REST_CONTAINER_KEY = "alinesno-infra-ops-logback:queue:container" ;
+    public final static String REDIS_REST_PAGE_KEY = "alinesno-infra-ops-logback:queue:page" ;
+    public final static String REDIS_REST_DATABASE_KEY = "alinesno-infra-ops-logback:queue:database" ;
 
     /**
      * 链路日志存入ES的索引后缀

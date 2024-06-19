@@ -25,7 +25,7 @@ public class RestAppender extends AppenderBase<ILoggingEvent> {
     private static final ThreadPoolExecutor threadPoolExecutor = ThreadPoolUtil.getPool();
     private String appName;
     private String env = "default";
-    private String userKey ; // 应用密钥
+    private String projectCode ; // 应用密钥
     private String runModel;
     private String expand;
     private String restHost;
@@ -45,13 +45,13 @@ public class RestAppender extends AppenderBase<ILoggingEvent> {
 
         final BaseLogMessage logMessage = LogMessageUtil.getLogMessage(appName, env, event);
 
-        if(userKey == null) {
-            System.err.print("未配置【user-key】密钥，无法写入日志审计服务!");
+        if(projectCode == null) {
+            System.err.print("未配置【projectCode】密钥，无法写入日志审计服务!");
             return ;
         }
 
         // 配置应用日志密钥
-        logMessage.setUserKey(userKey);
+        logMessage.setUserKey(projectCode);
 
         String message = LogMessageUtil.getLogMessage(logMessage, event);
         MessageAppenderFactory.pushRundataQueue(message);

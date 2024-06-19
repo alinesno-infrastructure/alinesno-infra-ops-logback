@@ -99,10 +99,16 @@ export const constantRoutes = [
         meta: { title: '调用分析', icon: 'dashboard', affix: true }
       }, 
       {
+        path: '/ops/logback/logStorage/index',
+        component: () => import('@/views/ops/logback/logStorage/index'),
+        name: '/ops/logback/logStorage/index',
+        meta: { title: '日志分析', icon: 'dashboard', affix: true }
+      },
+      {
         path: '/ops/logback/businessLog/index',
         component: () => import('@/views/ops/logback/businessLog/index'),
         name: '/ops/logback/businessLog/index',
-        meta: { title: '日志分析', icon: 'dashboard', affix: true }
+        meta: { title: '业务日志', icon: 'dashboard', affix: true }
       },
       {
         path: '/ops/logback/containerLog/index',

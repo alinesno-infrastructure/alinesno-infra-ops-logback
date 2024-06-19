@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "LogStorageEntity")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/ops/logback/LogStorage")
+@RequestMapping("/api/infra/ops/logback/logStorage")
 public class LogStorageController extends BaseController<LogStorageEntity, ILogStorageService> {
 
     @Autowired

@@ -29,6 +29,7 @@
         <!-- 应用服务 -->
         <module>alinesno-infra-ops-logback-facade</module>  <!-- 接口和引用 -->
         <module>alinesno-infra-ops-logback-core</module>  <!-- 工程公共核心包 -->
+        <module>alinesno-infra-ops-logback-olap</module>  <!-- 基于clickhouse的olap数据分析-->
         <module>alinesno-infra-ops-logback-domain</module>  <!-- 领域服务 -->
         <module>alinesno-infra-ops-logback-adapter</module> <!-- 适配层 -->
         <module>alinesno-infra-ops-logback-gateway</module>  <!-- 接口服务 -->
@@ -56,7 +57,6 @@
                 <version>1.6.0-SNAPSHOT</version>
             </dependency>
             <!-- 整合最新版本代码生成器(支持postgresql)_end -->
-
 
             <!--clickhouse-->
             <dependency>

@@ -22,24 +22,19 @@
 			<version>${revision}</version>
 		</dependency>
 
+		<!-- 引入clickhouse数据分析 -->
 		<dependency>
-			<groupId>com.alinesno.infra.common</groupId>
-			<artifactId>alinesno-infra-common-core</artifactId>
+			<groupId>com.alinesno.infra.ops</groupId>
+			<artifactId>alinesno-infra-ops-logback-olap</artifactId>
 			<version>${revision}</version>
 		</dependency>
 
-		<!--clickhouse-->
-		<dependency>
-			<groupId>com.clickhouse</groupId>
-			<artifactId>clickhouse-jdbc</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.sqids</groupId>
+            <artifactId>sqids</artifactId>
+            <version>0.1.0</version>
+        </dependency>
 
-		<!-- 多数据源支撑 -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-		</dependency>
-
-	</dependencies>
+    </dependencies>
 
 </project>

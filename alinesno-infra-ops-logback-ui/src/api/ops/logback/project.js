@@ -1,24 +1,48 @@
 import request from '@/utils/request'
 import { parseStrEmpty } from "@/utils/ruoyi";
 
+/**
+ * 数据库接口操作
+ * 
+ * @author luoxiaodong
+ * @since 1.0.0
+ */
 
 // 接口配置项
 var prefix = '/api/infra/ops/logback/project/' ;
 var managerUrl = {
-  datatables : prefix +"datatables" ,
-  createUrl: prefix + 'add' ,
-  saveUrl: prefix + 'save' ,
-  updateUrl: prefix +"modify" ,
-  statusUrl: prefix +"changeStatus" ,
-  cleanUrl: prefix + "clean",
-  detailUrl: prefix +"detail",
-  removeUrl: prefix + "delete" ,
-  exportUrl: prefix + "exportExcel",
-  changeField: prefix + "changeField",
-  downloadfile: prefix + "downloadfile"
+    datatables : prefix +"datatables" ,
+    createUrl: prefix + 'add' ,
+    saveUrl: prefix + 'save' ,
+    updateUrl: prefix +"modify" ,
+    statusUrl: prefix +"changeStatus" ,
+    cleanUrl: prefix + "clean",
+    detailUrl: prefix +"detail",
+    removeUrl: prefix + "delete" ,
+    exportUrl: prefix + "exportExcel",
+    changeField: prefix + "changeField",
+    defaultProject: prefix + "defaultProject",
+    downloadfile: prefix + "downloadfile"
 }
 
-// 查询应用列表
+// 获取默认应用
+export function getDefaultProject(){
+  return request({
+    url: managerUrl.defaultProject ,
+    method: 'get'
+  })
+}
+
+// 修改字段
+export function changStatusField(data){
+  return request({
+    url: managerUrl.changeField ,
+    method: 'post',
+    data: data
+  })
+}
+
+// 查询数据库列表
 export function listProject(query) {
   return request({
     url: managerUrl.datatables ,
@@ -27,15 +51,15 @@ export function listProject(query) {
   })
 }
 
-// 查询应用详细
-export function getProject(id) {
+// 查询数据库详细
+export function getProject(databaseId) {
   return request({
-    url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
+    url: managerUrl.detailUrl + '/' + parseStrEmpty(databaseId),
     method: 'get'
   })
 }
 
-// 新增应用
+// 新增数据库
 export function addProject(data) {
   return request({
     url: managerUrl.saveUrl ,
@@ -44,7 +68,7 @@ export function addProject(data) {
   })
 }
 
-// 修改应用
+// 修改数据库
 export function updateProject(data) {
   return request({
     url: managerUrl.updateUrl ,
@@ -53,44 +77,10 @@ export function updateProject(data) {
   })
 }
 
-// 删除应用
-export function delProject(id) {
+// 删除数据库
+export function delProject(databaseId) {
   return request({
-    url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
+    url: managerUrl.removeUrl + '/' + parseStrEmpty(databaseId),
     method: 'delete'
-  })
-}
-
-// 应用密码重置
-export function resetProjectPwd(id, password) {
-  const data = {
-    id,
-    password
-  }
-  return request({
-    url: '/api/infra/base/starter/application/resetPwd',
-    method: 'put',
-    data: data
-  })
-}
-
-// 应用状态修改
-export function changeProjectStatus(id, status) {
-  const data = {
-    id,
-    status
-  }
-  return request({
-    url: '/api/infra/base/starter/application/changeStatus',
-    method: 'put',
-    data: data
-  })
-}
-
-// 查询部门下拉树结构
-export function deptTreeSelect() {
-  return request({
-    url: '/api/infra/base/starter/application/deptTree',
-    method: 'get'
   })
 }
