@@ -22,7 +22,6 @@ import static com.alibaba.druid.util.JdbcSqlStatUtils.rtrim;
 /**
  * 日志服务拦截和执久化配置
  */
-@Component
 public class DruidDataSourceStatLoggerImpl extends DruidDataSourceStatLoggerAdapter {
  
     private static Log LOG = LogFactory.getLog(DruidDataSourceStatLoggerImpl.class);

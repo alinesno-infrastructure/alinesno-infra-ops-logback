@@ -9,8 +9,9 @@ spring:
     restart:
       enabled: true
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  # 记录druid数据库监控
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3309/dev_alinesno_infra_ops_logback_v100?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/dev_alinesno_infra_ops_logback_v100?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: adminer
     hikari:
@@ -23,7 +24,7 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-#      password: aip@local
+      password: aip@local
       database: 3
   kafka:
     bootstrap-servers: 192.168.101.18:9092
@@ -34,7 +35,7 @@ spring:
 alinesno.logback:
   model: redis  # redis列队|kafka列队
   clickhouse:
-    driverClassName: ru.yandex.clickhouse.ClickHouseDriver
+    driverClassName: com.clickhouse.jdbc.ClickHouseDriver
     url: jdbc:clickhouse://127.0.0.1:8123/default?max_result_bytes=10485760
     username: default
     password:

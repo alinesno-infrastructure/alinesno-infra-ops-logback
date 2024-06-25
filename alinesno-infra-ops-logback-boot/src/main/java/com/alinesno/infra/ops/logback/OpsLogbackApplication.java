@@ -1,5 +1,11 @@
 package com.alinesno.infra.ops.logback;
 
+import com.alinesno.infra.ops.logback.olap.repository.JdbcClickHouseRepository;
+import com.clickhouse.jdbc.ClickHouseDriver;
+import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.index.qual.SameLen;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,8 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author LuoAnDong
  * @since 2023年8月3日 上午6:23:43
  */
+@Slf4j
 @SpringBootApplication
-public class OpsLogbackApplication {
+public class OpsLogbackApplication implements CommandLineRunner {
 
 	/**
 	 * 应用程序的入口点。
@@ -21,6 +28,14 @@ public class OpsLogbackApplication {
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(OpsLogbackApplication.class, args);
+	}
+
+	@Autowired
+	private JdbcClickHouseRepository jdbcClickHouseRepository ;
+
+	@Override
+	public void run(String... args) throws Exception {
+		log.debug("jdbcClickhouse = {}" , jdbcClickHouseRepository);
 	}
 
 }

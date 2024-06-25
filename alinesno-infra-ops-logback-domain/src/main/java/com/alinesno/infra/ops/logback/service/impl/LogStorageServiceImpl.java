@@ -2,12 +2,11 @@ package com.alinesno.infra.ops.logback.service.impl;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
 import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
-import com.alinesno.infra.ops.logback.mapper.LogStorageEntityMapper;
+import com.alinesno.infra.ops.logback.mapper.LogStorageMapper;
 import com.alinesno.infra.ops.logback.service.ILogStorageService;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,11 +24,9 @@ import java.util.List;
  * @version 1.0.0
  * @author luoxiaodong
  */
+@Slf4j
 @Service
-public class LogStorageEntityServiceImpl extends IBaseServiceImpl<LogStorageEntity, LogStorageEntityMapper> implements ILogStorageService {
-
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(LogStorageEntityServiceImpl.class);
+public class LogStorageServiceImpl extends IBaseServiceImpl<LogStorageEntity, LogStorageMapper> implements ILogStorageService {
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;

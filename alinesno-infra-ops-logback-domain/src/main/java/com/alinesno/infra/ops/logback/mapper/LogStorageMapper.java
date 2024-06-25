@@ -9,5 +9,6 @@ import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface LogStorageEntityMapper extends IBaseMapper<LogStorageEntity> {
+public interface LogStorageMapper extends IBaseMapper<LogStorageEntity> {
+
 }

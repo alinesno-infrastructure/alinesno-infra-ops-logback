@@ -59,27 +59,65 @@
         <el-table v-loading="loading" :data="LogStorageList" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="50" align="center"/>
           <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
+              <template #default="scope">
+                <span style="font-size:25px;color:#3b5998">
+                    <i class="fa-solid fa-file-word" />
+                </span>
+              </template>
           </el-table-column>
-          <el-table-column label="应用名称" align="center" key="applicationName" prop="applicationName"
-                           v-if="columns[1].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="显示名称" align="center" key="showName" prop="showName" v-if="columns[2].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="所属领域" align="center" key="domain" prop="domain" v-if="columns[3].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="域名" align="center" key="domainName" prop="domainName" v-if="columns[4].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="安全存储路径" align="center" key="storagePath" prop="storagePath"
-                           v-if="columns[5].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="应用目标" align="center" key="target" prop="target" v-if="columns[6].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="创建时间" align="center" prop="addTime" v-if="columns[7].visible" width="160">
+          <el-table-column label="应用名称" align="left" width="200" key="applicationName" prop="applicationName" v-if="columns[1].visible" :show-overflow-tooltip="true">
+              <template #default="scope">
+                  <el-button type="danger" bg text @click="handleProjectSpace(scope.row.id)"> 
+                    <i class="fa-solid fa-link"></i>&nbsp;{{ scope.row.applicationName }}
+                  </el-button>
+              </template>
+          </el-table-column>
+          <el-table-column label="日志消息" align="left" key="logMessage" prop="logMessage" v-if="columns[2].visible" :show-overflow-tooltip="true"/>
+          <el-table-column label="所在机器" align="center" width="160" key="ipAddress" prop="ipAddress" v-if="columns[6].visible" :show-overflow-tooltip="true"/>
+          <el-table-column label="异常级别" align="center" width="100" key="logLevel" prop="logLevel" v-if="columns[6].visible" :show-overflow-tooltip="true">
+              <template #default="scope">
+                <div class="role-icon">
+                  <span v-if="scope.row.logLevel == 'ERROR'">
+                    <el-button type="danger" bg link>
+                      <i class="fa-solid fa-bomb" style="font-size: 20px"></i>
+                      &nbsp;{{scope.row.logLevel}}
+                    </el-button>
+                  </span>
+                  <span v-if="scope.row.logLevel == 'ERROR'">
+                    <el-button type="danger" bg link>
+                      <i class="fa-solid fa-fire" style="font-size: 20px"></i>
+                      &nbsp;{{scope.row.logLevel}}
+                    </el-button>
+                  </span>
+                  <span v-if="scope.row.logLevel == 'ERROR'">
+                    <el-button type="danger" bg link>
+                      <i class="fa-solid fa-bug" style="font-size: 20px"></i>
+                      &nbsp;{{scope.row.logLevel}}
+                    </el-button>
+                  </span>
+                  <span v-if="scope.row.logLevel == 'DEBUG'">
+                    <el-button type="warning" bg link>
+                      <i class="fa-solid fa-triangle-exclamation" style="font-size: 20px"></i>
+                      &nbsp;{{scope.row.logLevel}}
+                    </el-button>
+                  </span>
+                  <span v-if="scope.row.logLevel == 'INFO'">
+                    <el-button type="info" bg link>
+                      <i class="fa-solid fa-bug" style="font-size: 20px"></i> 
+                      &nbsp;{{scope.row.logLevel}}
+                    </el-button>
+                  </span>
+                </div>
+            </template>
+        </el-table-column>
+          <el-table-column label="日志时间" align="center" prop="addTime" v-if="columns[7].visible" width="160">
             <template #default="scope">
-              <span>{{ parseTime(scope.row.addTime) }}</span>
+              <span>{{ parseTime(scope.row.timestamp) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width" v-if="columns[8].visible">
+          <el-table-column label="操作" align="center" width="100" class-name="small-padding fixed-width" v-if="columns[8].visible">
             <template #default="scope">
-              <el-tooltip content="修改" placement="top" v-if="scope.row.applicationId !== 1">
+              <el-tooltip content="详情" placement="top" v-if="scope.row.applicationId !== 1">
                 <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
                            v-hasPermi="['system:LogStorage:edit']"></el-button>
               </el-tooltip>
@@ -87,7 +125,6 @@
                 <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)"
                            v-hasPermi="['system:LogStorage:remove']"></el-button>
               </el-tooltip>
-
             </template>
           </el-table-column>
         </el-table>

@@ -68,7 +68,7 @@ public class ClickhouseConfig {
         return ck;
     }
 
-    @Bean(name = "clickhouseTemplate")
+    @Bean(name = "clickHouseTemplate")
     public JdbcTemplate clickhouseTemplate(@Qualifier("clickhouseDataSource") DataSource clickhouseDataSource) {
         JdbcTemplate ck = new JdbcTemplate(clickhouseDataSource);
         ck.setResultsMapCaseInsensitive(true);
