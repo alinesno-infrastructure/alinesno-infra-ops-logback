@@ -28,7 +28,7 @@ import java.util.Map;
 @RestController
 public class CollectorLogController {
 
-    @Value("${alinesno.logback.model:redis}")
+    @Value("${alinesno.ops.logback.model:redis}")
     private String model ;
 
     @Autowired
@@ -106,10 +106,10 @@ public class CollectorLogController {
      */
     private void sendRedisQueue(String message , String key) {
         // 使用DEBUG级别日志记录消息内容，用于调试和日志记录。
-        log.debug("businessLog logRest message = {}" , message);
+        log.debug("sendRedisQueue logRest message = {}" , message);
 
         // 创建一个Map来存储消息，其中key为消息键，message为消息值。
-        Map<String, String> messageMap = new HashMap<>();
+        Map<String, Object> messageMap = new HashMap<>();
         messageMap.put(key , message);
 
         // 将消息添加到Redis流中，返回记录的ID。

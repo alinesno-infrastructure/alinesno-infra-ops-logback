@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.core.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -10,16 +10,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
+@Slf4j
 public class HttpClient {
+
     public static String doGet(String httpurl) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -52,17 +49,15 @@ public class HttpClient {
                 }
                 result = sbf.toString();
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug("消息发送异常:{}" , e.getMessage());
         } finally {
             // 关闭资源
             if (null != br) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
 
@@ -70,10 +65,11 @@ public class HttpClient {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
 
+            assert connection != null;
             connection.disconnect();// 关闭远程连接
         }
 
@@ -126,40 +122,39 @@ public class HttpClient {
                 }
                 result = sbf.toString();
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug("消息发送异常:{}" , e.getMessage());
         } finally {
             // 关闭资源
             if (null != br) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
             if (null != os) {
                 try {
                     os.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
             if (null != is) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
             // 断开与远程地址url的连接
+            assert connection != null;
             connection.disconnect();
         }
         return result;
     }
 
-    public static String doPostBody(String url, String paramString) {
+    public static void doPostBody(String url, String paramString) {
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse httpResponse = null;
         String result = "";
@@ -178,7 +173,7 @@ public class HttpClient {
         try {
             httpPost.setEntity(new StringEntity(paramString, "UTF-8"));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("消息发送异常:{}" , e.getMessage());
         }
         try {
             // httpClient对象执行post请求,并返回响应参数对象
@@ -186,27 +181,24 @@ public class HttpClient {
             // 从响应对象中获取响应内容
             HttpEntity entity = httpResponse.getEntity();
             result = EntityUtils.toString(entity);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug("消息发送异常:{}" , e.getMessage());
         } finally {
             // 关闭资源
             if (null != httpResponse) {
                 try {
                     httpResponse.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
             if (null != httpClient) {
                 try {
                     httpClient.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.debug("消息发送异常:{}" , e.getMessage());
                 }
             }
         }
-        return result;
     }
 }

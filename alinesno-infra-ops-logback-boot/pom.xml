@@ -38,14 +38,6 @@
 			<version>${revision}</version>
 		</dependency>
 
-		<!--
-		<dependency>
-			<groupId>com.alinesno.infra.ops</groupId>
-			<artifactId>alinesno-infra-ops-logback-kafka</artifactId>
-			<version>${revision}</version>
-		</dependency>
-		-->
-
 		<!-- 添加postgresql_start -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -58,6 +50,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alinesno.infra.ops</groupId>
+			<artifactId>alinesno-infra-ops-logback-agent</artifactId>
+			<version>${revision}</version>
 		</dependency>
 
 	</dependencies>

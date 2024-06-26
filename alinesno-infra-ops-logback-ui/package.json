@@ -1,7 +1,7 @@
 {
   "name": "alinesno-infra-ops-logback-ui",
   "version": "1.0.0",
-  "description": "分布式日志服务",
+  "description": "分布式审计日志服务",
   "author": "LuoXiaoDong",
   "license": "Apache-2.0",
   "scripts": {

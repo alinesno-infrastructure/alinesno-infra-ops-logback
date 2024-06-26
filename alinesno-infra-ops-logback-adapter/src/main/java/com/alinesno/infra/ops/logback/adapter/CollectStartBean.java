@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Order(100)
 public class CollectStartBean implements InitializingBean {
 
-    @Value("${alinesno.logback.model:redis}")
+    @Value("${alinesno.ops.logback.model:redis}")
     private String model ;
 
     @Autowired

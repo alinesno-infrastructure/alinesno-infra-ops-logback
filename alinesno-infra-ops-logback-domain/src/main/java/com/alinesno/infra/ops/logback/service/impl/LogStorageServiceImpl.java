@@ -1,13 +1,13 @@
 package com.alinesno.infra.ops.logback.service.impl;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
 import com.alinesno.infra.ops.logback.entity.LogStorageEntity;
 import com.alinesno.infra.ops.logback.mapper.LogStorageMapper;
 import com.alinesno.infra.ops.logback.service.ILogStorageService;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +28,11 @@ import java.util.List;
 @Service
 public class LogStorageServiceImpl extends IBaseServiceImpl<LogStorageEntity, LogStorageMapper> implements ILogStorageService {
 
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+//    @Autowired
+//    private SqlSessionTemplate sqlSessionTemplate;
+
+    @Resource(name="primaryDataSource")
+    private DruidDataSource druidDataSource ;
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @Override
@@ -37,7 +40,8 @@ public class LogStorageServiceImpl extends IBaseServiceImpl<LogStorageEntity, Lo
 
         Connection connection = null;
         try {
-            connection = sqlSessionTemplate.getConnection();
+//            connection = sqlSessionTemplate.getConnection();
+            connection = druidDataSource.getConnection() ;
 
             // 关闭自动提交
             connection.setAutoCommit(false);

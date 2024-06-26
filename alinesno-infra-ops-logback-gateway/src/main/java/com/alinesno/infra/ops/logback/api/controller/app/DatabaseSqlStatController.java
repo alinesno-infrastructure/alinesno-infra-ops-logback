@@ -4,8 +4,8 @@ import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
-import com.alinesno.infra.ops.logback.entity.app.DatabaseLogEntity;
-import com.alinesno.infra.ops.logback.service.app.IDatabaseLogService;
+import com.alinesno.infra.ops.logback.entity.app.DatabaseSqlStatEntity;
+import com.alinesno.infra.ops.logback.service.app.IDatabaseSqlStatService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -19,24 +19,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 处理与DatabaseLogEntity相关的请求的Controller。
- * 继承自BaseController类并实现IDatabaseLogService接口。
+ * 处理与DatabaseSqlStatEntity相关的请求的Controller。
+ * 继承自BaseController类并实现IDatabaseSqlStatService接口。
  *
  * @version 1.0.0
  * @since 1.0.0
  */
 @Slf4j
-@Api(tags = "DatabaseLog")
+@Api(tags = "DatabaseSqlStat")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/ops/logback/databaseLog")
-public class DatabaseLogController extends BaseController<DatabaseLogEntity, IDatabaseLogService> {
+@RequestMapping("/api/infra/ops/logback/databaseSqlStat")
+public class DatabaseSqlStatController extends BaseController<DatabaseSqlStatEntity, IDatabaseSqlStatService> {
 
     @Autowired
-    private IDatabaseLogService service;
+    private IDatabaseSqlStatService service;
 
     /**
-     * 获取DatabaseLogEntity的DataTables数据。
+     * 获取DatabaseSqlStatEntity的DataTables数据。
      *
      * @param request HttpServletRequest对象。
      * @param model Model对象。
@@ -51,7 +51,7 @@ public class DatabaseLogController extends BaseController<DatabaseLogEntity, IDa
     }
 
     @Override
-    public IDatabaseLogService getFeign() {
+    public IDatabaseSqlStatService getFeign() {
         return this.service;
     }
 

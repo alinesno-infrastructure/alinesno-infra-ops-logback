@@ -89,11 +89,11 @@
               <!-- 操作字段  -->
               <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
                  <template #default="scope">
-                    <el-tooltip content="修改" placement="top" v-if="scope.row.ProjectId !== 1">
+                    <el-tooltip content="修改" placement="top" v-if="scope.row.id !== 1">
                        <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
                           v-hasPermi="['system:Project:edit']"></el-button>
                     </el-tooltip>
-                    <el-tooltip content="删除" placement="top" v-if="scope.row.ProjectId !== 1">
+                    <el-tooltip content="删除" placement="top" v-if="scope.row.id !== 1">
                        <el-button link type="primary" icon="Delete" @click="handleDelete(scope.row)"
                           v-hasPermi="['system:Project:remove']"></el-button>
                     </el-tooltip>
@@ -155,8 +155,8 @@
            </el-row>
            <el-row>
               <el-col :span="24">
-                 <el-form-item label="应用介绍" prop="intro">
-                    <el-input v-model="form.intro" type="textarea" placeholder="请输入应用介绍" maxlength="255" />
+                 <el-form-item label="应用介绍" prop="projectDesc">
+                    <el-input v-model="form.projectDesc" type="textarea" placeholder="请输入应用介绍" maxlength="255" />
                  </el-form-item>
               </el-col>
            </el-row>
@@ -317,9 +317,9 @@ function resetQuery() {
 };
 /** 删除按钮操作 */
 function handleDelete(row) {
-  const ProjectIds = row.id || ids.value;
-  proxy.$modal.confirm('是否确认删除应用编号为"' + ProjectIds + '"的数据项？').then(function () {
-     return delProject(ProjectIds);
+  const ids = row.id || ids.value;
+  proxy.$modal.confirm('是否确认删除应用编号为"' + ids + '"的数据项？').then(function () {
+     return delProject(ids);
   }).then(() => {
      getList();
      proxy.$modal.msgSuccess("删除成功");
@@ -363,8 +363,8 @@ function handleAdd() {
 /** 修改按钮操作 */
 function handleUpdate(row) {
   reset();
-  const ProjectId = row.id || ids.value;
-  getProject(ProjectId).then(response => {
+  const id = row.id || ids.value;
+  getProject(id).then(response => {
      form.value = response.data;
      open.value = true;
      title.value = "修改应用";
@@ -381,7 +381,7 @@ function handleProjectSpace(id){
 function submitForm() {
   proxy.$refs["databaseRef"].validate(valid => {
      if (valid) {
-        if (form.value.ProjectId != undefined) {
+        if (form.value.id != undefined) {
            updateProject(form.value).then(response => {
               proxy.$modal.msgSuccess("修改成功");
               open.value = false;

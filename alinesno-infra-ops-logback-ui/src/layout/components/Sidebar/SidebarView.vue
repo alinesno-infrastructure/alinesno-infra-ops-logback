@@ -11,7 +11,7 @@
 export default {
   data () {
     return {
-      currentProjectName: '分布式日志服务'
+      currentProjectName: '分布式审计日志服务'
     }
   },
   mounted () {

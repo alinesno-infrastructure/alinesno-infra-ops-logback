@@ -26,31 +26,31 @@ import javax.sql.DataSource;
 @Data
 public class ClickhouseConfig {
 
-    @Value("${alinesno.logback.clickhouse.driverClassName}")
+    @Value("${alinesno.ops.logback.clickhouse.driverClassName}")
     private String driverClassName;
 
-    @Value("${alinesno.logback.clickhouse.url}")
+    @Value("${alinesno.ops.logback.clickhouse.url}")
     private String url;
 
-    @Value("${alinesno.logback.clickhouse.username}")
+    @Value("${alinesno.ops.logback.clickhouse.username}")
     private String username;
 
-    @Value("${alinesno.logback.clickhouse.password}")
+    @Value("${alinesno.ops.logback.clickhouse.password}")
     private String password;
 
-    @Value("${alinesno.logback.clickhouse.initialSize}")
+    @Value("${alinesno.ops.logback.clickhouse.initialSize}")
     private Integer initialSize;
 
-    @Value("${alinesno.logback.clickhouse.minIdle}")
+    @Value("${alinesno.ops.logback.clickhouse.minIdle}")
     private Integer minIdle;
 
-    @Value("${alinesno.logback.clickhouse.maxActive}")
+    @Value("${alinesno.ops.logback.clickhouse.maxActive}")
     private Integer maxActive;
 
-    @Value("${alinesno.logback.clickhouse.maxWait}")
+    @Value("${alinesno.ops.logback.clickhouse.maxWait}")
     private Integer maxWait;
 
-    @Value("${alinesno.logback.clickhouse.validationQuery}")
+    @Value("${alinesno.ops.logback.clickhouse.validationQuery}")
     private String validationQuery;
 
     @Bean(name = "clickhouseDataSource")

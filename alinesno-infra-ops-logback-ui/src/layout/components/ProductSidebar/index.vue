@@ -26,6 +26,7 @@ const menuItems = ref([
   {id:'9' , icon:'fa-solid fa-feather' , link:'/ops/logback/project/index' , desc:'项目管理'},
   {id:'2' , icon:'fa-solid fa-truck-fast' , link:'/ops/logback/logStorage/index' , desc:'运行日志'},
   {id:'12' , icon:'fa-solid fa-truck-plane' , link:'/ops/logback/businessLog/index' , desc:'业务日志'},
+  {id:'13' , icon:'fa-solid fa-database' , link:'/ops/logback/databaseLog/index' , desc:'数据库日志'},
   {id:'3' , icon:'fa-solid fa-box' , link:'/ops/logback/containerLog/index' , desc:'容器日志分析'},
   {id:'4' , icon:'fa-solid fa-server' , link:'/ops/logback/frontLog/index' , desc:'前端监控'},
   {id:'5' , icon:'fa-solid fa-plane-departure' , link:'/ops/logback/nginx/index' , desc:'Nginx日志分析'},

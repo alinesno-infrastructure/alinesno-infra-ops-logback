@@ -15,6 +15,7 @@ import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,23 +86,22 @@ public class RedisCollect extends BaseLogCollect {
 
             String streamKey = MessageConstant.REDIS_REST_RUNNINGLOG_KEY;
             String businessLogStreamKey = MessageConstant.REDIS_REST_BUSINESS_KEY ;
+            String databaseLogStreamKey = MessageConstant.REDIS_REST_DATABASE_KEY ;
 
             String groupName = "app_group";
             String consumerName = "app_consumer_" ;
 
             // 创建消费者组
-            try {
-                redisTemplate.opsForStream().createGroup(streamKey, groupName);
-                redisTemplate.opsForStream().createGroup(businessLogStreamKey, groupName);
-            } catch (Exception e) {
-                // 组可能已经存在，忽略异常
-            }
+            createConsumerGroup(streamKey, groupName, consumerName);
+            createConsumerGroup(businessLogStreamKey, groupName, consumerName);
+            createConsumerGroup(databaseLogStreamKey, groupName, consumerName);
 
             // 读取并处理消息
             List<MapRecord<String, Object, Object>> messages = redisTemplate.opsForStream()
                     .read(Consumer.from(groupName, consumerName),
                             StreamOffset.create(streamKey, ReadOffset.lastConsumed()),
-                            StreamOffset.create(businessLogStreamKey, ReadOffset.lastConsumed())
+                            StreamOffset.create(businessLogStreamKey, ReadOffset.lastConsumed()),
+                            StreamOffset.create(databaseLogStreamKey, ReadOffset.lastConsumed())
                     );
 
             if(messages != null && !messages.isEmpty()){
@@ -109,25 +109,38 @@ public class RedisCollect extends BaseLogCollect {
 
                     for(Object key : message.getValue().keySet()){
                         log.debug("message key = {}" ,key );
-                    }
 
-                    if(message.getValue().get(streamKey) != null){  // 处理运行日志消息
-                        // 处理消息逻辑
-                        List<String> strArr = JSON.parseArray(message.getValue().get(streamKey)+"" , String.class) ;
-                        logs.addAll(strArr) ;
-                    }else {  // 处理业务日志消息
-                        BaseHandle handle = (BaseHandle) SpringContext.getBean(businessLogStreamKey);
-                        handle.analyseMessage(message.getValue().get(businessLogStreamKey)+"") ;
-                    }
+                        String queueKey = String.valueOf(key) ;
 
-                    // 确认消息
-                    redisTemplate.opsForStream().acknowledge(streamKey, groupName, message.getId());
+                        if(message.getValue().get(streamKey) != null){  // 处理运行日志消息
+                            // 处理消息逻辑
+                            List<String> strArr = JSON.parseArray(message.getValue().get(streamKey)+"" , String.class) ;
+                            logs.addAll(strArr) ;
+                        }else {
+                            // 处理业务日志消息
+                            BaseHandle handle = (BaseHandle) SpringContext.getBean(queueKey);
+                            handle.analyseMessage(message.getValue().get(queueKey)+"") ;
+                        }
+
+                        // 确认消息
+                        redisTemplate.opsForStream().acknowledge(streamKey, groupName, message.getId());
+                    }
                 }
 
-                super.handleLog(logs) ;
-                publisherMonitorEvent(logs);
+                if(!CollectionUtils.isEmpty(logs)){
+                    super.handleLog(logs) ;
+                    publisherMonitorEvent(logs);
+                }
             }
 
+        }
+    }
+
+    private void createConsumerGroup(String streamKey, String groupName, String consumerName) {
+        try {
+            redisTemplate.opsForStream().createGroup(streamKey, groupName);
+        } catch (Exception e) {
+            // 组可能已经存在，忽略异常
         }
     }
 

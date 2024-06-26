@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from 'vue-router'
 /* Layout */
-import Layout from '@/layout/SaaSLayout'
-// import Layout from '@/layout'
+// import Layout from '@/layout/SaaSLayout'
+import Layout from '@/layout'
 
 /**
  * Note: 路由配置项
@@ -66,6 +66,7 @@ export const constantRoutes = [
         name: '/dashboard/smartService',
         meta: { title: '智能客服', icon: 'dashboard', affix: true }
       },
+
       // {
       //   path: '/dashboard/serviceList',
       //   component: () => import('@/views/serviceList'),
@@ -86,60 +87,66 @@ export const constantRoutes = [
       },
 
       // >>>>>>>>>>>>>>>>>>>> logback_router_start >>>>>>>>>>>>>>>>>>
-      {
-        path: '/ops/logback/project/index',
-        component: () => import('@/views/ops/logback/project/index'),
-        name: '/ops/logback/project/index',
-        meta: { title: '应用管理', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/analyse/index',
-        component: () => import('@/views/ops/logback/analyse/index'),
-        name: '/ops/logback/analyse/index',
-        meta: { title: '调用分析', icon: 'dashboard', affix: true }
-      }, 
-      {
-        path: '/ops/logback/logStorage/index',
-        component: () => import('@/views/ops/logback/logStorage/index'),
-        name: '/ops/logback/logStorage/index',
-        meta: { title: '日志分析', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/businessLog/index',
-        component: () => import('@/views/ops/logback/businessLog/index'),
-        name: '/ops/logback/businessLog/index',
-        meta: { title: '业务日志', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/containerLog/index',
-        component: () => import('@/views/ops/logback/containerLog/index'),
-        name: '/ops/logback/containerLog/index',
-        meta: { title: '容器日志分析', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/frontLog/index',
-        component: () => import('@/views/ops/logback/frontLog/index'),
-        name: '/ops/logback/frontLog/index',
-        meta: { title: '前端监控', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/nginx/index',
-        component: () => import('@/views/ops/logback/nginx/index'),
-        name: '/ops/logback/nginx/index',
-        meta: { title: 'Nginx日志分析', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/inspection/index',
-        component: () => import('@/views/ops/logback/inspection/index'),
-        name: '/ops/logback/inspection/index',
-        meta: { title: '巡检日志分析', icon: 'dashboard', affix: true }
-      },
-      {
-        path: '/ops/logback/account/index',
-        component: () => import('@/views/ops/logback/account/index'),
-        name: '/ops/logback/account/index',
-        meta: { title: '账户日志分析', icon: 'dashboard', affix: true }
-      },
+      // {
+      //   path: '/ops/logback/project/index',
+      //   component: () => import('@/views/ops/logback/project/index'),
+      //   name: '/ops/logback/project/index',
+      //   meta: { title: '应用管理', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/analyse/index',
+      //   component: () => import('@/views/ops/logback/analyse/index'),
+      //   name: '/ops/logback/analyse/index',
+      //   meta: { title: '调用分析', icon: 'dashboard', affix: true }
+      // }, 
+      // {
+      //   path: '/ops/logback/logStorage/index',
+      //   component: () => import('@/views/ops/logback/logStorage/index'),
+      //   name: '/ops/logback/logStorage/index',
+      //   meta: { title: '日志分析', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/businessLog/index',
+      //   component: () => import('@/views/ops/logback/businessLog/index'),
+      //   name: '/ops/logback/businessLog/index',
+      //   meta: { title: '业务日志', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/databaseLog/index',
+      //   component: () => import('@/views/ops/logback/databaseLog/index'),
+      //   name: '/ops/logback/databaseLog/index',
+      //   meta: { title: '数据库日志', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/containerLog/index',
+      //   component: () => import('@/views/ops/logback/containerLog/index'),
+      //   name: '/ops/logback/containerLog/index',
+      //   meta: { title: '容器日志分析', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/frontLog/index',
+      //   component: () => import('@/views/ops/logback/frontLog/index'),
+      //   name: '/ops/logback/frontLog/index',
+      //   meta: { title: '前端监控', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/nginx/index',
+      //   component: () => import('@/views/ops/logback/nginx/index'),
+      //   name: '/ops/logback/nginx/index',
+      //   meta: { title: 'Nginx日志分析', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/inspection/index',
+      //   component: () => import('@/views/ops/logback/inspection/index'),
+      //   name: '/ops/logback/inspection/index',
+      //   meta: { title: '巡检日志分析', icon: 'dashboard', affix: true }
+      // },
+      // {
+      //   path: '/ops/logback/account/index',
+      //   component: () => import('@/views/ops/logback/account/index'),
+      //   name: '/ops/logback/account/index',
+      //   meta: { title: '账户日志分析', icon: 'dashboard', affix: true }
+      // },
       // >>>>>>>>>>>>>>>>>>>> logback_router_end >>>>>>>>>>>>>>>>>>
 
     ]

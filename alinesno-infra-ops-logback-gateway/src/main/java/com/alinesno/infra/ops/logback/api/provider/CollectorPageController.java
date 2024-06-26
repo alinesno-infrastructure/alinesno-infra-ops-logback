@@ -28,7 +28,7 @@ import java.util.Map;
 @RestController
 public class CollectorPageController {
 
-    @Value("${alinesno.logback.model:redis}")
+    @Value("${alinesno.ops.logback.model:redis}")
     private String model ;
 
     @Autowired
