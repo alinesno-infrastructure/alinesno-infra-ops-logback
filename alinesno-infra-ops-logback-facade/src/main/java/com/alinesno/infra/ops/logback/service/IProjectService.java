@@ -45,4 +45,5 @@ public interface IProjectService extends IBaseService<ProjectEntity> {
      */
     boolean isOpen(String projectCode);
 
+    List<ProjectEntity> latestList(long userId);
 }

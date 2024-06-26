@@ -22,6 +22,11 @@ import lombok.ToString;
 @TableName("starter_project")
 public class ProjectEntity extends InfraBaseEntity {
 
+    @TableField("project_icons")
+    @ColumnType(length=64)
+    @ColumnComment("项目图标")
+    private String projectIcons ;
+
     /**
      * 项目名称
      */

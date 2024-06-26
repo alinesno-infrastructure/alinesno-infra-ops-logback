@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class ApplicationServiceImpl extends IBaseServiceImpl<ProjectEntity, ProjectMapper> implements IProjectService {
+public class ProjectServiceImpl extends IBaseServiceImpl<ProjectEntity, ProjectMapper> implements IProjectService {
 
     private static final String DEFAULT_PROJECT_FIELD = "default" ;
 
@@ -57,20 +57,28 @@ public class ApplicationServiceImpl extends IBaseServiceImpl<ProjectEntity, Proj
     @Override
     public void initDefaultApp(long userId) {
 
-        Sqids sqids=Sqids.builder().build();
-        String code = sqids.encode(Arrays.asList(1L,2L,3L)); // "86Rf07"
+        LambdaQueryWrapper<ProjectEntity> wrapper = new LambdaQueryWrapper<>() ;
+        wrapper.eq(ProjectEntity::getOperatorId , userId) ;
 
-        ProjectEntity project = new ProjectEntity() ;
+        long count = count(wrapper) ;
 
-        project.setOperatorId(userId);
-        project.setFieldProp(DEFAULT_PROJECT_FIELD);
+        if(count == 0) {  // 账户应用为空
+            Sqids sqids=Sqids.builder().build();
+            String code = sqids.encode(Arrays.asList(1L,2L,3L)); // "86Rf07"
 
-        project.setProjectName("默认日志应用");
-        project.setProjectDesc("包含所有的日志渠道查看权限，用于开发和验证场景");
-        project.setProjectCode(code);
-        project.setChannelType(ProviderChannelEnum.getAllNameStr());
+            ProjectEntity project = new ProjectEntity() ;
 
-        save(project) ;
+            project.setOperatorId(userId);
+            project.setFieldProp(DEFAULT_PROJECT_FIELD);
+
+            project.setProjectName("默认日志应用");
+            project.setProjectDesc("包含所有的日志渠道查看权限，用于开发和验证场景");
+            project.setProjectCode(code);
+            project.setChannelType(ProviderChannelEnum.getAllNameStr());
+
+            save(project) ;
+        }
+
     }
 
     /**
@@ -106,6 +114,16 @@ public class ApplicationServiceImpl extends IBaseServiceImpl<ProjectEntity, Proj
 
         // 判断项目的状态是否为合法状态，返回相应的布尔值
         return project.getHasStatus() == HasStatusEnums.LEGAL.value;
+    }
+
+    @Override
+    public List<ProjectEntity> latestList(long userId) {
+
+        LambdaQueryWrapper<ProjectEntity> wrapper = new LambdaQueryWrapper<>() ;
+//		wrapper.eq(ManagerProjectEntity::getOperatorId , userId) ;
+        wrapper.orderByDesc(ProjectEntity::getAddTime) ;
+
+        return list(wrapper) ;
     }
 
 }

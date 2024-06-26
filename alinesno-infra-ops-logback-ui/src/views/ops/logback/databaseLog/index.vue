@@ -57,12 +57,30 @@
         </el-row>
 
         <el-table v-loading="loading" :data="DatabaseSqlStatList" @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="50" align="center"/>
+          <el-table-column type="index" label="序号" width="50" align="center"/>
+          <!-- 
           <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
-          </el-table-column>
-          <el-table-column label="SQL" align="left" key="executeSql" prop="executeSql" v-if="columns[1].visible" :show-overflow-tooltip="true">
+          </el-table-column> 
+          -->
+          <el-table-column label="SQL" align="left" key="executeSql" prop="executeSql" v-if="columns[1].visible">
             <template #default="scope">
-              <span>{{ scope.row.executeSql }}</span>
+
+              <el-popover placement="right" :width="350" trigger="hover">
+                <template #reference>
+                      <div class="executeSql">
+                        {{ scope.row.executeSql }}
+                      </div>
+                </template>
+                <div class="expressInfo">
+                  <el-descriptions title="详细信息" :column="1">
+                    <el-descriptions-item label="执行SQL">
+                      <div v-html="scope.row.executeSql">
+                      </div>
+                    </el-descriptions-item>
+                  </el-descriptions>
+                </div>
+              </el-popover>
+
             </template>
           </el-table-column>
           <el-table-column label="执行数" align="center" width="70" key="executeCount" prop="executeCount" v-if="columns[2].visible" :show-overflow-tooltip="true"/>
@@ -262,7 +280,7 @@ const data = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 20,
     DatabaseSqlStatName: undefined,
     applicationName: undefined,
     showName: undefined,
@@ -399,3 +417,14 @@ function submitForm() {
 
 getList();
 </script>
+
+<style lang="scss" scoped>
+
+.executeSql{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+</style>

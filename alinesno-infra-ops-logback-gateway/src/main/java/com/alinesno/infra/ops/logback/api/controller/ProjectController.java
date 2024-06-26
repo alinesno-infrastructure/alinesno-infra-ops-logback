@@ -5,6 +5,7 @@ import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.web.adapter.login.account.CurrentAccountJwt;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
+import com.alinesno.infra.ops.logback.api.session.CurrentProjectSession;
 import com.alinesno.infra.ops.logback.entity.ProjectEntity;
 import com.alinesno.infra.ops.logback.service.IProjectService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -17,6 +18,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 应用构建Controller
@@ -35,6 +38,9 @@ public class ProjectController extends BaseController<ProjectEntity, IProjectSer
 
     @Autowired
     private IProjectService service;
+
+    @Autowired
+    private CurrentProjectSession currentProjectSession ;
 
     /**
      * 获取ApplicationEntity的DataTables数据。
@@ -58,6 +64,45 @@ public class ProjectController extends BaseController<ProjectEntity, IProjectSer
         }
 
         return this.toPage(model, this.getFeign(), page);
+    }
+
+    /**
+     * 获取当前应用
+     * @return
+     */
+    @GetMapping("/currentProject")
+    public AjaxResult currentApplication() {
+
+        // 初始化应用
+        service.initDefaultApp(CurrentAccountJwt.getUserId()) ;
+
+        ProjectEntity e = currentProjectSession.get() ;
+
+        String defaultIcon = "fa-solid fa-file-shield" ;
+        e.setProjectIcons(defaultIcon);
+
+        return AjaxResult.success(e);
+    }
+
+    /**
+     * 获取最新的应用
+     * @return
+     */
+    @GetMapping("/latestList")
+    public AjaxResult latestList() {
+        long userId = CurrentAccountJwt.getUserId() ;
+        List<ProjectEntity> es =  service.latestList(userId);
+        return AjaxResult.success(es) ;
+    }
+
+    /**
+     * 选择应用
+     * @return
+     */
+    @GetMapping("/choiceProject")
+    public AjaxResult choiceProject(Long projectId) {
+        currentProjectSession.set(projectId);
+        return ok() ;
     }
 
     /**

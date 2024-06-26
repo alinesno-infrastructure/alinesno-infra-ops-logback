@@ -143,10 +143,10 @@ public class CommonLoginController {
                 List.of(
                         new Menu("LogStorage", "ops/logback/logStorage/index", false,false,  "ops/logback/logStorage/index", new Menu.Meta("运行日志", "form", false, null)),
                         new Menu("BusinessLog", "ops/logback/businessLog/index", false,false,  "ops/logback/businessLog/index", new Menu.Meta("业务日志", "tree", false, null)),
-                        new Menu("DatabaseLog", "ops/logback/databaseLog/index", false,false,  "ops/logback/databaseLog/index", new Menu.Meta("数据库日志", "user", false, null)),
+                        new Menu("DatabaseLog", "ops/logback/databaseLog/index", false,false,  "ops/logback/databaseLog/index", new Menu.Meta("数据日志", "user", false, null)),
                         new Menu("ContainerLog", "ops/logback/containerLog/index", false,false,  "ops/logback/containerLog/index", new Menu.Meta("容器日志", "form", false, null)),
                         new Menu("FrontLog", "ops/logback/frontLog/index", false,false,  "ops/logback/frontLog/index", new Menu.Meta("前端监控", "guide", false, null)),
-                        new Menu("Inspection", "ops/logback/nginx/index", false,false,  "ops/logback/nginx/index", new Menu.Meta("Nginx日志", "druid", false, null)),
+                        new Menu("Inspection", "ops/logback/nginx/index", false,false,  "ops/logback/nginx/index", new Menu.Meta("代理日志", "druid", false, null)),
                         new Menu("Account", "ops/logback/inspection/index", false,false,  "ops/logback/inspection/index", new Menu.Meta("巡检日志", "online", false, null))
                 ));
 
