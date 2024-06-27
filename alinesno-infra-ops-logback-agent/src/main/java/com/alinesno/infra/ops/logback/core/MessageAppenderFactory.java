@@ -148,7 +148,6 @@ public class MessageAppenderFactory {
     private static void doStartLog(String loggerHost, int maxCount, BlockingQueue<String> queue, String key, String lock, AtomicLong pushTime) throws InterruptedException {
 
         List<String> logs = new ArrayList<>();
-
         int size = queue.size();
         long currentTimeMillis = System.currentTimeMillis();
         long time = currentTimeMillis - pushTime.get();

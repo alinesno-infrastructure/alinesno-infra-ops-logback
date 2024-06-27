@@ -57,22 +57,45 @@
         </el-row>
 
         <el-table v-loading="loading" :data="LogStorageList" @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="50" align="center"/>
-          <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
+          <el-table-column label="序号" type="index" width="50" align="center"/>
+          <!-- <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
               <template #default="scope">
                 <span style="font-size:25px;color:#3b5998">
                     <i class="fa-solid fa-file-word" />
                 </span>
               </template>
-          </el-table-column>
-          <el-table-column label="应用名称" align="left" width="200" key="applicationName" prop="applicationName" v-if="columns[1].visible" :show-overflow-tooltip="true">
+          </el-table-column> -->
+          <!-- <el-table-column label="应用名称" align="left" width="180" key="applicationName" prop="applicationName" v-if="columns[1].visible" :show-overflow-tooltip="true">
               <template #default="scope">
-                  <el-button type="danger" bg text @click="handleProjectSpace(scope.row.id)"> 
+                  <div type="danger" text @click="handleProjectSpace(scope.row.id)"> 
                     <i class="fa-solid fa-link"></i>&nbsp;{{ scope.row.applicationName }}
-                  </el-button>
+                  </div>
               </template>
+          </el-table-column> -->
+          <el-table-column label="日志消息" align="left" key="logMessage" prop="logMessage" v-if="columns[1].visible">
+            <template #default="scope">
+
+              <el-popover placement="top" :width="350" trigger="hover">
+                <template #reference>
+                      <div class="execute-message-content">
+                        {{ scope.row.logMessage }}
+                      </div>
+                </template>
+                <div class="expressInfo">
+                      <div v-html="scope.row.logMessage">
+                      </div>
+                  <!-- <el-descriptions title="详细信息" :column="1">
+                    <el-descriptions-item>
+                      <div v-html="scope.row.logMessage">
+                      </div>
+                    </el-descriptions-item>
+                  </el-descriptions> -->
+                </div>
+              </el-popover>
+
+            </template>
           </el-table-column>
-          <el-table-column label="日志消息" align="left" key="logMessage" prop="logMessage" v-if="columns[2].visible" :show-overflow-tooltip="true"/>
+          <el-table-column label="执行方法" align="center" width="160" key="requestMethod" prop="requestMethod" v-if="columns[6].visible" :show-overflow-tooltip="true"/>
           <el-table-column label="所在机器" align="center" width="160" key="ipAddress" prop="ipAddress" v-if="columns[6].visible" :show-overflow-tooltip="true"/>
           <el-table-column label="异常级别" align="center" width="100" key="logLevel" prop="logLevel" v-if="columns[6].visible" :show-overflow-tooltip="true">
               <template #default="scope">
@@ -298,7 +321,7 @@ const data = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 20,
     LogStorageName: undefined,
     applicationName: undefined,
     showName: undefined,

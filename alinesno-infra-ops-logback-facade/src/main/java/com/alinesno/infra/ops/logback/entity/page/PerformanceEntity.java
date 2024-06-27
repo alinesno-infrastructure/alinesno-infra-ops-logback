@@ -6,15 +6,17 @@ import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 性能信息实体类
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("performance_info")
 @Data
-public class PerformanceInfoEntity extends InfraBaseEntity {
+public class PerformanceEntity extends PageEntity {
 
     // 首次内容绘制 (FCP)
     @TableField("fcp")

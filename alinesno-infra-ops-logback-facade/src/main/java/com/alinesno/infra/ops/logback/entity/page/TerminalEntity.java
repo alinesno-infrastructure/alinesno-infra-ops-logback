@@ -6,15 +6,17 @@ import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 终端信息实体类
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("terminal_info")
 @Data
-public class TerminalInfoEntity extends InfraBaseEntity {
+public class TerminalEntity extends PageEntity {
 
     // 宽高比
     @TableField("resolving_power")

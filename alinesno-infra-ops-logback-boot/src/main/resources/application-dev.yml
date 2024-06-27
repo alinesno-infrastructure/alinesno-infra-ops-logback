@@ -25,16 +25,18 @@ spring:
       port: 6379
       password: aip@local
       database: 3
-  kafka:
-    bootstrap-servers: 192.168.101.18:9092
-    consumer:
-      group-id: infra_logback
+#  kafka:
+#    bootstrap-servers: 192.168.101.18:9092
+#    consumer:
+#      group-id: infra_logback
 
 # 日志队列配置
 alinesno.ops:
   logback:
     model: redis  # redis列队|kafka列队
+    env: development
     restHost: http://localhost:${server.port}
+    userKey: aip@local
     clickhouse:
       driverClassName: com.clickhouse.jdbc.ClickHouseDriver
       url: jdbc:clickhouse://127.0.0.1:8123/default?max_result_bytes=10485760

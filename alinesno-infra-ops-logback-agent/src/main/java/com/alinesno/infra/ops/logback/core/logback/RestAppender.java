@@ -25,7 +25,7 @@ public class RestAppender extends AppenderBase<ILoggingEvent> {
     private static final ThreadPoolExecutor threadPoolExecutor = ThreadPoolUtil.getPool();
     private String appName;
     private String env = "default";
-    private String projectCode ; // 应用密钥
+    private String userKey; // 应用密钥
     private String runModel;
     private String expand;
     private String restHost;
@@ -45,16 +45,20 @@ public class RestAppender extends AppenderBase<ILoggingEvent> {
 
         final BaseLogMessage logMessage = LogMessageUtil.getLogMessage(appName, env, event);
 
-        if(projectCode == null) {
-            System.err.print("未配置【projectCode】密钥，无法写入日志审计服务!");
+        if(userKey == null) {
+            System.err.println("未配置【userKey】密钥，无法写入日志审计服务!");
             return ;
         }
 
         // 配置应用日志密钥
-        logMessage.setUserKey(projectCode);
+        logMessage.setUserKey(userKey);
 
-        String message = LogMessageUtil.getLogMessage(logMessage, event);
-        MessageAppenderFactory.pushRundataQueue(message);
+        try{
+            String message = LogMessageUtil.getLogMessage(logMessage, event);
+            MessageAppenderFactory.pushRundataQueue(message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -63,11 +67,13 @@ public class RestAppender extends AppenderBase<ILoggingEvent> {
         MessageAppenderFactory.initQueue(this.logQueueSize);
 
         for (int a = 0; a < this.threadPoolSize; a++) {
-            threadPoolExecutor.execute(() -> MessageAppenderFactory.startRunLog(
+            threadPoolExecutor.execute(() ->
+                    MessageAppenderFactory.startRunLog(
                     this.restHost,
                     this.maxCount,
                     this.compressor ? "lz4" : "none",
-                    this.compressor));
+                    this.compressor)
+            );
         }
     }
 }

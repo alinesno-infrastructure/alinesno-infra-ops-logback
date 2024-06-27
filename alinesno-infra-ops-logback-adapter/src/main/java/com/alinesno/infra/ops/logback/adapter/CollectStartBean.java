@@ -17,7 +17,7 @@ public class CollectStartBean implements InitializingBean {
     @Value("${alinesno.ops.logback.model:redis}")
     private String model ;
 
-    @Autowired
+    @Autowired(required = false)
     private KafkaCollect kafkaLogCollect ;
 
     @Autowired

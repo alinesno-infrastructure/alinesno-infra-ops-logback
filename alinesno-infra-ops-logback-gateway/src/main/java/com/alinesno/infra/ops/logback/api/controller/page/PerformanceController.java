@@ -4,8 +4,8 @@ import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
-import com.alinesno.infra.ops.logback.entity.page.IoListEntity;
-import com.alinesno.infra.ops.logback.service.page.IIoListService;
+import com.alinesno.infra.ops.logback.entity.page.PerformanceEntity;
+import com.alinesno.infra.ops.logback.service.page.IPerformanceService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -20,32 +20,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 处理与IoListEntity相关的请求的Controller。
- * 继承自BaseController类并实现IIoListService接口。
+ * 处理与PerformanceEntity相关的请求的Controller。
+ * 继承自BaseController类并实现IPerformanceService接口。
  *
  * @version 1.0.0
  * @since 1.0.0
  */
-@Api(tags = "IoList")
+@Api(tags = "Performance")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/ops/logback/ioList")
-public class IoListController extends BaseController<IoListEntity, IIoListService> {
+@RequestMapping("/api/infra/ops/logback/performance")
+public class PerformanceController extends BaseController<PerformanceEntity, IPerformanceService> {
 
     // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(IoListController.class);
+    private static final Logger log = LoggerFactory.getLogger(PerformanceController.class);
 
     @Autowired
-    private IIoListService service;
+    private IPerformanceService service;
 
     /**
-     * 获取IoListEntity的DataTables数据。
+     * 获取PerformanceEntity的DataTables数据。
      *
      * @param request HttpServletRequest对象。
-     * @param model Model对象。
-     * @param page DatatablesPageBean对象。
-     * @return 包含DataTables数据的TableDataInfo对象。
-     */
+            * @param model Model对象。
+            * @param page DatatablesPageBean对象。
+            * @return 包含DataTables数据的TableDataInfo对象。
+            */
     @ResponseBody
     @PostMapping("/datatables")
     public TableDataInfo datatables(HttpServletRequest request, Model model, DatatablesPageBean page) {
@@ -54,7 +54,7 @@ public class IoListController extends BaseController<IoListEntity, IIoListServic
     }
 
     @Override
-    public IIoListService getFeign() {
+    public IPerformanceService getFeign() {
         return this.service;
     }
 }

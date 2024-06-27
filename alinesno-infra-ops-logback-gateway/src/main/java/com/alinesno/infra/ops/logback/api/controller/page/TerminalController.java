@@ -4,8 +4,8 @@ import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
-import com.alinesno.infra.ops.logback.entity.page.TerminalInfoEntity;
-import com.alinesno.infra.ops.logback.service.page.ITerminalInfoService;
+import com.alinesno.infra.ops.logback.entity.page.TerminalEntity;
+import com.alinesno.infra.ops.logback.service.page.ITerminalService;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -20,26 +20,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 处理与TerminalInfoEntity相关的请求的Controller。
- * 继承自BaseController类并实现ITerminalInfoService接口。
+ * 处理与Terminal相关的请求的Controller。
+ * 继承自BaseController类并实现ITerminalService接口。
  *
  * @version 1.0.0
  * @since 1.0.0
  */
-@Api(tags = "TerminalInfo")
+@Api(tags = "Terminal")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
 @RequestMapping("/api/infra/ops/logback/terminalInfo")
-public class TerminalInfoController extends BaseController<TerminalInfoEntity, ITerminalInfoService> {
+public class TerminalController extends BaseController<TerminalEntity, ITerminalService> {
 
     // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(TerminalInfoController.class);
+    private static final Logger log = LoggerFactory.getLogger(TerminalController.class);
 
     @Autowired
-    private ITerminalInfoService service;
+    private ITerminalService service;
 
     /**
-     * 获取TerminalInfoEntity的DataTables数据。
+     * 获取Terminal的DataTables数据。
      *
      * @param request HttpServletRequest对象。
      * @param model Model对象。
@@ -54,7 +54,7 @@ public class TerminalInfoController extends BaseController<TerminalInfoEntity, I
     }
 
     @Override
-    public ITerminalInfoService getFeign() {
+    public ITerminalService getFeign() {
         return this.service;
     }
 }

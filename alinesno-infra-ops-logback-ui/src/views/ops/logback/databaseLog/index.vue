@@ -72,12 +72,12 @@
                       </div>
                 </template>
                 <div class="expressInfo">
-                  <el-descriptions title="详细信息" :column="1">
-                    <el-descriptions-item label="执行SQL">
                       <div v-html="scope.row.executeSql">
                       </div>
+                  <!-- <el-descriptions title="详细信息" :column="1">
+                    <el-descriptions-item label="执行SQL">
                     </el-descriptions-item>
-                  </el-descriptions>
+                  </el-descriptions> -->
                 </div>
               </el-popover>
 

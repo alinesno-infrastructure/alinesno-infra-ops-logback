@@ -32,7 +32,7 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
     private String appName;
     private String env = "default";
     private String kafkaHosts;
-    private String projectCode ; // 应用密钥
+    private String userKey ; // 应用密钥
     private int maxCount = 100;
     private int logQueueSize = 10000;
     private int threadPoolSize = 2;
@@ -48,13 +48,13 @@ public class KafkaAppender extends AppenderBase<ILoggingEvent> {
     protected void send(ILoggingEvent event) {
         final BaseLogMessage logMessage = LogMessageUtil.getLogMessage(appName, env, event);
         
-        if(projectCode == null) {
-        	System.err.print("未配置【projectCode】密钥，无法写入日志审计服务!");
+        if(userKey == null) {
+        	System.err.print("未配置【userKey】密钥，无法写入日志审计服务!");
         	return ; 
         }
       
         // 配置应用日志密钥
-        logMessage.setUserKey(projectCode);
+        logMessage.setUserKey(userKey);
 
         String message = LogMessageUtil.getLogMessage(logMessage, event);
         MessageAppenderFactory.pushRundataQueue(message);

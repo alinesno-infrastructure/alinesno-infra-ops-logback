@@ -1,4 +1,4 @@
-package com.alinesno.infra.ops.logback.service.impl;
+package com.alinesno.infra.ops.logback.service.impl.channel;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
 import com.alinesno.infra.ops.logback.entity.channel.NginxAccessLogEntity;

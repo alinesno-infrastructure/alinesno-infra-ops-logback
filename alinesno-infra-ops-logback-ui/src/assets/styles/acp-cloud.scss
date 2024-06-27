@@ -1405,3 +1405,11 @@ $chartColor: #3b5998;
     border-left: 0px solid #eee !important;
   }
 }
+
+.execute-message-content {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}

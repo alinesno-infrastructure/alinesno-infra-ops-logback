@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.mapper;
 
 import com.alinesno.infra.common.facade.mapper.repository.IBaseMapper;
-import com.alinesno.infra.ops.logback.entity.page.TerminalInfoEntity;
+import com.alinesno.infra.ops.logback.entity.page.TerminalEntity;
 
 /**
  * 终端信息Mapper接口
@@ -9,5 +9,5 @@ import com.alinesno.infra.ops.logback.entity.page.TerminalInfoEntity;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface TerminalInfoMapper extends IBaseMapper<TerminalInfoEntity> {
+public interface TerminalMapper extends IBaseMapper<TerminalEntity> {
 }

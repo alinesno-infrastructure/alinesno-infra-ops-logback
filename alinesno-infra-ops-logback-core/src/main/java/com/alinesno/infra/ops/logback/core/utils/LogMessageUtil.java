@@ -51,16 +51,15 @@ public class LogMessageUtil {
 
         long startTime = System.currentTimeMillis();
 
-        JVMDto jvm = SystemInfoFetcher.getJVMInfo() ;
-        MemDto mem = SystemInfoFetcher.getMemoryDetails() ;
-
-        logMessage.setJvm(jvm);
-        logMessage.setMem(mem);
+//        JVMDto jvm = SystemInfoFetcher.getJVMInfo() ;
+//        MemDto mem = SystemInfoFetcher.getMemoryDetails() ;
+//        logMessage.setJvm(jvm);
+//        logMessage.setMem(mem);
 
         long endTime = System.currentTimeMillis();
 
         long elapsedTime = endTime - startTime;
-        System.out.println("===>>> 方法执行时间：" + elapsedTime + " 毫秒");
+//        System.out.print("===>>> 方法执行时间：" + elapsedTime + " 毫秒");
 
         StackTraceElement[] stackTraceElements = iLoggingEvent.getCallerData();
 

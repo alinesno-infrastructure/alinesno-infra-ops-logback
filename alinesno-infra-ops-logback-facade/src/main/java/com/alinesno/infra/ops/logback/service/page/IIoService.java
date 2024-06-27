@@ -1,7 +1,7 @@
 package com.alinesno.infra.ops.logback.service.page;
 
 import com.alinesno.infra.common.facade.services.IBaseService;
-import com.alinesno.infra.ops.logback.entity.page.IoListEntity;
+import com.alinesno.infra.ops.logback.entity.page.IoEntity;
 
 /**
  * IO信息Service接口
@@ -9,5 +9,5 @@ import com.alinesno.infra.ops.logback.entity.page.IoListEntity;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface IIoListService extends IBaseService<IoListEntity> {
+public interface IIoService extends IBaseService<IoEntity> {
 }

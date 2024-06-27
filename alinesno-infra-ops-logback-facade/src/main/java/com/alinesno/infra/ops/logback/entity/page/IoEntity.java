@@ -6,15 +6,17 @@ import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * IO信息实体类
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("io_list")
 @Data
-public class IoListEntity extends InfraBaseEntity {
+public class IoEntity extends PageEntity {
 
     // URL名称
     @TableField("name")

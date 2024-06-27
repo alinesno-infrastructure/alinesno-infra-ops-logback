@@ -3,11 +3,13 @@ package com.alinesno.infra.ops.logback.adapter.config;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
+@ConditionalOnProperty(name = "alinesno.ops.logback.model", havingValue = "kafka")
 @Configuration
 public class KafkaConfig {
 

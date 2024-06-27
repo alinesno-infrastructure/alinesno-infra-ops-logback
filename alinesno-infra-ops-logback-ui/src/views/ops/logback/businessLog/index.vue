@@ -57,18 +57,46 @@
         </el-row>
 
         <el-table v-loading="loading" :data="BusinessLogList" @selection-change="handleSelectionChange">
-          <el-table-column type="index" width="50" align="center"/>
-          <el-table-column label="业务ID" align="center" width="150px" prop="id" v-if="columns[0].visible" :show-overflow-tooltip="true">
+          <el-table-column label="序号" type="index" width="50" align="center"/>
+          <!-- 
+          <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
           </el-table-column> 
-          <el-table-column label="日志内容" align="left" key="logContent" prop="logContent" v-if="columns[1].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="类名" align="center" width="180" key="showName" prop="showName" v-if="columns[2].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="所属领域" align="center" width="180" key="domain" prop="domain" v-if="columns[3].visible" :show-overflow-tooltip="true"/>
+          -->
+          <!-- <el-table-column label="消息内容" align="left" key="logContent" prop="logContent"
+                           v-if="columns[1].visible" :show-overflow-tooltip="true"/> -->
+          <el-table-column label="日志消息" align="left" key="logContent" prop="logContent" v-if="columns[1].visible">
+            <template #default="scope">
+
+              <el-popover placement="top" :width="350" trigger="hover">
+                <template #reference>
+                      <div class="execute-message-content">
+                        {{ scope.row.logContent }}
+                      </div>
+                </template>
+                <div class="expressInfo">
+                      <div v-html="scope.row.logContent">
+                      </div>
+                  <!-- <el-descriptions title="详细信息" :column="1">
+                    <el-descriptions-item>
+                    </el-descriptions-item>
+                  </el-descriptions> -->
+                </div>
+              </el-popover>
+
+            </template>
+          </el-table-column>
+          <el-table-column label="显示名称" align="center" width="80" key="showName" prop="showName" v-if="columns[2].visible"
+                           :show-overflow-tooltip="true"/>
+          <el-table-column label="所属领域" align="center" width="80" key="domain" prop="domain" v-if="columns[3].visible"
+                           :show-overflow-tooltip="true"/>
+          <el-table-column label="域名" align="center" width="80" key="domainName" prop="domainName" v-if="columns[4].visible"
+                           :show-overflow-tooltip="true"/>
           <el-table-column label="创建时间" align="center" prop="addTime" v-if="columns[7].visible" width="160">
             <template #default="scope">
               <span>{{ parseTime(scope.row.addTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width" v-if="columns[8].visible">
+          <el-table-column label="操作" align="center" width="100" class-name="small-padding fixed-width" v-if="columns[8].visible">
             <template #default="scope">
               <el-tooltip content="修改" placement="top" v-if="scope.row.applicationId !== 1">
                 <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
@@ -252,7 +280,7 @@ const data = reactive({
   form: {},
   queryParams: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 20,
     BusinessLogName: undefined,
     applicationName: undefined,
     showName: undefined,

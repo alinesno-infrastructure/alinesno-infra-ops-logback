@@ -68,21 +68,17 @@ const opertionAssets = ref([
   {id:'1' , title:'接入应用' , count:15} ,
   {id:'2' , title:'日志总量' , count:7649145} ,
   {id:'3' , title:'异常分析' , count:65} ,
-  {id:'4' , title:'安全分析' , count:85} ,
   {id:'5' , title:'日志存储' , count:'445G'} ,
   {id:'6' , title:'巡检任务' , count:145} ,
-  {id:'7' , title:'异常巡检' , count:40} ,
 ])
 
 const apps = ref([
   {icon:'fa-brands fa-slack'  , name:'分布式链路跟踪' , desc:'基于OpenTelemetry标准构建的Trace服务'},
   {icon:'fa-solid fa-list-check' , name:'智能异常分析' , desc:'智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台'},
   {icon:'fa-solid fa-at' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
-  {icon:'fa-solid fa-list-check' , name:'自动化操作服务' , desc:'基于OpenTelemetry标准构建的Trace服务'},
-  {icon:'fa-solid fa-file-word' , name:'全栈监控' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
-  {icon:'fa-solid fa-eye-slash' , name:'智能异常分析' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
-  {icon:'fa-solid fa-user-shield' , name:'审计日志服务' , desc:'覆盖Web应用、h5页面、小程序、监控页面访问速度、JS错误、资源监控、端到端链路'},
-  {icon:'fa-solid fa-comment-slash' , name:'持续集成服务' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警、丰富可视化等能力'},
+  {icon:'fa-solid fa-eye-slash' , name:'智能异常分析' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析、智能告警'},
+  {icon:'fa-solid fa-user-shield' , name:'审计日志服务' , desc:'覆盖Web应用、监控页面访问速度、JS错误、资源监控、端到端链路'},
+  {icon:'fa-solid fa-comment-slash' , name:'自动化操作日志' , desc:'提供IT系统监控、K8s监控、中间件监控、融合分析'},
   {icon:'fa-brands fa-slack' , name:'容器云管理服务' , desc:'网络请求日志分析，提供详细的请求情况和流量监控等'},
 ]);
 

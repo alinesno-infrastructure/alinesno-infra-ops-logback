@@ -1,4 +1,4 @@
-package com.alinesno.infra.ops.logback.service.impl;
+package com.alinesno.infra.ops.logback.service.impl.app;
 
 import com.alinesno.infra.common.core.service.impl.IBaseServiceImpl;
 import com.alinesno.infra.ops.logback.entity.app.DatabaseSqlStatEntity;
