@@ -199,4 +199,8 @@ jobs:
             export DB_CLICKHOUSE_USRENAME=${{ secrets.DEV_DB_CLICKHOUSE_USERNAME }}
             export DB_CLICKHOUSE_PASSWORD=${{ secrets.DEV_DB_CLICKHOUSE_PASSWORD }}
 
+            export DB_MYSQL_URL=${{ secrets.DEV_DB_MYSQL_URL }}
+            export DB_MYSQL_USRENAME=${{ secrets.DEV_DB_MYSQL_USRENAME }}
+            export DB_MYSQL_PASSWORD=${{ secrets.DEV_DB_MYSQL_PASSWORD }}
+
             envsubst < /home/github-action/${{ env.PROJECT_NAME }}/kubernetes-${{ env.CURRENT_PROFIRE }}.yml | kubectl apply -f -
