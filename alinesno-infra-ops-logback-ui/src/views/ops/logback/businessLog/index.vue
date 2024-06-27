@@ -57,21 +57,12 @@
         </el-row>
 
         <el-table v-loading="loading" :data="BusinessLogList" @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="50" align="center"/>
-          <el-table-column label="图标" align="center" width="55px" prop="icon" v-if="columns[0].visible">
-          </el-table-column>
-          <el-table-column label="应用名称" align="center" key="applicationName" prop="applicationName"
-                           v-if="columns[1].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="显示名称" align="center" key="showName" prop="showName" v-if="columns[2].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="所属领域" align="center" key="domain" prop="domain" v-if="columns[3].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="域名" align="center" key="domainName" prop="domainName" v-if="columns[4].visible"
-                           :show-overflow-tooltip="true"/>
-          <el-table-column label="安全存储路径" align="center" key="storagePath" prop="storagePath"
-                           v-if="columns[5].visible" :show-overflow-tooltip="true"/>
-          <el-table-column label="应用目标" align="center" key="target" prop="target" v-if="columns[6].visible"
-                           :show-overflow-tooltip="true"/>
+          <el-table-column type="index" width="50" align="center"/>
+          <el-table-column label="业务ID" align="center" width="150px" prop="id" v-if="columns[0].visible" :show-overflow-tooltip="true">
+          </el-table-column> 
+          <el-table-column label="日志内容" align="left" key="logContent" prop="logContent" v-if="columns[1].visible" :show-overflow-tooltip="true"/>
+          <el-table-column label="类名" align="center" width="180" key="showName" prop="showName" v-if="columns[2].visible" :show-overflow-tooltip="true"/>
+          <el-table-column label="所属领域" align="center" width="180" key="domain" prop="domain" v-if="columns[3].visible" :show-overflow-tooltip="true"/>
           <el-table-column label="创建时间" align="center" prop="addTime" v-if="columns[7].visible" width="160">
             <template #default="scope">
               <span>{{ parseTime(scope.row.addTime) }}</span>
